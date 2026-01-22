@@ -1,1 +1,196 @@
-<!DOCTYPE html>\n<html lang="en">\n<head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>EnvCheck Free Tool</title>\n    <link rel="stylesheet" href="styles.css">\n</head>\n<body>\n    <header>\n        <h1>EnvCheck Free Tool</h1>\n    </header>\n    <main>\n        <section id="file-upload">\n            <h2>Upload Your Files</h2>\n            <form id="upload-form">\n                <label for="file1">Select File 1:</label>\n                <input type="file" id="file1" name="file1" required>\n                <br>\n                <label for="file2">Select File 2:</label>\n                <input type="file" id="file2" name="file2" required>\n                <br>\n                <button type="submit">Compare</button>\n            </form>\n        </section>\n        <section id="comparison-results">\n            <h2>Comparison Results</h2>\n            <div id="results-display">\n                <p>No results yet. Please upload files and compare.</p>\n            </div>\n        </section>\n    </main>\n    <footer>\n        <p>&copy; 2026 EnvCheck. All rights reserved.</p>\n    </footer>\n</body>\n</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EnvCheck</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>EnvCheck</h1>
+            <p class="subtitle">Audit Environments in Seconds</p>
+            <p class="description">Compare multiple .env files and instantly find missing or mismatched variables.</p>
+        </header>
+
+        <main>
+            <div class="mode-toggle-section">
+                <label class="mode-selector">
+                    <input type="radio" name="comparison-mode" id="mode-2file" checked>
+                    <span>Compare 2 Files</span>
+                </label>
+                <label class="mode-selector">
+                    <input type="radio" name="comparison-mode" id="mode-3file">
+                    <span>Compare 3 Files</span>
+                </label>
+            </div>
+
+            <div class="file-upload-section" id="file-2file-section">
+                <div class="upload-area" id="file1-area">
+                    <div class="upload-content">
+                        <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        <p class="upload-text">Drop .env file here or click to browse</p>
+                        <p class="upload-label">File 1</p>
+                        <input type="file" id="file1" accept=".env,.env.*" hidden>
+                    </div>
+                </div>
+
+                <div class="upload-area" id="file2-area">
+                    <div class="upload-content">
+                        <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        <p class="upload-text">Drop .env file here or click to browse</p>
+                        <p class="upload-label">File 2</p>
+                        <input type="file" id="file2" accept=".env,.env.*" hidden>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Privacy Note -->
+            <div class="privacy-note">
+                <p>Runs entirely in your browser. Files are never uploaded.</p>
+            </div>
+
+            <!-- How to Use -->
+            <div class="how-to-use">
+                <h3>How to use</h3>
+                <ul>
+                    <li>Upload or drop your .env files</li>
+                    <li>Review missing and mismatched keys</li>
+                    <li>Export .env.example / patch as needed</li>
+                </ul>
+            </div>
+
+            <div class="file-upload-section" id="file-3file-section" style="display: none;">
+                <div class="upload-area" id="file1-area-3">
+                    <div class="upload-content">
+                        <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        <p class="upload-text">Drop .env file here or click to browse</p>
+                        <p class="upload-label">Environment 1 (e.g., dev)</p>
+                        <input type="file" id="file1-3" accept=".env,.env.*" hidden>
+                    </div>
+                </div>
+
+                <div class="upload-area" id="file2-area-3">
+                    <div class="upload-content">
+                        <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        <p class="upload-text">Drop .env file here or click to browse</p>
+                        <p class="upload-label">Environment 2 (e.g., staging)</p>
+                        <input type="file" id="file2-3" accept=".env,.env.*" hidden>
+                    </div>
+                </div>
+
+                <div class="upload-area" id="file3-area-3">
+                    <div class="upload-content">
+                        <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        <p class="upload-text">Drop .env file here or click to browse</p>
+                        <p class="upload-label">Environment 3 (e.g., prod)</p>
+                        <input type="file" id="file3-3" accept=".env,.env.*" hidden>
+                    </div>
+                </div>
+            </div>
+
+            <div class="results-section" id="results" style="display: none;">
+                <h2>Comparison Results</h2>
+                
+                <div class="controls">
+                    <div class="copy-controls">
+                        <button class="copy-btn" id="copy-missing">Copy Missing</button>
+                        <button class="copy-btn" id="copy-mismatched">Copy Mismatched</button>
+                        <button class="copy-btn export-btn" id="export-example">Export .env.example</button>
+                        <button class="copy-btn patch-btn" id="export-fix-patch">Export Fix Patch</button>
+                    </div>
+                    
+                    <div class="filter-controls">
+                        <label class="filter-toggle">
+                            <input type="checkbox" id="toggle-matched" checked>
+                            <span>Show Matched</span>
+                        </label>
+                        <label class="filter-toggle">
+                            <input type="checkbox" id="toggle-missing" checked>
+                            <span>Show Missing</span>
+                        </label>
+                        <label class="filter-toggle">
+                            <input type="checkbox" id="toggle-mismatched" checked>
+                            <span>Show Mismatched</span>
+                        </label>
+                        <label class="filter-toggle mode-toggle">
+                            <input type="checkbox" id="key-only-mode">
+                            <span>Ignore value differences (key-only mode)</span>
+                        </label>
+                    </div>
+                    
+                    <div class="sort-controls">
+                        <label class="sort-toggle">
+                            <input type="radio" name="sort" id="sort-status" checked>
+                            <span>Sort by Status</span>
+                        </label>
+                        <label class="sort-toggle">
+                            <input type="radio" name="sort" id="sort-alpha">
+                            <span>Sort Alphabetically</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Total Variables:</span>
+                        <span class="stat-value" id="total-vars">0</span>
+                    </div>
+                    <div class="stat-item warning">
+                        <span class="stat-label">Missing:</span>
+                        <span class="stat-value" id="missing-vars">0</span>
+                    </div>
+                    <div class="stat-item alert">
+                        <span class="stat-label">Mismatched:</span>
+                        <span class="stat-value" id="mismatched-vars">0</span>
+                    </div>
+                </div>
+
+                <div class="diff-container">
+                    <div class="diff-column">
+                        <h3>File 1 Variables</h3>
+                        <div class="diff-list" id="file1-vars"></div>
+                    </div>
+                    
+                    <div class="diff-column">
+                        <h3>File 2 Variables</h3>
+                        <div class="diff-list" id="file2-vars"></div>
+                    </div>
+                    
+                    <div class="diff-column" id="file3-column" style="display: none;">
+                        <h3>Environment 3</h3>
+                        <div class="diff-list" id="file3-vars"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+    
+    <footer class="app-footer">
+        <p>EnvCheck <span id="app-version"></span></p>
+    </footer>
+</body>
+</html>
