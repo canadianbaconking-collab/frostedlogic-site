@@ -1,0 +1,16 @@
+.envcheck {
+  /* Basic styling for the EnvCheck free tool */
+  background-color: #f0f0f0;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+.envcheck h1 {
+  color: #333;
+  font-size: 24px;
+}
+
+.envcheck p {
+  color: #666;
+  font-size: 14px;
+}
