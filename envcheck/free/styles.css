@@ -1,49 +1,44 @@
 .envcheck {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    background: linear-gradient(to right, #ff7e5f, #feb47b);
-}
-
-h1 {
-    color: white;
-    font-size: 2rem;
+  background: linear-gradient(to bottom, #ffffff, #f3f4f6);
+  font-family: Arial, sans-serif;
+  padding: 20px;
 }
 
 .upload-area {
-    border: 2px dashed white;
-    padding: 20px;
-    margin: 20px;
-    border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.2);
+  border: 2px dashed #007bff;
+  padding: 20px;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
-.results {
-    margin: 20px;
-    padding: 20px;
-    border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.5);
+.comparison-results {
+  margin-top: 20px;
+  border-collapse: collapse;
+  width: 100%;
 }
 
-.filters {
-    display: flex;
-    justify-content: space-around;
-    margin: 20px 0;
+.comparison-results th, .comparison-results td {
+  border: 1px solid #ccc;
+  padding: 10px;
 }
 
-@media (max-width: 600px) {
-    .envcheck {
-        padding: 10px;
-    }
+.filters, .sorting-controls {
+  margin: 15px 0;
+}
 
-    h1 {
-        font-size: 1.5rem;
-    }
+.statistics-display {
+  margin-top: 30px;
+  font-weight: bold;
+}
 
-    .upload-area, .results {
-        width: 100%;
-        margin: 10px 0;
-    }
+@media (max-width: 768px) {
+  .envcheck {
+    padding: 10px;
+  }
+  .upload-area {
+    padding: 10px;
+  }
+  .comparison-results th, .comparison-results td {
+    font-size: 12px;
+  }
 }
