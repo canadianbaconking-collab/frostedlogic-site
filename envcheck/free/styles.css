@@ -1,16 +1,49 @@
 .envcheck {
-  /* Basic styling for the EnvCheck free tool */
-  background-color: #f0f0f0;
-  font-family: Arial, sans-serif;
-  padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(to right, #ff7e5f, #feb47b);
 }
 
-.envcheck h1 {
-  color: #333;
-  font-size: 24px;
+h1 {
+    color: white;
+    font-size: 2rem;
 }
 
-.envcheck p {
-  color: #666;
-  font-size: 14px;
+.upload-area {
+    border: 2px dashed white;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.results {
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.filters {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+@media (max-width: 600px) {
+    .envcheck {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .upload-area, .results {
+        width: 100%;
+        margin: 10px 0;
+    }
 }
