@@ -1,44 +1,30 @@
-.envcheck {
-  background: linear-gradient(to bottom, #ffffff, #f3f4f6);
-  font-family: Arial, sans-serif;
-  padding: 20px;
-}
-
 .upload-area {
-  border: 2px dashed #007bff;
-  padding: 20px;
-  margin-bottom: 20px;
-  text-align: center;
+    border: 1px solid #ccc;
+    padding: 5px;
+    transition: border-color 0.3s ease;
 }
 
-.comparison-results {
-  margin-top: 20px;
-  border-collapse: collapse;
-  width: 100%;
+.upload-area:hover {
+    border-color: #add8e6;
 }
 
-.comparison-results th, .comparison-results td {
-  border: 1px solid #ccc;
-  padding: 10px;
+.upload-area .icon {
+    width: 20px;
+    height: 20px;
 }
 
-.filters, .sorting-controls {
-  margin: 15px 0;
+.upload-area label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
 }
 
-.statistics-display {
-  margin-top: 30px;
-  font-weight: bold;
-}
-
-@media (max-width: 768px) {
-  .envcheck {
-    padding: 10px;
-  }
-  .upload-area {
-    padding: 10px;
-  }
-  .comparison-results th, .comparison-results td {
-    font-size: 12px;
-  }
+@media (max-width: 600px) {
+    .upload-area {
+        padding: 3px;
+    }
+    .upload-area .icon {
+        width: 16px;
+        height: 16px;
+    }
 }
