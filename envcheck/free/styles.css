@@ -1,30 +1,65 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mode-toggle {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
 .upload-area {
-    border: 1px solid #ccc;
-    padding: 5px;
-    transition: border-color 0.3s ease;
+  min-height: 140px;
+  padding: 24px 16px;
+  border-radius: 8px;
+  border: 1px solid #d0d0d0;
+  transition: border 0.3s ease;
 }
 
 .upload-area:hover {
-    border-color: #add8e6;
+  border-color: lightblue;
 }
 
-.upload-area .icon {
-    width: 20px;
-    height: 20px;
+.file {
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.upload-area label {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 5px;
+.file:hover {
+  background-color: rgba(173, 216, 230, 0.4);
 }
 
-@media (max-width: 600px) {
-    .upload-area {
-        padding: 3px;
-    }
-    .upload-area .icon {
-        width: 16px;
-        height: 16px;
-    }
+.icons {
+  width: 20px;
+  height: 20px;
+}
+
+.stats {
+  font-size: 14px;
+  color: grey;
+}
+
+.results {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.footer {
+  text-align: center;
+  padding: 10px;
+  font-size: 12px;
+}
+
+@media screen and (max-width: 480px) {
+  .container {
+    flex-direction: column;
+  }
+  .mode-toggle {
+    flex-direction: column;
+  }
 }
