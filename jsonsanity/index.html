@@ -1,30 +1,99 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Title</title>
-    <style>
-        body {
-            background: linear-gradient(135deg, #5B9FD4 0%, #4A8BC2 100%);
-            color: #fff;
-            min-height: 100vh;
-        }
-        .card {
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            background: rgba(255, 255, 255, 0.05);
-        }
-        .btn {
-            border: 1px solid #fff;
-            color: #fff;
-        }
-        .btn.primary {
-            background: #fff;
-            color: #111;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>JSONSanity — Frosted//Logic</title>
+  <meta name="description" content="Offline JSON validator with deterministic sanity warnings. Paste JSON, get stats and structural risk flags. No AI, no backend, runs locally." />
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;margin:0;color:#fff;background:linear-gradient(135deg, #5B9FD4 0%, #4A8BC2 100%);min-height:100vh}
+    .wrap{max-width:980px;margin:0 auto;padding:48px 20px}
+    .kicker{opacity:.7;font-size:14px;letter-spacing:.08em;text-transform:uppercase}
+    h1{font-size:44px;line-height:1.05;margin:10px 0 12px}
+    p{font-size:18px;line-height:1.6;max-width:70ch}
+    .grid{display:grid;grid-template-columns:1fr;gap:16px;margin:24px 0}
+    @media(min-width:820px){.grid{grid-template-columns:1fr 1fr}}
+    .card{border:1px solid rgba(255,255,255,0.2);border-radius:14px;padding:18px;background:rgba(255,255,255,0.05)}
+    .ctaRow{display:flex;flex-wrap:wrap;gap:12px;margin:22px 0 10px}
+    .btn{display:inline-block;padding:12px 16px;border-radius:12px;text-decoration:none;font-weight:650;border:1px solid #fff;color:#fff}
+    .btn.primary{background:#fff;color:#111}
+    .note{font-size:14px;opacity:.8;margin-top:12px}
+    ul{margin:12px 0 0 18px}
+    li{margin:6px 0}
+    .footer{margin-top:40px;font-size:14px;opacity:.75}
+  </style>
 </head>
 <body>
-    <!-- Other content remains unchanged -->
+  <div class="wrap">
+    <div class="kicker">Frosted//Logic Microtools</div>
+    <h1>JSONSanity</h1>
+    <p><strong>Valid JSON is not always sane.</strong></p>
+    <p>Offline JSON Validator + Sanity Checker</p>
+
+    <div class="ctaRow">
+      <a class="btn primary" href="https://frostedlogic.lemonsqueezy.com/checkout/buy/ad17aad2-982a-47a6-92be-2d95fb863bc0">Buy JSONSanity</a>
+    </div>
+    <div class="note">Your JSON never leaves your machine. Runs entirely offline.</div>
+
+    <div class="grid">
+      <div class="card">
+        <h3 style="margin:0 0 8px">What it does</h3>
+        <ul>
+          <li>Deterministic warnings (no AI / no guessing)</li>
+          <li>Runs locally (ZIP, no backend)</li>
+          <li>Stats: keys, objects, arrays, max depth</li>
+          <li>Flags mixed array types, deep nesting, inconsistent keys, null-heavy fields</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 style="margin:0 0 8px">Why offline</h3>
+        <ul>
+          <li>No accounts or tracking</li>
+          <li>Your JSON never leaves your machine</li>
+          <li>Download once, keep forever</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2 style="margin:48px 0 16px">How It Works</h2>
+    <div class="grid" style="grid-template-columns:1fr">
+      <div style="display:grid;grid-template-columns:1fr;gap:16px">
+        <div class="card">
+          <h3 style="margin:0 0 8px">1. Paste JSON</h3>
+          <p style="margin:8px 0 0">Paste your JSON data into the validator</p>
+        </div>
+        <div class="card">
+          <h3 style="margin:0 0 8px">2. Validate + get stats</h3>
+          <p style="margin:8px 0 0">Get validation results and structural statistics</p>
+        </div>
+        <div class="card">
+          <h3 style="margin:0 0 8px">3. Fix issues until SANE</h3>
+          <p style="margin:8px 0 0">Address warnings until your JSON is structurally sound</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin:48px 0">
+      <img src="/images/jsonsanity.png" alt="JSONSanity screenshot showing JSON validation interface" style="max-width:100%;display:block;margin:0 auto;border:1px solid rgba(255,255,255,0.2);border-radius:14px" />
+    </div>
+
+    <h2 style="margin:48px 0 16px">FAQ</h2>
+    <div class="grid" style="grid-template-columns:1fr">
+      <div class="card">
+        <h3 style="margin:0 0 8px">Does it upload my JSON?</h3>
+        <p style="margin:8px 0 0">No. JSONSanity runs entirely in your browser.</p>
+      </div>
+      <div class="card">
+        <h3 style="margin:0 0 8px">Is it AI-powered?</h3>
+        <p style="margin:8px 0 0">No. All warnings are deterministic rule-based checks.</p>
+      </div>
+      <div class="card">
+        <h3 style="margin:0 0 8px">Does it require installation?</h3>
+        <p style="margin:8px 0 0">No, just open index.html in your browser.</p>
+      </div>
+    </div>
+
+    <div class="footer">JSONSanity by Frosted//Logic</div>
+  </div>
 </body>
 </html>
