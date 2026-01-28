@@ -1,42 +1,14 @@
-# Buy Links Audit (repo-wide)
+## Verification (after Payhip update)
 
-Generated: 2026-01-28
+- Repo-wide code search shows `lemonsqueezy` is still present (in `indexoldv2.html` via https://app.lemonsqueezy.com/js/lemon.js).
+- `GUMROAD_URL_PLACEHOLDER` has no occurrences.
+- EnvCheck Payhip URL [https://payhip.com/b/oOtWK](https://payhip.com/b/oOtWK) appears in `index.html` and `envcheck/index.html`.
+- JSONSanity Payhip URL [https://payhip.com/b/delz3](https://payhip.com/b/delz3) appears in `index.html` and `jsonsanity/index.html`.
 
-## Summary of findings
+Note: GitHub code search API results are limited to 10 results.
 
-- **Current live purchase links are Payhip URLs**, not Lemon Squeezy or Gumroad.
-  - EnvCheck: `https://payhip.com/b/oOtWK`
-  - JSONSanity: `https://payhip.com/b/delz3`
-- **No active Gumroad links or `GUMROAD_URL_PLACEHOLDER` occurrences were found** in the code-search results used for this audit.
-- **Lemon Squeezy is referenced only as a script include** (not a checkout link) in `indexoldv2.html`:
-  - `https://app.lemonsqueezy.com/js/lemon.js`
-
-> Note: GitHub code search API responses are limited to 10 results per query, so results may be incomplete. To review additional matches in the GitHub UI, use the search links provided at the bottom of this document.
-
-## EnvCheck link locations (file path + current URL)
-
-- `index.html` — `https://payhip.com/b/oOtWK`
-- `envcheck/index.html` — `https://payhip.com/b/oOtWK`
-
-## JSONSanity link locations (file path + current URL)
-
-- `index.html` — `https://payhip.com/b/delz3`
-- `jsonsanity/index.html` — `https://payhip.com/b/delz3`
-
-## Other purchase/checkout-related hits (not EnvCheck/JSONSanity purchase links)
-
-- `indexoldv2.html` — includes Lemon Squeezy script: `https://app.lemonsqueezy.com/js/lemon.js` (script include, not a checkout link)
-- `indexoldv2.html` — contains a placeholder button: `<a href="#" ...>Buy Microtool</a>`
-
-## GitHub UI search links (for completeness)
-
-- Lemon Squeezy:
-  - https://github.com/canadianbaconking-collab/frostedlogic-site/search?q=lemonsqueezy&type=code
-  - https://github.com/canadianbaconking-collab/frostedlogic-site/search?q=%22app.lemonsqueezy.com%22&type=code
-  - https://github.com/canadianbaconking-collab/frostedlogic-site/search?q=%22frostedlogic.lemonsqueezy.com%22&type=code
-- Gumroad:
-  - https://github.com/canadianbaconking-collab/frostedlogic-site/search?q=gumroad&type=code
-  - https://github.com/canadianbaconking-collab/frostedlogic-site/search?q=GUMROAD_URL_PLACEHOLDER&type=code
-- Generic checkout/buy:
-  - https://github.com/canadianbaconking-collab/frostedlogic-site/search?q=checkout&type=code
-  - https://github.com/canadianbaconking-collab/frostedlogic-site/search?q=buy&type=code
+- GitHub UI search links:
+   - [lemonsqueezy](https://github.com/search?q=lemonsqueezy&type=code)
+   - [GUMROAD_URL_PLACEHOLDER](https://github.com/search?q=GUMROAD_URL_PLACEHOLDER&type=code)
+   - [EnvCheck URL](https://github.com/search?q=https%3A%2F%2Fpayhip.com%2Fb%2FoOtWK&type=code)
+   - [JSONSanity URL](https://github.com/search?q=https%3A%2F%2Fpayhip.com%2Fb%2Fdelz3&type=code)
