@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SchemaFirst — Frosted//Logic</title>
+  <meta name="description" content="Schema-aware CSV → JSON conversion with type inference, confidence scoring, and strict validation. Runs locally in your browser." />
+
+  <!-- If your site has a global stylesheet at this path, keep it.
+       If it 404s, it won't break anything because we style this page below. -->
+  <link rel="stylesheet" href="/styles.css" />
+
+  <style>
+    /* FORCE: match the 'blue background / white text' vibe */
+    :root{
+      --bg: #0b3d91;         /* blue */
+      --fg: #ffffff;         /* white */
+      --muted: rgba(255,255,255,.78);
+      --card: rgba(255,255,255,.08);
+      --cardBorder: rgba(255,255,255,.18);
+      --btnBorder: rgba(255,255,255,.28);
+    }
+
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+
+    a { color: var(--fg); }
+
+    .wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 28px 16px 60px;
+    }
+
+    .topbar {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: .2px;
+      text-decoration:none;
+    }
+
+    .hero {
+      padding: 18px 0 6px;
+    }
+
+    .kicker {
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: 42px;
+      line-height: 1.05;
+    }
+
+    .tagline {
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.5;
+      max-width: 70ch;
+    }
+
+    .ctaRow {
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 14px 0 6px;
+    }
+
+    .btn {
+      display:inline-block;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--btnBorder);
+      text-decoration:none;
+      font-weight: 750;
+    }
+
+    .btn.primary {
+      background: #ffffff;
+      color: #0b3d91;
+      border-color: transparent;
+    }
+
+    section {
+      margin-top: 26px;
+      padding-top: 2px;
+    }
+
+    h2 {
+      margin: 0 0 10px;
+      font-size: 22px;
+    }
+
+    ul {
+      margin: 10px 0 0 18px;
+      color: var(--muted);
+    }
+
+    .grid3 {
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--cardBorder);
+      border-radius: 16px;
+      padding: 14px;
+    }
+
+    .card h3 {
+      margin: 0 0 6px;
+      font-size: 16px;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .shot {
+      background: var(--card);
+      border: 1px solid var(--cardBorder);
+      border-radius: 16px;
+      overflow:hidden;
+    }
+
+    .shot img {
+      width: 100%;
+      height: auto;
+      display:block;
+    }
+
+    details {
+      background: var(--card);
+      border: 1px solid var(--cardBorder);
+      border-radius: 16px;
+      padding: 12px 14px;
+      margin: 10px 0;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 800;
+    }
+
+    details p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    footer {
+      margin-top: 34px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 860px){
+      h1 { font-size: 34px; }
+      .grid3 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="wrap">
+    <div class="topbar">
+      <a class="brand" href="/">Frosted//Logic</a>
+      <a class="btn" href="/products">Back to Products</a>
+    </div>
+
+    <header class="hero">
+      <p class="kicker">Microtool</p>
+      <h1>SchemaFirst</h1>
+      <p class="tagline">
+        CSV → JSON you can actually ship
+      </p>
+
+      <!-- 2 CTAs max: Buy + Back. Back already exists in topbar, so ONLY Buy here -->
+      <div class="ctaRow">
+        <a class="btn primary" href="https://payhip.com/b/TBD" target="_blank" rel="noopener noreferrer">Buy SchemaFirst</a>
+      </div>
+
+      <p class="tagline" style="margin-top:10px;">
+        Schema-aware CSV → JSON conversion with type inference, confidence scoring, and strict validation. 100% browser-only.
+      </p>
+    </header>
+
+    <section>
+      <h2>What it does</h2>
+      <ul>
+        <li>Typed JSON output</li>
+        <li>Inferred schema with confidence per column</li>
+        <li>Warnings for mixed types, empty-heavy columns, and invalid values</li>
+        <li>Clean vs Strict outputs</li>
+        <li>Export Clean JSON, Strict JSON, or schema</li>
+        <li>100% browser-only</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>How it works</h2>
+      <div class="grid3">
+        <div class="card">
+          <h3>1) Upload CSV</h3>
+          <p>Drop or select your CSV file for conversion.</p>
+        </div>
+        <div class="card">
+          <h3>2) Review schema</h3>
+          <p>See inferred types and confidence scores per column.</p>
+        </div>
+        <div class="card">
+          <h3>3) Export JSON</h3>
+          <p>Download Clean JSON, Strict JSON, or the full schema.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Screenshot</h2>
+      <div class="shot">
+        <!-- This MUST be an absolute path so it works from /schemafirst/ -->
+        <img src="/images/schemafirst-cover.png" alt="SchemaFirst screenshot">
+      </div>
+    </section>
+
+    <section>
+      <h2>FAQ</h2>
+
+      <details>
+        <summary>Is my CSV data uploaded anywhere?</summary>
+        <p>No. SchemaFirst runs locally in your browser. Files never leave your machine.</p>
+      </details>
+
+      <details>
+        <summary>Does this require installation?</summary>
+        <p>No. It's a simple offline tool—download, unzip, and open.</p>
+      </details>
+
+      <details>
+        <summary>What's the difference between Clean and Strict JSON?</summary>
+        <p>Clean JSON applies type conversions where confident. Strict JSON preserves original values and flags issues as warnings.</p>
+      </details>
+    </section>
+
+    <footer>© Frosted//Logic</footer>
+  </main>
+</body>
+</html>
