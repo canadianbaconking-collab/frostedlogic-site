@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Frosted//Logic - Tech Innovation</title>
     <link rel="stylesheet" href="/styles/theme.css">
     <style>
@@ -177,6 +177,13 @@
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
         }
 
+        .mobile-logo {
+            display: none;
+            text-align: center;
+            margin-bottom: 14px;
+            padding-top: env(safe-area-inset-top);
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .sidebar {
@@ -214,18 +221,9 @@
                 font-size: 1rem;
             }
 
-            /* Mobile logo - show only on mobile */
             .mobile-logo {
                 display: block;
-                text-align: center;
-                margin-bottom: 14px;
-                padding-top: env(safe-area-inset-top);
             }
-        }
-
-        /* Mobile logo - hidden on desktop */
-        .mobile-logo {
-            display: none;
         }
 
         .mobile-logo img {
@@ -423,7 +421,7 @@
       </section>
 
       <footer style="opacity:0.4;font-size:12px;padding:2rem 0 0 0;">
-        Frosted//Logic site — v5.0
+        Frosted//Logic site — v5.01
       </footer>
 
     </main>
