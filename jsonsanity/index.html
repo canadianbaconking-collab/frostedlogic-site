@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>JSONSanity — Frosted//Logic</title>
   <meta name="description" content="Offline JSON validator with deterministic sanity warnings. Paste JSON, get stats and structural risk flags. No AI, no backend, runs locally." />
+  <link rel="stylesheet" href="/styles/theme.css" />
   <style>
     :root{
-      --site-bg: linear-gradient(135deg, #5B9FD4 0%, #4A8BC2 100%);
       --fg: #ffffff;
       --muted: rgba(255,255,255,.78);
       --card: rgba(255,255,255,.08);
@@ -15,19 +15,19 @@
       --btnBorder: rgba(255,255,255,.28);
     }
     body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;margin:0;color:var(--fg);background:var(--site-bg);min-height:100vh}
-    .wrap{max-width:980px;margin:0 auto;padding:28px 20px 60px}
+    .wrap{max-width:980px;margin:0 auto;padding:28px 16px 60px}
     .topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
     .brand{font-weight:800;letter-spacing:.2px;text-decoration:none;color:var(--fg)}
     .hero{padding:18px 0 6px}
-    .kicker{opacity:.7;font-size:14px;letter-spacing:.08em;text-transform:uppercase;margin:0 0 10px;color:var(--muted);font-weight:600}
-    h1{font-size:42px;line-height:1.05;margin:0 0 10px}
+    .kicker{margin:0 0 10px;color:var(--muted);font-weight:600}
+    h1{margin:0 0 10px;font-size:42px;line-height:1.05}
     .tagline{margin:0 0 14px;color:var(--muted);font-size:18px;line-height:1.5;max-width:70ch}
     .grid{display:grid;grid-template-columns:1fr;gap:16px;margin:24px 0}
     @media(min-width:820px){.grid{grid-template-columns:1fr 1fr}}
     .card{border:1px solid var(--cardBorder);border-radius:16px;padding:18px;background:var(--card)}
-    .ctaRow{display:flex;flex-wrap:wrap;gap:12px;margin:14px 0 6px}
-    .btn{display:inline-block;padding:10px 14px;border-radius:12px;text-decoration:none;font-weight:750;border:1px solid var(--btnBorder);color:var(--fg)}
-    .btn.primary{background:#fff;color:#4A8BC2;border-color:transparent}
+    .ctaRow{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 6px}
+    .btn{display:inline-block;padding:10px 14px;border-radius:12px;border:1px solid var(--btnBorder);text-decoration:none;font-weight:750;color:var(--fg)}
+    .btn.primary{background:#fff;color:var(--site-accent);border-color:transparent}
     .note{font-size:14px;opacity:.8;margin-top:12px}
     ul{margin:12px 0 0 18px}
     li{margin:6px 0}
@@ -35,17 +35,20 @@
     .footer{margin-top:40px;font-size:14px;opacity:.75}
     .shot{background:var(--card);border:1px solid var(--cardBorder);border-radius:16px;overflow:hidden}
     .shot img{width:100%;height:auto;display:block}
+    @media (max-width: 860px){
+      h1{font-size:34px}
+    }
   </style>
 </head>
 <body>
-  <div class="wrap">
+  <main class="wrap">
     <div class="topbar">
       <a class="brand" href="/">Frosted//Logic</a>
       <a class="btn" href="/products">Back to Products</a>
     </div>
 
     <header class="hero">
-      <p class="kicker">Frosted//Logic Microtools</p>
+      <p class="kicker">Microtool</p>
       <h1>JSONSanity</h1>
       <p class="tagline"><strong>Valid JSON is not always sane.</strong></p>
       <p class="tagline">Offline JSON Validator + Sanity Checker</p>
@@ -117,6 +120,6 @@
     </div>
 
     <div class="footer">JSONSanity by Frosted//Logic</div>
-  </div>
+  </main>
 </body>
 </html>
