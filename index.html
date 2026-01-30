@@ -4,15 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Frosted//Logic - Tech Innovation</title>
+    <link rel="stylesheet" href="/styles/theme.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }
-
-        :root {
-            --site-bg: linear-gradient(135deg, #5B9FD4 0%, #4A8BC2 100%);
         }
 
         body {
@@ -220,6 +217,8 @@
             /* Mobile logo - show only on mobile */
             .mobile-logo {
                 display: block;
+                text-align: center;
+                margin-bottom: 14px;
                 padding-top: env(safe-area-inset-top);
             }
         }
@@ -227,8 +226,6 @@
         /* Mobile logo - hidden on desktop */
         .mobile-logo {
             display: none;
-            text-align: center;
-            margin-bottom: 14px;
         }
 
         .mobile-logo img {
@@ -243,7 +240,7 @@
           margin-top: 1.5rem;
           padding: 0.75rem 1.5rem;
           background: rgba(255, 255, 255, 0.9);
-          color: #4A8BC2;
+          color: var(--site-accent);
           font-weight: 600;
           border-radius: 10px;
           text-decoration: none;
@@ -339,7 +336,7 @@
         <main class="main-content">
         <!-- Mobile-only large logo -->
         <div class="mobile-logo">
-            <img src="/images/logo-large.png" alt="Frosted//Logic logo" width="360" height="360">
+            <img src="/images/logo-large.png" alt="Frosted//Logic logo">
         </div>
         
         <h1>Small software. Sharp edges. No fluff.</h1>
@@ -426,7 +423,7 @@
       </section>
 
       <footer style="opacity:0.4;font-size:12px;padding:2rem 0 0 0;">
-        Frosted//Logic site — v4.6
+        Frosted//Logic site — v5.0
       </footer>
 
     </main>
