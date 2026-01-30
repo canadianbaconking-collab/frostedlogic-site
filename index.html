@@ -11,9 +11,13 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --site-bg: linear-gradient(135deg, #5B9FD4 0%, #4A8BC2 100%);
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, #5B9FD4 0%, #4A8BC2 100%);
+            background: var(--site-bg);
             color: #ffffff;
             overflow-x: hidden;
             min-height: 100vh;
@@ -216,6 +220,7 @@
             /* Mobile logo - show only on mobile */
             .mobile-logo {
                 display: block;
+                padding-top: env(safe-area-inset-top);
             }
         }
 
@@ -223,12 +228,14 @@
         .mobile-logo {
             display: none;
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 14px;
         }
 
         .mobile-logo img {
-            max-width: min(80vw, 340px);
+            width: min(80vw, 360px);
             height: auto;
+            display: block;
+            margin: 0 auto;
         }
     
         .buy-button {
@@ -332,7 +339,7 @@
         <main class="main-content">
         <!-- Mobile-only large logo -->
         <div class="mobile-logo">
-            <img src="images/logo-top.png" alt="Frosted//Logic Logo">
+            <img src="/images/logo-large.png" alt="Frosted//Logic logo" width="360" height="360">
         </div>
         
         <h1>Small software. Sharp edges. No fluff.</h1>
