@@ -226,6 +226,21 @@
             }
         }
 
+        @media (max-width: 720px) {
+            .product-cta {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                align-items: stretch;
+            }
+
+            .product-cta .email-button {
+                display: block;
+                width: 100%;
+                margin: 0 !important;
+            }
+        }
+
         .mobile-logo img {
             width: min(80vw, 360px);
             height: auto;
@@ -369,7 +384,7 @@
                     <h1>EnvCheck</h1>
                     <p>Audit .env files in seconds. Compare 2 or 3 environments, spot missing or mismatched variables, and export clean templates or fix patches.</p>
                     <p><span class="highlight">Privacy-first:</span> runs entirely in your browser. Files are never uploaded.</p>
-                    <p>
+                    <p class="product-cta">
                         <a href="/envcheck/free/" class="email-button">Try EnvCheck (Free)</a>
                         <a href="/envcheck/" class="email-button" style="margin-left: 0.5rem;">View Product Page</a>
                         <a href="https://payhip.com/b/oOtWK" class="email-button" style="margin-left: 0.5rem;" target="_blank" rel="noopener noreferrer">Buy EnvCheck Pro (Offline)</a>
@@ -379,7 +394,7 @@
                     <h1>JSONSanity</h1>
                     <p>Offline JSON validator + deterministic sanity warnings (no AI). Paste JSON, get stats + structural risk flags.</p>
                     <p><span class="highlight">Your JSON never leaves your machine.</span> Runs entirely offline.</p>
-                    <p>
+                    <p class="product-cta">
                         
                         <a href="/jsonsanity/" class="email-button" style="margin-left: 0.5rem;">View Product Page</a>
                         <a href="https://payhip.com/b/delz3" class="email-button" style="margin-left: 0.5rem;" target="_blank" rel="noopener noreferrer">Buy JSONSanity</a>
@@ -389,7 +404,7 @@
                     <h1>SchemaFirst</h1>
                     <p>CSV → JSON you can actually ship. Schema-aware conversion with type inference, confidence scoring, and strict validation.</p>
                     <p><span class="highlight">100% browser-only.</span> Your files never leave your machine.</p>
-                    <p>
+                    <p class="product-cta">
                         <a href="/schemafirst/" class="email-button">View Product Page</a>
                         <a href="https://payhip.com/b/TBD" class="email-button" style="margin-left: 0.5rem;" target="_blank" rel="noopener noreferrer">Buy SchemaFirst</a>
                     </p>
@@ -398,7 +413,7 @@
                     <h1>GlyphScope</h1>
                     <p>Understand what a regex pattern does — safely and with intent. Deterministic explanations plus optional match preview.</p>
                     <p><span class="highlight">Client-side only.</span> No tracking, no uploads, no APIs.</p>
-                    <p>
+                    <p class="product-cta">
                         <a href="/glyphscope/" class="email-button">Use Free Online</a>
                         <a href="/glyphscope/product/" class="email-button" style="margin-left: 0.5rem;">View Product Page</a>
                         <a href="https://payhip.com/b/REPLACE_WITH_LINK" class="email-button" style="margin-left: 0.5rem;" target="_blank" rel="noopener noreferrer">Buy Offline Pro</a>
