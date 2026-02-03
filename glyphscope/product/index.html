@@ -6,7 +6,6 @@
   <title>GlyphScope — Frosted//Logic</title>
   <meta name="description" content="Understand what a regex pattern does — safely and with intent. Offline-friendly, deterministic, no tracking." />
 
-  <link rel="stylesheet" href="/styles.css" />
   <link rel="stylesheet" href="/styles/theme.css" />
 
   <style>
@@ -77,6 +76,20 @@
       gap: 10px;
       flex-wrap: wrap;
       margin: 14px 0 6px;
+    }
+
+    @media (max-width: 720px){
+      .ctaButtons {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+      }
+
+      .ctaButtons .btn {
+        width: 100%;
+        display: block;
+        margin: 0;
+      }
     }
 
     .btn {
@@ -158,7 +171,7 @@
       <h1>GlyphScope</h1>
       <p class="tagline">Understand what a pattern does — safely and with intent.</p>
 
-      <div class="ctaRow">
+      <div class="ctaRow ctaButtons">
         <a class="btn primary" href="/glyphscope/">Use Free Online</a>
         <a class="btn" href="https://payhip.com/b/REPLACE_WITH_LINK" target="_blank" rel="noopener noreferrer">Buy Offline Pro</a>
       </div>
