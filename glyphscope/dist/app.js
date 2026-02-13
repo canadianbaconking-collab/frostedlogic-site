@@ -2019,13 +2019,21 @@ var INTENT_LABELS = {
   PHONE_LIKE: "Phone-like number (basic)"
 };
 function walk(node, fn) {
-  if (!node || typeof node !== "object") return;
-  fn(node);
-  for (const key of Object.keys(node)) {
-    const v = node[key];
-    if (Array.isArray(v)) v.forEach((c) => walk(c, fn));
-    else if (v && typeof v === "object") walk(v, fn);
+  const seen = /* @__PURE__ */ new Set();
+  function _walk(n) {
+    if (!n || typeof n !== "object") return;
+    if (seen.has(n)) return;
+    seen.add(n);
+    fn(n);
+    for (const key of Object.keys(n)) {
+      // Avoid common cyclic/back-reference keys (regexpp nodes often contain parent links)
+      if (key === "parent") continue;
+      const v = n[key];
+      if (Array.isArray(v)) v.forEach((c) => _walk(c));
+      else if (v && typeof v === "object") _walk(v);
+    }
   }
+  _walk(node);
 }
 function extractFeatures(ast, flags) {
   const f = {
@@ -2996,13 +3004,20 @@ function extractFpfnFeatures(ast) {
   return F;
 }
 function walk3(node, fn) {
-  if (!node || typeof node !== "object") return;
-  fn(node);
-  for (const k of Object.keys(node)) {
-    const v = node[k];
-    if (Array.isArray(v)) v.forEach((c) => walk3(c, fn));
-    else if (v && typeof v === "object") walk3(v, fn);
+  const seen = /* @__PURE__ */ new Set();
+  function _walk(n) {
+    if (!n || typeof n !== "object") return;
+    if (seen.has(n)) return;
+    seen.add(n);
+    fn(n);
+    for (const k of Object.keys(n)) {
+      if (k === "parent") continue;
+      const v = n[k];
+      if (Array.isArray(v)) v.forEach((c) => _walk(c));
+      else if (v && typeof v === "object") _walk(v);
+    }
   }
+  _walk(node);
 }
 
 // ui.js
