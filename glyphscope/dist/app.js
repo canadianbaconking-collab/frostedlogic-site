@@ -3022,7 +3022,9 @@ function walk3(node, fn) {
 
 // ui.js
 var debounceTimer = null;
-var currentMode = "FREE";
+var BUILD_TARGET = "web";
+var WEB_LOCKED_MODE = "FREE";
+var currentMode = WEB_LOCKED_MODE;
 var dom = {
   inputPattern: document.getElementById("input-pattern"),
   inputSample: document.getElementById("input-sample"),
@@ -3047,9 +3049,20 @@ var dom = {
   overlayRisks: document.getElementById("overlay-risks")
 };
 function init() {
+  enforceWebModeLock();
   attachListeners();
   if (dom.inputPattern && dom.inputPattern.value) {
     runAnalysis();
+  }
+}
+function enforceWebModeLock() {
+  if (BUILD_TARGET !== "web") return;
+  currentMode = WEB_LOCKED_MODE;
+  if (dom.btnMode) {
+    dom.btnMode.textContent = WEB_LOCKED_MODE;
+    dom.btnMode.disabled = true;
+    dom.btnMode.setAttribute("title", "Offline Pro unlocks PAID features");
+    dom.btnMode.setAttribute("aria-label", "FREE mode locked on web build");
   }
 }
 function attachListeners() {
@@ -3084,6 +3097,10 @@ function attachListeners() {
   }
   if (dom.btnMode) {
     dom.btnMode.addEventListener("click", () => {
+      if (BUILD_TARGET === "web") {
+        currentMode = WEB_LOCKED_MODE;
+        return;
+      }
       currentMode = currentMode === "FREE" ? "PAID" : "FREE";
       dom.btnMode.textContent = `Mode ${currentMode}`;
       runAnalysis();
@@ -3137,7 +3154,8 @@ function runAnalysis() {
       dom.outputPreview.innerHTML = "<span class='placeholder'>Enter sample text to see matches...</span>";
     }
   }
-  if (currentMode === "PAID") {
+  const paidModeEnabled = BUILD_TARGET !== "web" && currentMode === "PAID";
+  if (paidModeEnabled) {
     if (dom.overlayRisks) dom.overlayRisks.style.display = "none";
     const risks = detectRisks(ast, flagsObj, sampleText, { pattern: patternBody });
     let fpfnNotes = [];
