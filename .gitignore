@@ -1,0 +1,18 @@
+# IDE
+.idea/
+.vscode/
+
+# Dependencies
+node_modules/
+
+# Build output:
+# NOTE: Do NOT ignore glyphscope/dist because it is deployed for the free web version.
+# If you add other build folders later, list them explicitly (not "dist/").
+
+# Logs / archives
+*.log
+*.zip
+
+# OS junk
+.DS_Store
+Thumbs.db
