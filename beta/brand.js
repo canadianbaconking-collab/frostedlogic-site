@@ -18,6 +18,7 @@
 
   const setupReveal = () => {
     if (reducedMotion) return;
+    if (document.body?.dataset.entrySequence === 'true') return;
 
     const page = document.querySelector('.page') || document.body;
     const sequence = [];
