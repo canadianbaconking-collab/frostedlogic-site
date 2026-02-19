@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GlyphScope — Frosted//Logic</title>
+  <meta name="description" content="Understand what a regex pattern does — safely and with intent. Offline-friendly, deterministic, no tracking." />
+
+  <link rel="stylesheet" href="/styles/theme.css" />
+
+  <style>
+    :root{
+      --fg: #ffffff;
+      --muted: rgba(255,255,255,.78);
+      --card: rgba(255,255,255,.08);
+      --cardBorder: rgba(255,255,255,.18);
+      --btnBorder: rgba(255,255,255,.28);
+    }
+
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      background: var(--site-bg);
+      color: var(--fg);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+
+    a { color: var(--fg); }
+
+    .wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 28px 16px 60px;
+    }
+
+    .topbar {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: .2px;
+      text-decoration:none;
+    }
+
+    .hero {
+      padding: 18px 0 6px;
+    }
+
+    .kicker {
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: 42px;
+      line-height: 1.05;
+    }
+
+    .tagline {
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.5;
+      max-width: 70ch;
+    }
+
+    .ctaRow {
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 14px 0 6px;
+    }
+
+    @media (max-width: 720px){
+      .ctaButtons {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+      }
+
+      .ctaButtons .btn {
+        width: 100%;
+        display: block;
+        margin: 0;
+      }
+    }
+
+    .btn {
+      display:inline-block;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--btnBorder);
+      text-decoration:none;
+      font-weight: 750;
+    }
+
+    .btn.primary {
+      background: #ffffff;
+      color: var(--site-accent);
+      border-color: transparent;
+    }
+
+    section {
+      margin-top: 26px;
+      padding-top: 2px;
+    }
+
+    h2 {
+      margin: 0 0 10px;
+      font-size: 22px;
+    }
+
+    ul {
+      margin: 10px 0 0 18px;
+      color: var(--muted);
+    }
+
+    .grid3 {
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--cardBorder);
+      border-radius: 16px;
+      padding: 14px;
+    }
+
+    .card h3 {
+      margin: 0 0 6px;
+      font-size: 16px;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .shot {
+      background: var(--card);
+      border: 1px solid var(--cardBorder);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-top: 16px;
+    }
+
+    .shot img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    footer {
+      margin-top: 34px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 860px){
+      h1 { font-size: 34px; }
+      .grid3 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="wrap">
+    <div class="topbar">
+      <a class="brand" href="/beta/index.html">Frosted//Logic</a>
+      <a class="btn" href="/beta/tools.html">Back to Tools</a>
+    </div>
+
+    <header class="hero">
+      <p class="kicker">Microtool</p>
+      <h1>GlyphScope</h1>
+      <p class="tagline">Understand what a pattern does — safely and with intent.</p>
+
+      <div class="ctaRow ctaButtons">
+        <a class="btn primary" href="/glyphscope/">Use Free Online</a>
+        <a class="btn" href="https://payhip.com/b/RdGC3" target="_blank" rel="noopener noreferrer">Buy Offline Pro</a>
+      </div>
+
+      <p class="tagline" style="margin-top:10px;">Client-side only. No backend, no tracking.</p>
+
+      <div class="shot">
+        <img src="/images/GlyphScope-cover.png" alt="GlyphScope screenshot">
+      </div>
+    </header>
+
+    <section>
+      <h2>What it is</h2>
+      <ul>
+        <li>Deterministic regex pattern explainer</li>
+        <li>Safe, offline-friendly visualization of intent</li>
+        <li>Optional match preview for sample input</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>What it is not</h2>
+      <ul>
+        <li>Not a regex generator or AI assistant</li>
+        <li>Not a tracker or analytics tool</li>
+        <li>Not a cloud service or API</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>How it works</h2>
+      <div class="grid3">
+        <div class="card">
+          <h3>1) Parse</h3>
+          <p>Regexpp parses the pattern into a strict syntax tree.</p>
+        </div>
+        <div class="card">
+          <h3>2) Explain</h3>
+          <p>GlyphScope renders a deterministic explanation of intent.</p>
+        </div>
+        <div class="card">
+          <h3>3) Preview</h3>
+          <p>Optionally test matches to validate understanding.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Free vs Offline Pro</h2>
+      <ul>
+        <li><strong>Free online:</strong> core explanation + match preview.</li>
+        <li><strong>Offline Pro:</strong> ZIP + exe launcher for offline use.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Privacy</h2>
+      <ul>
+        <li>Client-side only. No APIs, no tracking, no uploads.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>ZIP contents</h2>
+      <ul>
+        <li>GlyphScope.exe</li>
+        <li>index.html</li>
+        <li>dist/app.js</li>
+        <li>logo.png</li>
+        <li>README</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Getting started</h2>
+      <ul>
+        <li><strong>Free:</strong> open <code>/glyphscope/</code>.</li>
+        <li><strong>Offline:</strong> unzip and double-click <code>GlyphScope.exe</code>.</li>
+      </ul>
+    </section>
+
+    <footer>© Frosted//Logic</footer>
+  </main>
+</body>
+</html>

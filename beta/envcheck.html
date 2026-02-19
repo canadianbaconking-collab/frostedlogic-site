@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EnvCheck — Frosted//Logic</title>
+  <meta name="description" content="Compare .env files, find missing and mismatched keys, and export clean templates. Runs locally in your browser." />
+
+  <!-- If your site has a global stylesheet at this path, keep it.
+       If it 404s, it won't break anything because we style this page below. -->
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/styles/theme.css" />
+
+  <style>
+    :root{
+      --fg: #ffffff;         /* white */
+      --muted: rgba(255,255,255,.78);
+      --card: rgba(255,255,255,.08);
+      --cardBorder: rgba(255,255,255,.18);
+      --btnBorder: rgba(255,255,255,.28);
+    }
+
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      background: var(--site-bg);
+      color: var(--fg);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+
+    a { color: var(--fg); }
+
+    .wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 28px 16px 60px;
+    }
+
+    .topbar {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: .2px;
+      text-decoration:none;
+    }
+
+    .hero {
+      padding: 18px 0 6px;
+    }
+
+    .kicker {
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: 42px;
+      line-height: 1.05;
+    }
+
+    .tagline {
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.5;
+      max-width: 70ch;
+    }
+
+    .ctaRow {
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 14px 0 6px;
+    }
+
+    .btn {
+      display:inline-block;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--btnBorder);
+      text-decoration:none;
+      font-weight: 750;
+    }
+
+    .btn.primary {
+      background: #ffffff;
+      color: var(--site-accent);
+      border-color: transparent;
+    }
+
+    section {
+      margin-top: 26px;
+      padding-top: 2px;
+    }
+
+    h2 {
+      margin: 0 0 10px;
+      font-size: 22px;
+    }
+
+    ul {
+      margin: 10px 0 0 18px;
+      color: var(--muted);
+    }
+
+    .grid3 {
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--cardBorder);
+      border-radius: 16px;
+      padding: 14px;
+    }
+
+    .card h3 {
+      margin: 0 0 6px;
+      font-size: 16px;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .shot {
+      background: var(--card);
+      border: 1px solid var(--cardBorder);
+      border-radius: 16px;
+      overflow:hidden;
+    }
+
+    .shot img {
+      width: 100%;
+      height: auto;
+      display:block;
+    }
+
+    details {
+      background: var(--card);
+      border: 1px solid var(--cardBorder);
+      border-radius: 16px;
+      padding: 12px 14px;
+      margin: 10px 0;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 800;
+    }
+
+    details p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    footer {
+      margin-top: 34px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 860px){
+      h1 { font-size: 34px; }
+      .grid3 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="wrap">
+    <div class="topbar">
+      <a class="brand" href="/beta/index.html">Frosted//Logic</a>
+      <a class="btn" href="/beta/tools.html">Back to Tools</a>
+    </div>
+
+    <header class="hero">
+      <p class="kicker">Microtool</p>
+      <h1>EnvCheck</h1>
+      <p class="tagline">
+        Compare <code>.env</code> files, instantly find missing/mismatched keys, and export clean templates and fixes.
+        Runs locally in your browser.
+      </p>
+
+      <!-- 2 CTAs max: Buy + Back. Back already exists in topbar, so ONLY Buy here -->
+      <div class="ctaRow">
+        <a class="btn primary" href="https://payhip.com/b/oOtWK" target="_blank" rel="noopener noreferrer">Buy EnvCheck</a>
+        <a class="btn" href="/envcheck/free/">Try EnvCheck (Free)</a>
+      </div>
+
+      <p class="tagline" style="margin-top:10px;">
+        Privacy-first: files are not uploaded or stored.
+      </p>
+    </header>
+
+    <section>
+      <h2>What it does</h2>
+      <ul>
+        <li>Compare 2 or 3 environments</li>
+        <li>Filter: Missing / Mismatched / Matched</li>
+        <li>Key-only mode for audits</li>
+        <li>Export <code>.env.example</code> templates</li>
+        <li>Export fix patches (2-file mode)</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>How it works</h2>
+      <div class="grid3">
+        <div class="card">
+          <h3>1) Add your files</h3>
+          <p>Drop or select 2–3 <code>.env</code> files to compare.</p>
+        </div>
+        <div class="card">
+          <h3>2) Review differences</h3>
+          <p>Spot missing keys and mismatched values instantly.</p>
+        </div>
+        <div class="card">
+          <h3>3) Export outputs</h3>
+          <p>Create templates or patches you can apply immediately.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Screenshot</h2>
+      <div class="shot">
+        <!-- This MUST be an absolute path so it works from /envcheck/ -->
+        <img src="/images/envcheck-screenshot.png" alt="EnvCheck screenshot">
+      </div>
+    </section>
+
+    <section>
+      <h2>FAQ</h2>
+
+      <details>
+        <summary>Are my .env files uploaded anywhere?</summary>
+        <p>No. EnvCheck runs locally in your browser. Files never leave your machine.</p>
+      </details>
+
+      <details>
+        <summary>Does this require installation?</summary>
+        <p>No. It's a simple offline tool—download, unzip, and open.</p>
+      </details>
+
+      <details>
+        <summary>Can I compare more than two files?</summary>
+        <p>Yes—EnvCheck supports 2-file and 3-file comparison modes.</p>
+      </details>
+    </section>
+
+    <footer>© Frosted//Logic</footer>
+  </main>
+</body>
+</html>
