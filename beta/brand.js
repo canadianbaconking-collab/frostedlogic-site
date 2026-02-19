@@ -1,6 +1,7 @@
 (() => {
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const BLANK_BEAT_MS = 320;
+  const REVEAL_PAUSE_MS = 550;
 
   const ensureOverlay = () => {
     let overlay = document.getElementById('navOverlay');
@@ -16,15 +17,12 @@
     if (node && !arr.includes(node)) arr.push(node);
   };
 
-  const setupReveal = () => {
-    if (reducedMotion) return;
-    if (document.body?.dataset.entrySequence === 'true') return;
-
+  const buildSequence = () => {
     const page = document.querySelector('.page') || document.body;
     const sequence = [];
 
-    const header = page.querySelector(':scope > header') || page.querySelector('header');
-    uniquePush(sequence, header);
+    const nav = page.querySelector('header nav, :scope > nav');
+    uniquePush(sequence, nav);
 
     const hero = page.querySelector('main > section, main > article, :scope > main > section, :scope > main > article, :scope > section, :scope > article');
     uniquePush(sequence, hero);
@@ -34,22 +32,46 @@
       if (block !== hero) uniquePush(sequence, block);
     });
 
-    const directPageBlocks = Array.from(page.querySelectorAll(':scope > section, :scope > article'));
-    directPageBlocks.forEach((block) => {
-      if (block !== hero && (!header || !header.contains(block))) uniquePush(sequence, block);
+    const directBlocks = Array.from(page.querySelectorAll(':scope > section, :scope > article'));
+    directBlocks.forEach((block) => {
+      if (block !== hero) uniquePush(sequence, block);
     });
 
     const footer = page.querySelector(':scope > footer') || page.querySelector('footer');
     uniquePush(sequence, footer);
 
+    return sequence;
+  };
+
+  const markSequenceTargets = (sequence) => {
     sequence.forEach((el, index) => {
       el.classList.add('brand-reveal-target');
       el.style.setProperty('--reveal-index', String(index));
     });
+  };
 
-    requestAnimationFrame(() => {
-      document.body.classList.add('brand-reveal-play');
-    });
+  const startReveal = () => {
+    document.body.classList.add('brand-reveal-play');
+  };
+
+  const setupReveal = () => {
+    if (document.body?.dataset.revealReady === 'true') return;
+
+    const sequence = buildSequence();
+    markSequenceTargets(sequence);
+    document.body.dataset.revealReady = 'true';
+
+    if (reducedMotion) {
+      startReveal();
+      return;
+    }
+
+    if (document.body?.dataset.entrySequence === 'true') {
+      document.addEventListener('beta:entry-reveal', startReveal, { once: true });
+      return;
+    }
+
+    window.setTimeout(startReveal, REVEAL_PAUSE_MS);
   };
 
   const isInterceptableBetaLink = (anchor) => {
@@ -72,7 +94,7 @@
 
   document.addEventListener('DOMContentLoaded', () => {
     setupReveal();
-    ensureOverlay();
+    if (!reducedMotion) ensureOverlay();
   });
 
   document.addEventListener('click', (event) => {
