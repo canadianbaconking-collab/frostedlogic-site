@@ -8,28 +8,38 @@
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; background: var(--site-bg); color: #fff; }
-    .page { max-width: 980px; margin: 0 auto; padding: 2rem 1.25rem 3rem; }
-    nav a { color: #fff; text-decoration: none; margin-right: 1rem; opacity: 0.9; }
-    nav a:hover { text-decoration: underline; opacity: 1; }
-    section { margin-top: 1.25rem; padding: 1.5rem; border-radius: 12px; background: rgba(255,255,255,0.1); backdrop-filter: blur(8px); }
-    h1 { font-size: 2.1rem; margin-bottom: 0.8rem; }
-    h2 { margin-bottom: 0.7rem; }
-    p { line-height: 1.6; margin-bottom: 0.8rem; }
-    ul { margin-left: 1.3rem; margin-bottom: 0.8rem; }
-    li { margin-bottom: 0.4rem; }
+    .page { max-width: 980px; margin: 0 auto; padding: 1.5rem 1rem 2.5rem; }
+    .brand-shell { margin-bottom: 1rem; }
+    .logo-link { display: inline-block; margin-bottom: 0.85rem; }
+    .logo-link img { width: clamp(170px, 30vw, 240px); height: auto; display: block; filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.35)); }
+    .top-nav, .footer-links { display: flex; flex-wrap: wrap; gap: 0.55rem; }
+    .top-nav a, .footer-links a { color: #fff; text-decoration: none; border: 1px solid rgba(255,255,255,0.35); background: rgba(255,255,255,0.08); border-radius: 999px; padding: 0.45rem 0.85rem; font-size: 0.9rem; }
+    .top-nav a:hover, .footer-links a:hover { background: rgba(255,255,255,0.16); }
+    section { margin-top: 1rem; padding: 1.25rem; border-radius: 12px; background: rgba(255,255,255,0.1); backdrop-filter: blur(8px); }
+    h1 { font-size: clamp(1.4rem, 3.6vw, 2rem); margin-bottom: 0.75rem; }
+    h2 { margin-bottom: 0.65rem; }
+    h3 { margin-bottom: 0.45rem; }
+    p { line-height: 1.58; margin-bottom: 0.75rem; }
+    ul { margin-left: 1.2rem; margin-bottom: 0.75rem; }
+    li { margin-bottom: 0.35rem; }
     .bridge { white-space: pre-line; font-style: italic; }
-    .cta a { color: #fff; margin-right: 1rem; }
+    .footer-links { margin-top: 1.35rem; }
   </style>
 </head>
 <body>
   <div class="page">
-    <nav>
-      <a href="/beta/index.html">Home</a>
-      <a href="/beta/philosophy.html">Philosophy</a>
-      <a href="/beta/instruments.html">Instruments</a>
-      <a href="/beta/games.html">Games</a>
-      <a href="/beta/index.html#products">Products</a>
-    </nav>
+    <header class="brand-shell">
+      <a class="logo-link" href="/beta/index.html" aria-label="Frosted Logic Beta Home">
+        <img src="../images/logo-side.png" alt="Frosted//Logic logo">
+      </a>
+      <nav class="top-nav" aria-label="Beta navigation">
+        <a href="/beta/products.html">Products</a>
+        <a href="/beta/instruments.html">Instruments</a>
+        <a href="/beta/games.html">Games</a>
+        <a href="/beta/philosophy.html">Philosophy</a>
+        <a href="/beta/about.html">About</a>
+      </nav>
+    </header>
 
     <section>
       <h1>Software should reduce cognitive friction, not create it.</h1>
@@ -38,73 +48,35 @@
     </section>
 
     <section>
-      <h2>Software is cognitive infrastructure</h2>
-      <p>Modern software is no longer just a collection of features. It shapes how developers think, decide, and work.</p>
-      <ul>
-        <li>reduces working memory load</li>
-        <li>clarifies decisions</li>
-        <li>preserves context</li>
-      </ul>
-      <p>Frosted//Logic exists to push that balance toward clarity. We build systems that help developers focus on solving problems — not fighting their tools.</p>
-    </section>
-
-    <section>
       <h2>Three kinds of systems</h2>
-      <p>Our work falls into three complementary categories.</p>
       <h3>Microtools</h3>
-      <p>Deterministic utilities that solve narrowly scoped developer problems. They are: focused, fast, reliable, often offline-friendly, built to ship quickly and stay useful for years.</p>
-      <p>Microtools remove friction at the tactical level.</p>
+      <p>Deterministic utilities that solve narrowly scoped developer problems with predictable outputs and low overhead.</p>
       <h3>Instruments</h3>
-      <p>Intelligence systems that reveal where leverage exists in the development process. They: analyze signals, synthesize information, surface patterns or risks, guide higher-level decisions.</p>
-      <p>Instruments improve how software is built at the strategic level.</p>
+      <p>Systems that improve strategic decisions by surfacing signal, leverage, and risk earlier in the workflow.</p>
       <h3>Interactive Systems</h3>
-      <p>Exploratory software experiences that apply Frosted//Logic principles in interactive or simulated environments. These systems:</p>
-      <ul>
-        <li>model decision-making under constraints</li>
-        <li>explore feedback loops and progression</li>
-        <li>test ideas about learning, systems thinking, or developer intuition</li>
-        <li>prioritize clarity of mechanics over spectacle</li>
-      </ul>
-      <p>They serve as experimental spaces where ideas about systems, feedback, and cognition can be explored differently than in traditional tools.</p>
+      <p>Exploratory environments for testing decision loops, constraints, and behavior under pressure.</p>
       <p class="bridge">Microtools solve problems.
 Instruments discover which problems are worth solving.
 Interactive systems explore how those solutions behave in practice.</p>
     </section>
 
     <section>
-      <h2>How We Design Software</h2>
+      <h2>How we design</h2>
       <ul>
         <li>Clarity over feature count</li>
         <li>Determinism where possible</li>
         <li>Local-first by default</li>
       </ul>
-      <p>Reduce cognitive drag</p>
-      <ul>
-        <li>working memory load</li>
-        <li>context switching</li>
-        <li>decision ambiguity</li>
-      </ul>
-      <p>If it doesn’t, it doesn’t ship.</p>
+      <p>If a feature increases cognitive drag without increasing useful signal, it does not ship.</p>
     </section>
 
-    <section>
-      <h2>Development is already hard enough</h2>
-      <p>Most developer friction doesn’t come from algorithms or languages. It comes from unclear workflows, noisy tools, lost context, avoidable mistakes. Small improvements in clarity compound over time. Frosted//Logic focuses on those leverage points — the places where a well-designed system can quietly save hours, days, or entire failed projects.</p>
-    </section>
-
-    <section>
-      <h2>Frosted//Logic</h2>
-      <p>Frosted//Logic is an independent software studio focused on building precise tools and thoughtful systems for developers.</p>
-      <p>We prioritize: usefulness over hype, longevity over trends, signal over noise.</p>
-      <p>Every product is built to earn its place through clarity, reliability, and practical value.</p>
-    </section>
-
-    <section class="cta">
-      <a href="/beta/index.html#products">View Products</a>
+    <footer class="footer-links" aria-label="Beta footer links">
+      <a href="/beta/products.html">View Products</a>
       <a href="/beta/instruments.html">View Instruments</a>
       <a href="/beta/games.html">View Games</a>
+      <a href="/beta/philosophy.html">Philosophy</a>
       <a href="/beta/index.html">Return to Home</a>
-    </section>
+    </footer>
   </div>
 </body>
 </html>
