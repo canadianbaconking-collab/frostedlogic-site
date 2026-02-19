@@ -1,0 +1,33 @@
+#navOverlay {
+  position: fixed;
+  inset: 0;
+  background: var(--site-bg, #111);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+#navOverlay.is-active {
+  opacity: 1;
+}
+
+.brand-reveal-target {
+  transform: translateY(10px);
+  opacity: 0.98;
+  transition: transform 680ms cubic-bezier(0.22, 0.61, 0.36, 1), opacity 680ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  transition-delay: calc(var(--reveal-index, 0) * 90ms);
+}
+
+.brand-reveal-play .brand-reveal-target {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-reveal-target,
+  .brand-reveal-play .brand-reveal-target {
+    transform: none;
+    opacity: 1;
+    transition: none;
+  }
+}
