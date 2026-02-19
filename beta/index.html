@@ -7,237 +7,59 @@
   <link rel="stylesheet" href="../styles/theme.css">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
-      background: var(--site-bg);
-      color: #fff;
-      min-height: 100vh;
-    }
-
-    .page {
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 1.25rem 1rem 2.5rem;
-    }
-
-    .masthead {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.9rem;
-      padding-top: 1rem;
-      text-align: center;
-      min-height: 178px;
-    }
-
-    .logo-link {
-      display: inline-block;
-      width: fit-content;
-    }
-
-    .logo-link img {
-      width: clamp(170px, 30vw, 250px);
-      height: auto;
-      display: block;
-      filter: blur(7px) drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.35));
-      transform-origin: center;
-      transform: translate3d(var(--logo-start-x, 0), var(--logo-start-y, 0), 0) scale(var(--logo-start-scale, 1));
-      transition: transform 780ms cubic-bezier(0.24, 0.86, 0.3, 1), filter 620ms ease;
-      will-change: transform;
-    }
-
-    body.logo-resolved .logo-link img {
-      filter: blur(0) drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.35));
-    }
-
-    body[data-stage="recede"] .logo-link img,
-    body[data-stage="hub"] .logo-link img {
-      transform: translate3d(0, 0, 0) scale(1);
-    }
-
-    .hub-copy {
-      font-size: clamp(1.05rem, 2.4vw, 1.25rem);
-      font-weight: 600;
-      letter-spacing: 0.01em;
-    }
-
-    .hub-actions {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.6rem;
-      margin-top: 0.25rem;
-    }
-
-    .hub-actions a {
-      color: #fff;
-      text-decoration: none;
-      border: 1px solid rgba(255, 255, 255, 0.35);
-      background: rgba(255, 255, 255, 0.08);
-      border-radius: 999px;
-      padding: 0.52rem 0.92rem;
-      font-size: 0.92rem;
-      transform: translate3d(0, 24px, 0);
-      transition: transform 620ms cubic-bezier(0.2, 0.8, 0.28, 1);
-      will-change: transform;
-    }
-
-    body[data-stage="hub"] .hub-actions a {
-      transform: translate3d(0, 0, 0);
-    }
-
-    body[data-stage="hub"] .hub-actions a:nth-child(1) { transition-delay: 0ms; }
-    body[data-stage="hub"] .hub-actions a:nth-child(2) { transition-delay: 75ms; }
-    body[data-stage="hub"] .hub-actions a:nth-child(3) { transition-delay: 150ms; }
-    body[data-stage="hub"] .hub-actions a:nth-child(4) { transition-delay: 225ms; }
-
-    .hub-actions a:hover { background: rgba(255, 255, 255, 0.15); }
-
-    body[data-stage="hold"] .hub-actions,
-    body[data-stage="recede"] .hub-actions {
-      pointer-events: none;
-    }
-
-    .cards {
-      margin-top: 1.5rem;
-      display: grid;
-      gap: 1rem;
-    }
-
-    .card {
-      padding: 1.25rem;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(8px);
-    }
-
-    h1 { font-size: clamp(1.55rem, 4.4vw, 2.2rem); margin-bottom: 0.7rem; }
-    h2 { margin-bottom: 0.65rem; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; background: var(--site-bg); color: #fff; }
+    .page { max-width: 980px; margin: 0 auto; padding: 1.5rem 1rem 2.5rem; }
+    .brand-shell { margin-bottom: 1rem; }
+    .logo-link { display: inline-block; margin-bottom: 0.85rem; }
+    .logo-link img { width: clamp(170px, 30vw, 240px); height: auto; display: block; filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.35)); }
+    .top-nav { display: flex; flex-wrap: wrap; gap: 0.55rem; }
+    .top-nav a,
+    .footer-links a { color: #fff; text-decoration: none; border: 1px solid rgba(255,255,255,0.35); background: rgba(255,255,255,0.08); border-radius: 999px; padding: 0.45rem 0.85rem; font-size: 0.9rem; }
+    .top-nav a:hover,
+    .footer-links a:hover { background: rgba(255,255,255,0.16); }
+    section { margin-top: 1rem; padding: 1.25rem; border-radius: 12px; background: rgba(255,255,255,0.1); backdrop-filter: blur(8px); }
+    h1 { font-size: clamp(1.5rem, 4vw, 2.15rem); margin-bottom: 0.75rem; }
+    h2 { margin-bottom: 0.6rem; }
     p { line-height: 1.58; margin-bottom: 0.75rem; }
-    .micro { opacity: 0.88; }
-
-    footer {
-      opacity: 0.65;
-      font-size: 0.85rem;
-      margin-top: 1.8rem;
-    }
-
-    @media (min-width: 900px) {
-      .page { padding: 1.35rem 1.25rem 2.75rem; }
-
-      .masthead {
-        align-items: flex-start;
-        text-align: left;
-      }
-
-      .hub-actions {
-        justify-content: flex-start;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .logo-link img {
-        transition: none;
-        filter: blur(0) drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.35));
-        transform: none;
-      }
-
-      .hub-actions a {
-        transition: none;
-        transform: none;
-      }
-    }
+    .micro { opacity: 0.9; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-top: 1.35rem; }
   </style>
 </head>
-<body data-stage="hold">
+<body>
   <div class="page">
-    <header class="masthead">
+    <header class="brand-shell">
       <a class="logo-link" href="/beta/index.html" aria-label="Frosted Logic Beta Home">
-        <img src="../images/logo-side.png" alt="Frosted//Logic logo" id="beta-logo">
+        <img src="../images/logo-side.png" alt="Frosted//Logic logo">
       </a>
-
-      <p class="hub-copy">How can we help you today?</p>
-
-      <nav class="hub-actions" aria-label="Beta sections">
-        <a href="/beta/index.html#products">Products</a>
+      <nav class="top-nav" aria-label="Beta navigation">
+        <a href="/beta/products.html">Products</a>
         <a href="/beta/instruments.html">Instruments</a>
         <a href="/beta/games.html">Games</a>
         <a href="/beta/philosophy.html">Philosophy</a>
+        <a href="/beta/about.html">About</a>
       </nav>
     </header>
 
-    <main class="cards">
-      <section class="card">
+    <main>
+      <section>
         <h1>Frosted//Logic Beta Preview</h1>
         <p>Small software. Sharp edges. No fluff.</p>
-        <p class="micro">This beta space previews updated studio pages while production remains unchanged.</p>
+        <p class="micro">This beta space previews an in-progress studio shell scoped entirely under <code>/beta/</code>.</p>
       </section>
 
-      <section id="products" class="card">
-        <h2>Products</h2>
-        <p>View product and studio updates in this beta environment.</p>
+      <section>
+        <h2>Start Here</h2>
+        <p>Browse products, instruments, and exploratory systems using the shared beta navigation.</p>
       </section>
     </main>
 
-    <footer>
-      Frosted//Logic beta preview — scoped under /beta/
+    <footer class="footer-links" aria-label="Beta footer links">
+      <a href="/beta/products.html">View Products</a>
+      <a href="/beta/instruments.html">View Instruments</a>
+      <a href="/beta/games.html">View Games</a>
+      <a href="/beta/philosophy.html">Philosophy</a>
+      <a href="/beta/index.html">Return to Home</a>
     </footer>
   </div>
-
-  <script>
-    (() => {
-      const HOLD_MS = 3500;
-      const RECEDE_MS = 780;
-      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const body = document.body;
-      const logo = document.getElementById('beta-logo');
-
-      if (!logo) {
-        body.dataset.stage = 'hub';
-        return;
-      }
-
-      if (reduceMotion) {
-        body.classList.add('logo-resolved');
-        body.dataset.stage = 'hub';
-        return;
-      }
-
-      const setLogoStartTransform = () => {
-        const rect = logo.getBoundingClientRect();
-        const targetCenterX = rect.left + rect.width / 2;
-        const targetCenterY = rect.top + rect.height / 2;
-        const desiredWidth = Math.min(window.innerWidth * 0.66, 520);
-        const scale = desiredWidth / rect.width;
-        const deltaX = window.innerWidth / 2 - targetCenterX;
-        const deltaY = window.innerHeight / 2 - targetCenterY;
-
-        body.style.setProperty('--logo-start-x', `${deltaX}px`);
-        body.style.setProperty('--logo-start-y', `${deltaY}px`);
-        body.style.setProperty('--logo-start-scale', scale.toFixed(3));
-      };
-
-      setLogoStartTransform();
-
-      requestAnimationFrame(() => {
-        body.classList.add('logo-resolved');
-      });
-
-      window.addEventListener('resize', () => {
-        if (body.dataset.stage === 'hold') {
-          setLogoStartTransform();
-        }
-      });
-
-      window.setTimeout(() => {
-        body.dataset.stage = 'recede';
-
-        window.setTimeout(() => {
-          body.dataset.stage = 'hub';
-        }, RECEDE_MS);
-      }, HOLD_MS);
-    })();
-  </script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Instruments | Frosted//Logic Beta</title>
+  <title>Products | Frosted//Logic Beta</title>
   <link rel="stylesheet" href="../styles/theme.css">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -13,11 +13,12 @@
     .logo-link { display: inline-block; margin-bottom: 0.85rem; }
     .logo-link img { width: clamp(170px, 30vw, 240px); height: auto; display: block; filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.35)); }
     .top-nav, .footer-links { display: flex; flex-wrap: wrap; gap: 0.55rem; }
-    .top-nav a, .footer-links a { color: #fff; text-decoration: none; border: 1px solid rgba(255,255,255,0.35); background: rgba(255,255,255,0.08); border-radius: 999px; padding: 0.45rem 0.85rem; font-size: 0.9rem; }
-    .top-nav a:hover, .footer-links a:hover { background: rgba(255,255,255,0.16); }
-    section { margin-top: 1rem; padding: 1.25rem; border-radius: 12px; background: rgba(255,255,255,0.1); backdrop-filter: blur(8px); }
+    .top-nav a, .footer-links a, .product-card a { color: #fff; text-decoration: none; border: 1px solid rgba(255,255,255,0.35); background: rgba(255,255,255,0.08); border-radius: 999px; padding: 0.45rem 0.85rem; font-size: 0.9rem; display: inline-block; }
+    .top-nav a:hover, .footer-links a:hover, .product-card a:hover { background: rgba(255,255,255,0.16); }
+    section, .product-card { margin-top: 1rem; padding: 1.25rem; border-radius: 12px; background: rgba(255,255,255,0.1); backdrop-filter: blur(8px); }
+    h1, h2 { margin-bottom: 0.65rem; }
     p { line-height: 1.58; margin-bottom: 0.75rem; }
-    .quote { white-space: pre-line; font-style: italic; }
+    .product-card a { margin-right: 0.55rem; margin-top: 0.25rem; }
     .footer-links { margin-top: 1.35rem; }
   </style>
 </head>
@@ -37,22 +38,33 @@
     </header>
 
     <section>
-      <h1>Instruments</h1>
-      <p>Intelligence systems that produce signal, leverage, and decision clarity across software work.</p>
-      <p>Less noise. Better calls.</p>
+      <h1>Products</h1>
+      <p>Current catalog links in one beta-scoped entry page.</p>
     </section>
 
-    <section>
-      <h2>How instruments relate to microtools</h2>
-      <p class="quote">Microtools solve problems.
-Instruments discover which problems are worth solving.</p>
-      <p>Instrument outputs often become tactical actions: warnings, prompts, short reports, or small utilities that can be repeated reliably.</p>
-    </section>
+    <article class="product-card">
+      <h2>EnvCheck</h2>
+      <p>Compare environments, detect missing variables, and export clean templates quickly.</p>
+      <a href="/beta/products.html">Catalog entry (beta)</a>
+    </article>
 
-    <section>
-      <h2>AlphaTrace</h2>
-      <p>AlphaTrace is an internal research instrument for detecting early signals, structural shifts, and hidden leverage inside evolving markets. It emphasizes clarity over narrative and decision quality over volume.</p>
-    </section>
+    <article class="product-card">
+      <h2>JSONSanity</h2>
+      <p>Offline JSON validation with deterministic structural warnings.</p>
+      <a href="/beta/products.html">Catalog entry (beta)</a>
+    </article>
+
+    <article class="product-card">
+      <h2>SchemaFirst</h2>
+      <p>Schema-aware CSV to JSON conversion designed for reliable shipping workflows.</p>
+      <a href="/beta/products.html">Catalog entry (beta)</a>
+    </article>
+
+    <article class="product-card">
+      <h2>GlyphScope</h2>
+      <p>Intent-first regex understanding with deterministic explanations.</p>
+      <a href="/beta/products.html">Catalog entry (beta)</a>
+    </article>
 
     <footer class="footer-links" aria-label="Beta footer links">
       <a href="/beta/products.html">View Products</a>
