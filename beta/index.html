@@ -83,8 +83,7 @@
       pointer-events: auto;
     }
 
-    .top-nav a,
-    .footer-links a {
+    .top-nav a {
       color: #fff;
       text-decoration: none;
       font-size: 0.94rem;
@@ -94,8 +93,7 @@
       background: rgba(255,255,255,0.06);
     }
 
-    .top-nav a:hover,
-    .footer-links a:hover {
+    .top-nav a:hover {
       background: rgba(255,255,255,0.16);
     }
 
@@ -120,8 +118,7 @@
     li { margin-bottom: 0.35rem; }
 
     .bridge { white-space: pre-line; font-style: italic; }
-    .footer-links { display: flex; flex-wrap: wrap; gap: 0.65rem; margin-top: 0.6rem; font-size: 0.9rem; }
-
+    
     .reveal-target {
       opacity: 0;
       transition: opacity var(--reveal-duration, 1200ms) ease;
@@ -167,18 +164,31 @@
         <a href="/beta/instruments.html">Instruments</a>
         <a href="/beta/games.html">Games</a>
         <a href="/beta/about.html">About</a>
+        <a href="mailto:hello@frostedlogic.com">Contact</a>
+        <a href="/">Main site</a>
       </nav>
     </header>
 
     <main>
       <section class="reveal-target" style="--reveal-order:1;">
-        <h1>Software should reduce cognitive friction, not create it.</h1>
+        <h1>WHO WE ARE:</h1>
+        <p>A small team of developers and engineers that live and code by a motto:<br>Software should reduce cognitive friction, not create it.</p>
         <p>Frosted//Logic builds developer tools and intelligence instruments designed to make building software clearer, faster, and more reliable.</p>
         <p>Small tools. Clear signals. Fewer wasted decisions.</p>
       </section>
 
       <section class="reveal-target" style="--reveal-order:2;">
-        <h2>Three kinds of systems</h2>
+        <h2>HOW WE DESIGN</h2>
+        <ul>
+          <li>Clarity over feature count</li>
+          <li>Determinism where possible</li>
+          <li>Local-first by default</li>
+        </ul>
+        <p>If a feature increases cognitive drag without increasing useful signal, it does not ship.</p>
+      </section>
+
+      <section class="reveal-target" style="--reveal-order:3;">
+        <h2>THREE KINDS OF SYSTEMS</h2>
         <h3>Microtools</h3>
         <p>Deterministic utilities that solve narrowly scoped developer problems with predictable outputs and low overhead.</p>
         <h3>Instruments</h3>
@@ -190,23 +200,10 @@ Instruments discover which problems are worth solving.
 Interactive systems explore how those solutions behave in practice.</p>
       </section>
 
-      <section class="reveal-target" style="--reveal-order:3;">
-        <h2>How we design</h2>
-        <ul>
-          <li>Clarity over feature count</li>
-          <li>Determinism where possible</li>
-          <li>Local-first by default</li>
-        </ul>
-        <p>If a feature increases cognitive drag without increasing useful signal, it does not ship.</p>
-      </section>
     </main>
 
     <footer class="reveal-target" style="--reveal-order:4;">
       <p>Built for practical software thinking.</p>
-      <div class="footer-links">
-        <a href="/index.html">Main site</a>
-        <a href="/beta/about.html">Contact</a>
-      </div>
     </footer>
   </div>
 
@@ -214,8 +211,9 @@ Interactive systems explore how those solutions behave in practice.</p>
     (() => {
       const FOCUS_MS = 650;
       const RETREAT_MS = 800;
-      const STAGGER_MS = 360;
-      const REVEAL_DURATION_MS = 1200;
+      const STAGGER_MS = 540;
+      const REVEAL_DURATION_MS = 1800;
+      const REVEAL_PAUSE_MS = 550;
       const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const body = document.body;
       const logoImage = document.querySelector('.logo-image');
@@ -243,7 +241,10 @@ Interactive systems explore how those solutions behave in practice.</p>
 
         window.setTimeout(() => {
           showLockup();
-          body.dataset.stage = 'reveal';
+
+          window.setTimeout(() => {
+            body.dataset.stage = 'reveal';
+          }, REVEAL_PAUSE_MS);
         }, RETREAT_MS);
       }, FOCUS_MS);
     })();
