@@ -13,21 +13,92 @@
     .brand-shell { margin-bottom: 1rem; }
     .logo-link { display: inline-block; margin-bottom: 0.85rem; }
     .logo-link img { width: clamp(170px, 30vw, 240px); height: auto; display: block; filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.35)); }
-    .top-nav { display: flex; flex-wrap: wrap; gap: 0.55rem; }
+    .top-nav { display: flex; flex-wrap: wrap; gap: 1rem; }
     .top-nav a,
-    .footer-links a { color: #fff; text-decoration: none; border: 1px solid rgba(255,255,255,0.35); background: rgba(255,255,255,0.08); border-radius: 999px; padding: 0.45rem 0.85rem; font-size: 0.9rem; }
+    .footer-links a,
+    .hub-actions a { color: #fff; text-decoration: none; font-size: 0.95rem; }
     .top-nav a:hover,
-    .footer-links a:hover { background: rgba(255,255,255,0.16); }
-    section { margin-top: 1rem; padding: 1.25rem; border-radius: 12px; background: rgba(255,255,255,0.1); backdrop-filter: blur(8px); }
-    h1 { font-size: clamp(1.5rem, 4vw, 2.15rem); margin-bottom: 0.75rem; }
-    h2 { margin-bottom: 0.6rem; }
-    p { line-height: 1.58; margin-bottom: 0.75rem; }
-    .micro { opacity: 0.9; }
-    .footer-links { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-top: 1.35rem; }
+    .footer-links a:hover,
+    .hub-actions a:hover { text-decoration: underline; text-underline-offset: 0.18rem; }
+
+    main { margin-top: 1.5rem; }
+    .hub h1 { font-size: clamp(1.4rem, 3.2vw, 2rem); margin-bottom: 1rem; }
+    .hub-actions { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+    .hub-actions a { border: 1px solid rgba(255,255,255,0.45); border-radius: 999px; padding: 0.42rem 0.78rem; background: rgba(255,255,255,0.08); }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-top: 2rem; font-size: 0.9rem; }
+
+    .logo-stage {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      display: grid;
+      place-items: center;
+      pointer-events: none;
+      background: var(--site-bg);
+    }
+    .logo-stage img {
+      width: clamp(280px, 72vw, 840px);
+      max-height: 72vh;
+      height: auto;
+      display: block;
+      filter: blur(12px) drop-shadow(0 14px 34px rgba(0,0,0,0.42));
+      animation: blur-resolve 600ms ease-out forwards;
+      transform: translate(0, 0) scale(1);
+      transition: transform 850ms cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+
+    body[data-stage="hold"] .brand-shell,
+    body[data-stage="hold"] main,
+    body[data-stage="hold"] footer,
+    body[data-stage="recede"] .brand-shell,
+    body[data-stage="recede"] main,
+    body[data-stage="recede"] footer {
+      display: none;
+    }
+
+    body[data-stage="recede"] .logo-stage img {
+      transform: translate(var(--logo-shift-x), var(--logo-shift-y)) scale(var(--logo-scale));
+    }
+
+    body[data-stage="hub"] .logo-stage {
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 140ms linear;
+    }
+
+    @keyframes blur-resolve {
+      from { filter: blur(12px) drop-shadow(0 14px 34px rgba(0,0,0,0.42)); }
+      to { filter: blur(0) drop-shadow(0 14px 34px rgba(0,0,0,0.42)); }
+    }
+
+    body {
+      --logo-shift-x: -32vw;
+      --logo-shift-y: -40vh;
+      --logo-scale: 0.28;
+    }
+
+    @media (max-width: 820px) {
+      body {
+        --logo-shift-x: 0vw;
+        --logo-shift-y: -40vh;
+        --logo-scale: 0.32;
+      }
+      .logo-stage img { width: min(88vw, 620px); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .logo-stage { display: none; }
+      .brand-shell, main, footer { display: block !important; }
+      .logo-stage img { animation: none; transition: none; }
+    }
   </style>
   <script src="/beta/brand.js" defer></script>
 </head>
-<body>
+<body data-stage="hold">
+  <div class="logo-stage" aria-hidden="true">
+    <img src="../images/logo-side.png" alt="">
+  </div>
+
   <div class="page">
     <header class="brand-shell">
       <a class="logo-link" href="/beta/index.html" aria-label="Frosted Logic Beta Home">
@@ -42,17 +113,14 @@
       </nav>
     </header>
 
-    <main>
-      <section>
-        <h1>Frosted//Logic Beta Preview</h1>
-        <p>Small software. Sharp edges. No fluff.</p>
-        <p class="micro">This beta space previews an in-progress studio shell scoped entirely under <code>/beta/</code>.</p>
-      </section>
-
-      <section>
-        <h2>Start Here</h2>
-        <p>Browse products, instruments, and exploratory systems using the shared beta navigation.</p>
-      </section>
+    <main class="hub" aria-live="polite">
+      <h1>How can we help you today?</h1>
+      <div class="hub-actions">
+        <a href="/beta/products.html">View Products</a>
+        <a href="/beta/instruments.html">Explore Instruments</a>
+        <a href="/beta/games.html">Browse Games</a>
+        <a href="/beta/philosophy.html">Read Philosophy</a>
+      </div>
     </main>
 
     <footer class="footer-links" aria-label="Beta footer links">
@@ -63,5 +131,25 @@
       <a href="/beta/index.html">Return to Home</a>
     </footer>
   </div>
+
+  <script>
+    (() => {
+      const HOLD_MS = 2500;
+      const RECEDE_MS = 850;
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (reducedMotion) {
+        document.body.dataset.stage = 'hub';
+        return;
+      }
+
+      window.setTimeout(() => {
+        document.body.dataset.stage = 'recede';
+        window.setTimeout(() => {
+          document.body.dataset.stage = 'hub';
+        }, RECEDE_MS);
+      }, HOLD_MS);
+    })();
+  </script>
 </body>
 </html>
