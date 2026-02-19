@@ -1,5 +1,6 @@
 (() => {
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const BLANK_BEAT_MS = 320;
 
   const ensureOverlay = () => {
     let overlay = document.getElementById('navOverlay');
@@ -24,11 +25,17 @@
     const header = page.querySelector(':scope > header') || page.querySelector('header');
     uniquePush(sequence, header);
 
-    const contentBlocks = Array.from(page.querySelectorAll('main > section, main > article, .page > section, .page > article'));
-    contentBlocks.forEach((block) => {
-      if (!header || !header.contains(block)) {
-        uniquePush(sequence, block);
-      }
+    const hero = page.querySelector('main > section, main > article, :scope > main > section, :scope > main > article, :scope > section, :scope > article');
+    uniquePush(sequence, hero);
+
+    const allMainBlocks = Array.from(page.querySelectorAll('main > section, main > article'));
+    allMainBlocks.forEach((block) => {
+      if (block !== hero) uniquePush(sequence, block);
+    });
+
+    const directPageBlocks = Array.from(page.querySelectorAll(':scope > section, :scope > article'));
+    directPageBlocks.forEach((block) => {
+      if (block !== hero && (!header || !header.contains(block))) uniquePush(sequence, block);
     });
 
     const footer = page.querySelector(':scope > footer') || page.querySelector('footer');
@@ -83,6 +90,6 @@
 
     window.setTimeout(() => {
       window.location.href = anchor.href;
-    }, 200);
+    }, BLANK_BEAT_MS);
   });
 })();

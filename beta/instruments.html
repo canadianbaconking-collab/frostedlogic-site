@@ -13,13 +13,14 @@
     .brand-shell { margin-bottom: 1rem; }
     .logo-link { display: inline-block; margin-bottom: 0.85rem; }
     .logo-link img { width: clamp(170px, 30vw, 240px); height: auto; display: block; filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.35)); }
-    .top-nav, .footer-links { display: flex; flex-wrap: wrap; gap: 0.55rem; }
-    .top-nav a, .footer-links a { color: #fff; text-decoration: none; border: 1px solid rgba(255,255,255,0.35); background: rgba(255,255,255,0.08); border-radius: 999px; padding: 0.45rem 0.85rem; font-size: 0.9rem; }
-    .top-nav a:hover, .footer-links a:hover { background: rgba(255,255,255,0.16); }
+    .top-nav, .footer-links { display: flex; flex-wrap: wrap; gap: 1rem; }
+    .top-nav a, .footer-links a { color: #fff; text-decoration: none; font-size: 0.95rem; }
+    .top-nav a:hover, .footer-links a:hover { text-decoration: underline; text-underline-offset: 0.18rem; }
     section { margin-top: 1rem; padding: 1.25rem; border-radius: 12px; background: rgba(255,255,255,0.1); backdrop-filter: blur(8px); }
     p { line-height: 1.58; margin-bottom: 0.75rem; }
-    .quote { white-space: pre-line; font-style: italic; }
-    .footer-links { margin-top: 1.35rem; }
+    ul { margin-left: 1.2rem; margin-bottom: 0.8rem; }
+    li { margin-bottom: 0.45rem; }
+    .footer-links { margin-top: 1.35rem; font-size: 0.9rem; }
   </style>
   <script src="/beta/brand.js" defer></script>
 </head>
@@ -38,23 +39,29 @@
       </nav>
     </header>
 
-    <section>
-      <h1>Instruments</h1>
-      <p>Intelligence systems that produce signal, leverage, and decision clarity across software work.</p>
-      <p>Less noise. Better calls.</p>
-    </section>
+    <main>
+      <section>
+        <h1>Instruments</h1>
+        <p>Intelligence systems that produce signal, leverage, and decision clarity across software work.</p>
+      </section>
 
-    <section>
-      <h2>How instruments relate to microtools</h2>
-      <p class="quote">Microtools solve problems.
-Instruments discover which problems are worth solving.</p>
-      <p>Instrument outputs often become tactical actions: warnings, prompts, short reports, or small utilities that can be repeated reliably.</p>
-    </section>
+      <section>
+        <h2>SignalForge</h2>
+        <p>A developer intelligence instrument for recency-bounded synthesis, convergence scoring, and trajectory warnings.</p>
+        <ul>
+          <li>Synthesizes recent information into a decision snapshot</li>
+          <li>Annotates confidence via signal convergence and diversity</li>
+          <li>Emits artifacts you can reference later (not vibes)</li>
+          <li>Designed for traceability and calibration over time</li>
+        </ul>
+        <p>Status: in active development.</p>
+      </section>
 
-    <section>
-      <h2>AlphaTrace</h2>
-      <p>AlphaTrace is an internal research instrument for detecting early signals, structural shifts, and hidden leverage inside evolving markets. It emphasizes clarity over narrative and decision quality over volume.</p>
-    </section>
+      <section>
+        <h2>AlphaTrace</h2>
+        <p>AlphaTrace is an internal research instrument for detecting early signals, structural shifts, and hidden leverage inside evolving markets. It traces patterns across fragmented data to surface meaningful inflection points before they become obvious. Designed for disciplined decision-making, it prioritizes signal clarity over noise, narrative, or hype.</p>
+      </section>
+    </main>
 
     <footer class="footer-links" aria-label="Beta footer links">
       <a href="/beta/products.html">View Products</a>

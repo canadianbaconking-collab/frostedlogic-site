@@ -14,13 +14,12 @@
     .logo-link { display: inline-block; margin-bottom: 0.85rem; }
     .logo-link img { width: clamp(170px, 30vw, 240px); height: auto; display: block; filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.35)); }
     .top-nav, .footer-links { display: flex; flex-wrap: wrap; gap: 0.55rem; }
-    .top-nav a, .footer-links a, .product-card a { color: #fff; text-decoration: none; border: 1px solid rgba(255,255,255,0.35); background: rgba(255,255,255,0.08); border-radius: 999px; padding: 0.45rem 0.85rem; font-size: 0.9rem; display: inline-block; }
-    .top-nav a:hover, .footer-links a:hover, .product-card a:hover { background: rgba(255,255,255,0.16); }
+    .top-nav a, .footer-links a { color: #fff; text-decoration: none; font-size: 0.95rem; }
+    .top-nav a:hover, .footer-links a:hover { text-decoration: underline; text-underline-offset: 0.18rem; }
     section, .product-card { margin-top: 1rem; padding: 1.25rem; border-radius: 12px; background: rgba(255,255,255,0.1); backdrop-filter: blur(8px); }
     h1, h2 { margin-bottom: 0.65rem; }
     p { line-height: 1.58; margin-bottom: 0.75rem; }
-    .product-card a { margin-right: 0.55rem; margin-top: 0.25rem; }
-    .footer-links { margin-top: 1.35rem; }
+    .footer-links { margin-top: 1.35rem; font-size: 0.9rem; }
   </style>
   <script src="/beta/brand.js" defer></script>
 </head>
@@ -47,25 +46,21 @@
     <article class="product-card">
       <h2>EnvCheck</h2>
       <p>Compare environments, detect missing variables, and export clean templates quickly.</p>
-      <a href="/beta/products.html">Catalog entry (beta)</a>
     </article>
 
     <article class="product-card">
       <h2>JSONSanity</h2>
       <p>Offline JSON validation with deterministic structural warnings.</p>
-      <a href="/beta/products.html">Catalog entry (beta)</a>
     </article>
 
     <article class="product-card">
       <h2>SchemaFirst</h2>
       <p>Schema-aware CSV to JSON conversion designed for reliable shipping workflows.</p>
-      <a href="/beta/products.html">Catalog entry (beta)</a>
     </article>
 
     <article class="product-card">
       <h2>GlyphScope</h2>
       <p>Intent-first regex understanding with deterministic explanations.</p>
-      <a href="/beta/products.html">Catalog entry (beta)</a>
     </article>
 
     <footer class="footer-links" aria-label="Beta footer links">

@@ -12,10 +12,10 @@
 }
 
 .brand-reveal-target {
-  transform: translateY(10px);
-  opacity: 0.98;
-  transition: transform 680ms cubic-bezier(0.22, 0.61, 0.36, 1), opacity 680ms cubic-bezier(0.22, 0.61, 0.36, 1);
-  transition-delay: calc(var(--reveal-index, 0) * 90ms);
+  transform: translateY(8px);
+  opacity: 0.985;
+  transition: transform 760ms cubic-bezier(0.22, 0.61, 0.36, 1), opacity 760ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  transition-delay: calc(var(--reveal-index, 0) * 100ms);
 }
 
 .brand-reveal-play .brand-reveal-target {
