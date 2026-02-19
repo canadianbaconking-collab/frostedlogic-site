@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Games | Frosted//Logic Beta</title>
+  <title>Tools | Frosted//Logic Beta</title>
   <link rel="stylesheet" href="../styles/theme.css">
   <link rel="stylesheet" href="/beta/brand.css">
   <link rel="stylesheet" href="/beta/shared-reveal.css">
@@ -18,10 +18,12 @@
     .top-nav { display: flex; flex-wrap: wrap; gap: 0.7rem; }
     .top-nav a { color: #fff; text-decoration: none; font-size: 0.94rem; border: 1px solid rgba(255,255,255,0.38); border-radius: 999px; padding: 0.38rem 0.72rem; background: rgba(255,255,255,0.06); }
     .top-nav a:hover { background: rgba(255,255,255,0.16); }
-    section, footer { margin-top: 1rem; padding: 1.15rem; border-radius: 12px; background: rgba(255,255,255,0.1); backdrop-filter: blur(8px); }
+    main { min-width: 0; }
+    section, .tool-card, footer { margin-top: 1rem; padding: 1.15rem; border-radius: 12px; background: rgba(255,255,255,0.1); backdrop-filter: blur(8px); }
+    h1, h2 { margin-bottom: 0.65rem; }
     p { line-height: 1.58; margin-bottom: 0.75rem; }
-    ul { margin-left: 1.2rem; }
-    li { margin-bottom: 0.35rem; }
+    .tool-card img { width: 100%; max-width: 560px; height: auto; border-radius: 10px; margin-bottom: 0.85rem; display: block; }
+    .tool-link { color: #fff; text-underline-offset: 0.18rem; }
 
     @media (max-width: 820px) {
       .layout { grid-template-columns: 1fr; }
@@ -50,19 +52,37 @@
 
       <main>
         <section>
-          <h1>Games</h1>
-          <p>Interactive systems exploring constraints, feedback loops, and decision-making with the same clarity-first principles used in our tools.</p>
-          <p>Mechanics are philosophy you can play.</p>
+          <h1>Tools</h1>
+          <p>Developer-focused utilities built for fast clarity, predictable output, and low cognitive drag.</p>
         </section>
 
-        <section>
-          <h2>Current work</h2>
-          <ul>
-            <li><strong>Fracture Protocol</strong> — a compact project centered on recovery, failure states, and readable consequences.</li>
-            <li><strong>The Iron Outlaw</strong> — a progression experiment around momentum, load, and tradeoffs under pressure.</li>
-            <li><strong>Cascadia</strong> — a replayable sandbox used to test pacing, feedback, and run structure.</li>
-          </ul>
-        </section>
+        <article class="tool-card">
+          <h2>EnvCheck</h2>
+          <img src="/images/envcheck-screenshot.png" alt="EnvCheck screenshot">
+          <p>Audit .env files in seconds. Compare 2 or 3 environments, spot missing or mismatched variables, and export clean templates or fix patches.</p>
+          <p><a class="tool-link" href="/envcheck/">View product page</a> · <a class="tool-link" href="/envcheck/free/">Try free version</a></p>
+        </article>
+
+        <article class="tool-card">
+          <h2>JSONSanity</h2>
+          <img src="/images/jsonsanity-screenshot.png" alt="JSONSanity screenshot">
+          <p>Offline JSON validator + deterministic sanity warnings (no AI). Paste JSON, get stats + structural risk flags.</p>
+          <p><a class="tool-link" href="/jsonsanity/">View product page</a></p>
+        </article>
+
+        <article class="tool-card">
+          <h2>SchemaFirst</h2>
+          <img src="/images/schemafirst-cover.png" alt="SchemaFirst screenshot">
+          <p>CSV → JSON you can actually ship. Schema-aware conversion with type inference, confidence scoring, and strict validation.</p>
+          <p><a class="tool-link" href="/schemafirst/">View product page</a></p>
+        </article>
+
+        <article class="tool-card">
+          <h2>GlyphScope</h2>
+          <img src="/images/GlyphScope-cover.png" alt="GlyphScope screenshot">
+          <p>Understand what a regex pattern does — safely and with intent. Deterministic explanations plus optional match preview.</p>
+          <p><a class="tool-link" href="/glyphscope/product/">View product page</a> · <a class="tool-link" href="/glyphscope/">Use free online</a></p>
+        </article>
 
         <footer>
           <p>Built for practical software thinking.</p>
