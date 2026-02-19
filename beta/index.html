@@ -7,90 +7,237 @@
   <link rel="stylesheet" href="../styles/theme.css">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
       background: var(--site-bg);
       color: #fff;
       min-height: 100vh;
     }
-    .page { max-width: 980px; margin: 0 auto; padding: 2rem 1.25rem 3rem; }
-    header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 1.25rem 1rem 2.5rem;
+    }
+
+    .masthead {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.9rem;
+      padding-top: 1rem;
+      text-align: center;
+      min-height: 178px;
+    }
+
+    .logo-link {
+      display: inline-block;
+      width: fit-content;
+    }
+
     .logo-link img {
-      width: 180px;
+      width: clamp(170px, 30vw, 250px);
       height: auto;
-      filter: blur(6px) drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
-      transition: filter 620ms ease;
+      display: block;
+      filter: blur(7px) drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.35));
+      transform-origin: center;
+      transform: translate3d(var(--logo-start-x, 0), var(--logo-start-y, 0), 0) scale(var(--logo-start-scale, 1));
+      transition: transform 780ms cubic-bezier(0.24, 0.86, 0.3, 1), filter 620ms ease;
+      will-change: transform;
     }
-    .logo-ready .logo-link img { filter: blur(0) drop-shadow(2px 2px 4px rgba(0,0,0,0.3)); }
-    @media (prefers-reduced-motion: reduce) {
-      .logo-link img { filter: blur(0) drop-shadow(2px 2px 4px rgba(0,0,0,0.3)); transition: none; }
+
+    body.logo-resolved .logo-link img {
+      filter: blur(0) drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.35));
     }
-    nav a {
-      color: #fff; text-decoration: none; margin-left: 1rem; opacity: 0.9;
+
+    body[data-stage="recede"] .logo-link img,
+    body[data-stage="hub"] .logo-link img {
+      transform: translate3d(0, 0, 0) scale(1);
     }
-    nav a:hover { opacity: 1; text-decoration: underline; }
-    .card {
+
+    .hub-copy {
+      font-size: clamp(1.05rem, 2.4vw, 1.25rem);
+      font-weight: 600;
+      letter-spacing: 0.01em;
+    }
+
+    .hub-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.6rem;
+      margin-top: 0.25rem;
+    }
+
+    .hub-actions a {
+      color: #fff;
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 999px;
+      padding: 0.52rem 0.92rem;
+      font-size: 0.92rem;
+      transform: translate3d(0, 24px, 0);
+      transition: transform 620ms cubic-bezier(0.2, 0.8, 0.28, 1);
+      will-change: transform;
+    }
+
+    body[data-stage="hub"] .hub-actions a {
+      transform: translate3d(0, 0, 0);
+    }
+
+    body[data-stage="hub"] .hub-actions a:nth-child(1) { transition-delay: 0ms; }
+    body[data-stage="hub"] .hub-actions a:nth-child(2) { transition-delay: 75ms; }
+    body[data-stage="hub"] .hub-actions a:nth-child(3) { transition-delay: 150ms; }
+    body[data-stage="hub"] .hub-actions a:nth-child(4) { transition-delay: 225ms; }
+
+    .hub-actions a:hover { background: rgba(255, 255, 255, 0.15); }
+
+    body[data-stage="hold"] .hub-actions,
+    body[data-stage="recede"] .hub-actions {
+      pointer-events: none;
+    }
+
+    .cards {
       margin-top: 1.5rem;
-      padding: 1.5rem;
+      display: grid;
+      gap: 1rem;
+    }
+
+    .card {
+      padding: 1.25rem;
       border-radius: 12px;
-      background: rgba(255,255,255,0.1);
+      background: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(8px);
     }
-    h1 { font-size: 2.2rem; margin-bottom: 0.8rem; }
-    h2 { margin-bottom: 0.7rem; }
-    p { line-height: 1.6; margin-bottom: 0.8rem; }
+
+    h1 { font-size: clamp(1.55rem, 4.4vw, 2.2rem); margin-bottom: 0.7rem; }
+    h2 { margin-bottom: 0.65rem; }
+    p { line-height: 1.58; margin-bottom: 0.75rem; }
     .micro { opacity: 0.88; }
-    .cta a {
-      display: inline-block;
-      color: #fff;
-      margin-right: 1rem;
-      margin-top: 0.5rem;
+
+    footer {
+      opacity: 0.65;
+      font-size: 0.85rem;
+      margin-top: 1.8rem;
     }
-    footer { opacity: 0.65; font-size: 0.85rem; margin-top: 2rem; }
+
+    @media (min-width: 900px) {
+      .page { padding: 1.35rem 1.25rem 2.75rem; }
+
+      .masthead {
+        align-items: flex-start;
+        text-align: left;
+      }
+
+      .hub-actions {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .logo-link img {
+        transition: none;
+        filter: blur(0) drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.35));
+        transform: none;
+      }
+
+      .hub-actions a {
+        transition: none;
+        transform: none;
+      }
+    }
   </style>
 </head>
-<body>
+<body data-stage="hold">
   <div class="page">
-    <header>
+    <header class="masthead">
       <a class="logo-link" href="/beta/index.html" aria-label="Frosted Logic Beta Home">
-        <img src="../images/logo-side.png" alt="Frosted//Logic logo">
+        <img src="../images/logo-side.png" alt="Frosted//Logic logo" id="beta-logo">
       </a>
-      <nav>
-        <a href="/beta/index.html">Home</a>
-        <a href="/beta/philosophy.html">Philosophy</a>
+
+      <p class="hub-copy">How can we help you today?</p>
+
+      <nav class="hub-actions" aria-label="Beta sections">
+        <a href="/beta/index.html#products">Products</a>
         <a href="/beta/instruments.html">Instruments</a>
         <a href="/beta/games.html">Games</a>
-        <a href="/beta/index.html#products">Products</a>
+        <a href="/beta/philosophy.html">Philosophy</a>
       </nav>
     </header>
 
-    <section class="card">
-      <h1>Frosted//Logic Beta Preview</h1>
-      <p>Small software. Sharp edges. No fluff.</p>
-      <p class="micro">This beta space previews updated studio pages while production remains unchanged.</p>
-    </section>
+    <main class="cards">
+      <section class="card">
+        <h1>Frosted//Logic Beta Preview</h1>
+        <p>Small software. Sharp edges. No fluff.</p>
+        <p class="micro">This beta space previews updated studio pages while production remains unchanged.</p>
+      </section>
 
-    <section id="products" class="card">
-      <h2>Products</h2>
-      <p>View product and studio updates in this beta environment.</p>
-      <div class="cta">
-        <a href="/beta/index.html#products">View Products</a>
-        <a href="/beta/instruments.html">View Instruments</a>
-        <a href="/beta/games.html">View Games</a>
-        <a href="/beta/philosophy.html">View Philosophy</a>
-      </div>
-    </section>
+      <section id="products" class="card">
+        <h2>Products</h2>
+        <p>View product and studio updates in this beta environment.</p>
+      </section>
+    </main>
 
     <footer>
       Frosted//Logic beta preview — scoped under /beta/
     </footer>
   </div>
+
   <script>
-    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      requestAnimationFrame(() => document.body.classList.add('logo-ready'));
-    } else {
-      document.body.classList.add('logo-ready');
-    }
+    (() => {
+      const HOLD_MS = 3500;
+      const RECEDE_MS = 780;
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const body = document.body;
+      const logo = document.getElementById('beta-logo');
+
+      if (!logo) {
+        body.dataset.stage = 'hub';
+        return;
+      }
+
+      if (reduceMotion) {
+        body.classList.add('logo-resolved');
+        body.dataset.stage = 'hub';
+        return;
+      }
+
+      const setLogoStartTransform = () => {
+        const rect = logo.getBoundingClientRect();
+        const targetCenterX = rect.left + rect.width / 2;
+        const targetCenterY = rect.top + rect.height / 2;
+        const desiredWidth = Math.min(window.innerWidth * 0.66, 520);
+        const scale = desiredWidth / rect.width;
+        const deltaX = window.innerWidth / 2 - targetCenterX;
+        const deltaY = window.innerHeight / 2 - targetCenterY;
+
+        body.style.setProperty('--logo-start-x', `${deltaX}px`);
+        body.style.setProperty('--logo-start-y', `${deltaY}px`);
+        body.style.setProperty('--logo-start-scale', scale.toFixed(3));
+      };
+
+      setLogoStartTransform();
+
+      requestAnimationFrame(() => {
+        body.classList.add('logo-resolved');
+      });
+
+      window.addEventListener('resize', () => {
+        if (body.dataset.stage === 'hold') {
+          setLogoStartTransform();
+        }
+      });
+
+      window.setTimeout(() => {
+        body.dataset.stage = 'recede';
+
+        window.setTimeout(() => {
+          body.dataset.stage = 'hub';
+        }, RECEDE_MS);
+      }, HOLD_MS);
+    })();
   </script>
 </body>
 </html>
