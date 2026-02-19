@@ -1,0 +1,17 @@
+.shared-reveal-target {
+  opacity: 0;
+  transition: opacity 1800ms ease;
+  transition-delay: calc(var(--shared-reveal-index, 0) * 540ms);
+}
+
+.shared-reveal-play .shared-reveal-target {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shared-reveal-target,
+  .shared-reveal-play .shared-reveal-target {
+    opacity: 1;
+    transition: none;
+  }
+}
