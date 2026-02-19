@@ -55,11 +55,50 @@
       filter: blur(11px) drop-shadow(0 14px 34px rgba(0,0,0,0.42));
     }
 
-    .logo-link img {
+    .logo-lockup {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      width: 100%;
+    }
+
+    .logo-icon,
+    .logo-wordmark {
+      display: block;
+      overflow: hidden;
+    }
+
+    .logo-icon {
+      width: 100%;
+    }
+
+    .logo-wordmark {
+      width: 0;
+      opacity: 0;
+    }
+
+    .logo-icon img,
+    .logo-wordmark img {
       width: 100%;
       height: auto;
       display: block;
       filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.35));
+    }
+
+    .logo-icon img {
+      width: 315%;
+      max-width: none;
+      transform: translateX(0);
+    }
+
+    body[data-stage="reveal"] .logo-icon {
+      width: 23%;
+    }
+
+    body[data-stage="reveal"] .logo-wordmark {
+      width: 77%;
+      opacity: 1;
     }
 
     body[data-stage="focus"] .logo-link {
@@ -122,10 +161,10 @@
     .footer-links { display: flex; flex-wrap: wrap; gap: 0.65rem; margin-top: 1.35rem; font-size: 0.9rem; }
 
     .reveal-target {
-      opacity: 0;
-      transform: translateY(18px);
-      transition: opacity 520ms ease, transform 520ms cubic-bezier(0.22, 0.61, 0.36, 1);
-      transition-delay: calc(var(--reveal-order, 0) * 160ms);
+      opacity: 0.98;
+      transform: translateY(10px);
+      transition: opacity 1000ms ease, transform 1000ms cubic-bezier(0.22, 0.61, 0.36, 1);
+      transition-delay: calc(var(--reveal-order, 0) * var(--stagger-ms, 320ms));
       pointer-events: none;
     }
 
@@ -150,8 +189,18 @@
 
     @media (prefers-reduced-motion: reduce) {
       .logo-link,
-      .reveal-target {
+      .reveal-target,
+      .logo-wordmark {
         transition: none;
+      }
+
+      .logo-icon {
+        width: 23%;
+      }
+
+      .logo-wordmark {
+        width: 77%;
+        opacity: 1;
       }
     }
   </style>
@@ -161,7 +210,14 @@
   <div class="page">
     <header class="brand-shell">
       <a class="logo-link" href="/beta/index.html" aria-label="Frosted Logic Beta Home">
-        <img src="../images/logo-side.png" alt="Frosted//Logic logo">
+        <span class="logo-lockup" aria-hidden="true">
+          <span class="logo-icon">
+            <img src="../images/logo-side.png" alt="">
+          </span>
+          <span class="logo-wordmark">
+            <img src="../images/logo-side.png" alt="">
+          </span>
+        </span>
       </a>
       <nav class="top-nav reveal-target" aria-label="Beta navigation" style="--reveal-order:0;">
         <a href="/beta/products.html">Products</a>
@@ -202,20 +258,15 @@ Interactive systems explore how those solutions behave in practice.</p>
       </section>
     </main>
 
-    <footer class="footer-links reveal-target" aria-label="Beta footer links" style="--reveal-order:4;">
-      <a href="/beta/products.html">View Products</a>
-      <a href="/beta/instruments.html">View Instruments</a>
-      <a href="/beta/games.html">View Games</a>
-      <a href="/beta/philosophy.html">Philosophy</a>
-      <a href="/beta/index.html">Return to Home</a>
-    </footer>
   </div>
 
   <script>
     (() => {
       const FOCUS_MS = 650;
       const RETREAT_MS = 800;
+      const STAGGER_MS = 320;
       const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      document.body.style.setProperty('--stagger-ms', `${STAGGER_MS}ms`);
 
       if (reducedMotion) {
         document.body.dataset.stage = 'reveal';
