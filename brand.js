@@ -1,6 +1,56 @@
 (() => {
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const BLANK_BEAT_MS = 320;
+  const NAV_STATE_CLASSES = ['navigating', 'nav-out', 'transition-lock'];
+
+  const clearInlineVisibility = (node) => {
+    if (!node || !node.style) return;
+    node.style.removeProperty('opacity');
+    node.style.removeProperty('visibility');
+    node.style.removeProperty('display');
+    node.style.removeProperty('pointer-events');
+    node.style.removeProperty('filter');
+    node.style.removeProperty('transform');
+    node.style.removeProperty('clip-path');
+  };
+
+  const ensurePageVisible = () => {
+    const page = document.querySelector('.page');
+    [document.documentElement, document.body, page].forEach(clearInlineVisibility);
+
+    if (document.body) {
+      document.body.classList.remove('brand-force-visible');
+      document.body.classList.add('brand-reveal-play');
+    }
+  };
+
+  const clearNavigationState = () => {
+    if (!document.body) return;
+
+    NAV_STATE_CLASSES.forEach((className) => {
+      document.body.classList.remove(className);
+    });
+
+    Array.from(document.body.classList).forEach((className) => {
+      if (className.includes('navigating') || className.includes('nav-out') || className.includes('transition-lock')) {
+        document.body.classList.remove(className);
+      }
+    });
+
+    document.body.removeAttribute('aria-busy');
+    document.body.removeAttribute('inert');
+    document.body.removeAttribute('data-navigating');
+    document.body.removeAttribute('data-nav-out');
+    document.body.removeAttribute('data-transition-lock');
+  };
+
+  const clearOverlay = () => {
+    const overlay = document.getElementById('navOverlay');
+    if (!overlay) return;
+    overlay.classList.remove('is-active');
+    overlay.removeAttribute('style');
+    overlay.remove();
+  };
 
   const ensureOverlay = () => {
     let overlay = document.getElementById('navOverlay');
@@ -16,9 +66,16 @@
     if (node && !arr.includes(node)) arr.push(node);
   };
 
-  const setupReveal = () => {
-    if (reducedMotion) return;
-    if (document.body?.dataset.entrySequence === 'true') return;
+  const setupReveal = ({ force = false } = {}) => {
+    if (!force && reducedMotion) {
+      ensurePageVisible();
+      return;
+    }
+
+    if (document.body?.dataset.entrySequence === 'true') {
+      ensurePageVisible();
+      return;
+    }
 
     const page = document.querySelector('.page') || document.body;
     const sequence = [];
@@ -73,6 +130,29 @@
   document.addEventListener('DOMContentLoaded', () => {
     setupReveal();
     ensureOverlay();
+  });
+
+  window.addEventListener('pageshow', (event) => {
+    clearOverlay();
+    clearNavigationState();
+    ensurePageVisible();
+
+    if (event.persisted) {
+      document.body?.classList.remove('brand-reveal-play');
+
+      document.querySelectorAll('.brand-reveal-target').forEach((el) => {
+        el.classList.remove('brand-reveal-target');
+        el.style.removeProperty('--reveal-index');
+      });
+
+      requestAnimationFrame(() => {
+        setupReveal({ force: true });
+      });
+
+      window.setTimeout(() => {
+        ensurePageVisible();
+      }, BLANK_BEAT_MS);
+    }
   });
 
   document.addEventListener('click', (event) => {
