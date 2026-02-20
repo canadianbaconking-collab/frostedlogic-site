@@ -65,7 +65,7 @@
     }
 
     if (url.origin !== window.location.origin) return false;
-    if (!url.pathname.startsWith('/beta/')) return false;
+    if (!url.pathname.startsWith('/')) return false;
 
     return true;
   };
