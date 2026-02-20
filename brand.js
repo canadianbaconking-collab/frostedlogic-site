@@ -52,7 +52,7 @@
     });
   };
 
-  const isInterceptableBetaLink = (anchor) => {
+  const isInterceptableLink = (anchor) => {
     const rawHref = anchor.getAttribute('href');
     if (!rawHref || rawHref.startsWith('#')) return false;
     if (anchor.target && anchor.target !== '_self') return false;
@@ -65,7 +65,7 @@
     }
 
     if (url.origin !== window.location.origin) return false;
-    if (!url.pathname.startsWith('/beta/')) return false;
+    if (!url.pathname.startsWith('/')) return false;
 
     return true;
   };
@@ -82,7 +82,7 @@
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
 
     const anchor = event.target.closest('a[href]');
-    if (!anchor || !isInterceptableBetaLink(anchor)) return;
+    if (!anchor || !isInterceptableLink(anchor)) return;
 
     event.preventDefault();
 

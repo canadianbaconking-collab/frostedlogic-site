@@ -1,489 +1,312 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Frosted//Logic - Tech Innovation</title>
-    <link rel="stylesheet" href="/styles/theme.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Frosted//Logic</title>
+  <link rel="stylesheet" href="../styles/theme.css">
+  <link rel="stylesheet" href="/brand.css">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: var(--site-bg);
-            color: #ffffff;
-            overflow-x: hidden;
-            min-height: 100vh;
-        }
+    body {
+      --logo-final-width: clamp(170px, 24vw, 238px);
+      --logo-start-width: clamp(280px, 56vw, 640px);
+      --logo-start-left: 50vw;
+      --logo-start-top: 50vh;
+      --logo-start-x: -50%;
+      --logo-start-y: -50%;
+      --logo-start-scale: 1;
+      --logo-final-left: 1rem;
+      --logo-final-top: 1.2rem;
+      --logo-final-x: 0;
+      --logo-final-y: 0;
+      --logo-final-scale: 1;
+      --logo-final-anchor: 0;
+      --logo-header-clearance: clamp(58px, 9vw, 74px);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+      background: var(--site-bg);
+      color: #fff;
+      min-height: 100vh;
+    }
 
-        .container {
-            display: flex;
-            min-height: 100vh;
-        }
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 1.2rem 1rem 2.5rem;
+    }
 
-        /* Sidebar */
-        .sidebar {
-            width: 280px;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            padding: 2rem;
-            position: fixed;
-            height: 100vh;
-            box-shadow: 2px 0 20px rgba(0, 0, 0, 0.1);
-            z-index: 100;
-            transition: transform 0.3s ease;
-            display: flex;
-            flex-direction: column;
-        }
+    .brand-shell {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 20;
+      pointer-events: none;
+    }
 
-        .logo-container {
-            margin-bottom: 2rem;
-            text-align: center;
-            padding-bottom: 1.5rem;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.5);
-            flex-shrink: 0;
-        }
+    .logo-link {
+      position: fixed;
+      top: var(--logo-start-top);
+      left: var(--logo-start-left);
+      width: var(--logo-start-width);
+      transform: translate(var(--logo-start-x), var(--logo-start-y)) scale(var(--logo-start-scale));
+      transform-origin: center center;
+      pointer-events: auto;
+      display: inline-block;
+      transition:
+        top 800ms cubic-bezier(0.22, 0.61, 0.36, 1),
+        left 800ms cubic-bezier(0.22, 0.61, 0.36, 1),
+        width 800ms cubic-bezier(0.22, 0.61, 0.36, 1),
+        transform 800ms cubic-bezier(0.22, 0.61, 0.36, 1);
+      filter: blur(0) drop-shadow(0 14px 34px rgba(0,0,0,0.42));
+    }
 
-        .logo-container img {
-            max-width: 200px;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
-        }
+    .logo-link.logo-blurry {
+      filter: blur(8px) drop-shadow(0 14px 34px rgba(0,0,0,0.42));
+    }
 
-        .nav-menu {
-            list-style: none;
-            margin-top: 2rem;
-        }
+    .logo-link.logo-sharpening {
+      transition:
+        top 800ms cubic-bezier(0.22, 0.61, 0.36, 1),
+        left 800ms cubic-bezier(0.22, 0.61, 0.36, 1),
+        width 800ms cubic-bezier(0.22, 0.61, 0.36, 1),
+        transform 800ms cubic-bezier(0.22, 0.61, 0.36, 1),
+        filter 1500ms ease;
+      filter: blur(0) drop-shadow(0 14px 34px rgba(0,0,0,0.42));
+    }
 
-        .nav-menu li {
-            margin-bottom: 1.5rem;
-        }
+    .logo-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.35));
+    }
 
-        .nav-menu a {
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 1.1rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            display: block;
-            padding: 0.75rem 1rem;
-            border-radius: 8px;
-            position: relative;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-        }
+    body[data-stage="retreat"] .logo-link,
+    body[data-stage="reveal"] .logo-link {
+      top: var(--logo-final-top);
+      left: var(--logo-final-anchor);
+      width: var(--logo-final-width);
+      transform: translate(var(--logo-final-x), var(--logo-final-y)) scale(var(--logo-final-scale));
+      filter: blur(0) drop-shadow(0 8px 20px rgba(0,0,0,0.35));
+    }
 
-        .nav-menu a:hover,
-        .nav-menu a.active {
-            background: rgba(255, 255, 255, 0.25);
-            transform: translateX(5px);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-        }
+    .top-nav {
+      margin-top: calc(var(--logo-final-top) + var(--logo-header-clearance));
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      pointer-events: auto;
+    }
 
-        /* Mobile Menu Toggle */
-        .menu-toggle {
-            display: none;
-            position: fixed;
-            top: 1.5rem;
-            left: 1.5rem;
-            z-index: 101;
-            background: rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(10px);
-            border: none;
-            padding: 0.75rem;
-            border-radius: 8px;
-            cursor: pointer;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
+    .top-nav a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.94rem;
+      border: 1px solid rgba(255,255,255,0.38);
+      border-radius: 999px;
+      padding: 0.38rem 0.72rem;
+      background: rgba(255,255,255,0.06);
+    }
 
-        .menu-toggle span {
-            display: block;
-            width: 25px;
-            height: 3px;
-            background: white;
-            margin: 5px 0;
-            transition: 0.3s;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-        }
+    .top-nav a:hover {
+      background: rgba(255,255,255,0.16);
+    }
 
-        /* Main Content */
-        .main-content {
-            margin-left: 280px;
-            flex: 1;
-            padding: 4rem 3rem;
-        }
+    main {
+      margin-top: 1.4rem;
+    }
 
-        .section {
-            display: none;
-            animation: fadeIn 0.5s ease;
-        }
+    section,
+    footer {
+      margin-top: 1rem;
+      padding: 1.15rem;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(8px);
+    }
 
-        .section.active {
-            display: block;
-        }
+    h1 { font-size: clamp(1.38rem, 3.3vw, 2rem); margin-bottom: 0.75rem; }
+    h2 { margin-bottom: 0.65rem; }
+    h3 { margin-bottom: 0.45rem; }
+    p { line-height: 1.58; margin-bottom: 0.75rem; }
+    ul { margin-left: 1.2rem; margin-bottom: 0.75rem; }
+    li { margin-bottom: 0.35rem; }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .content-card {
-            padding: 3rem;
-            max-width: 900px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 16px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            font-size: 3rem;
-            color: #ffffff;
-            margin-bottom: 1.5rem;
-            font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        h2 {
-            font-size: 2rem;
-            color: #ffffff;
-            margin-bottom: 1rem;
-            margin-top: 2rem;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-        }
-
-        p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #ffffff;
-            margin-bottom: 1.5rem;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-        }
-
-        .highlight {
-            color: #FFE066;
-            font-weight: 600;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-        }
-
-        .mobile-logo {
-            display: none;
-            text-align: center;
-            margin-bottom: 14px;
-            padding-top: env(safe-area-inset-top);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .sidebar {
-                transform: translateX(-100%);
-                width: 260px;
-                padding-top: calc(env(safe-area-inset-top) + 5rem);
-            }
-
-            .sidebar.active {
-                transform: translateX(0);
-            }
-
-            .menu-toggle {
-                display: block;
-            }
-
-            .main-content {
-                margin-left: 0;
-                padding: 5rem 1.5rem 2rem;
-            }
-
-            .content-card {
-                padding: 2rem 1.5rem;
-            }
-
-            h1 {
-                font-size: 2.2rem;
-            }
-
-            h2 {
-                font-size: 1.6rem;
-            }
-
-            p {
-                font-size: 1rem;
-            }
-
-            .mobile-logo {
-                display: block;
-            }
-        }
-
-        @media (max-width: 720px) {
-            .product-cta {
-                display: flex;
-                flex-direction: column;
-                gap: 12px;
-                align-items: stretch;
-            }
-
-            .product-cta .email-button {
-                display: block;
-                width: 100%;
-                margin: 0 !important;
-            }
-        }
-
-        .mobile-logo img {
-            width: min(80vw, 360px);
-            height: auto;
-            display: block;
-            margin: 0 auto;
-        }
+    .bridge { white-space: pre-line; font-style: italic; }
+    .motto { font-size: clamp(1.15rem, 2.5vw, 1.45rem); font-weight: 700; }
     
-        .buy-button {
-          display: inline-block;
-          margin-top: 1.5rem;
-          padding: 0.75rem 1.5rem;
-          background: rgba(255, 255, 255, 0.9);
-          color: var(--site-accent);
-          font-weight: 600;
-          border-radius: 10px;
-          text-decoration: none;
-          transition: all 0.25s ease;
-          box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        }
+    .reveal-target {
+      opacity: 0;
+      transition: opacity var(--reveal-duration, 1200ms) ease;
+      transition-delay: calc(var(--reveal-order, 0) * var(--stagger-ms, 360ms));
+      pointer-events: none;
+    }
 
-        .buy-button:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 6px 18px rgba(0,0,0,0.3);
-        }
-      
-        .hero {
-          margin-bottom: 4rem;
-        }
+    body[data-stage="reveal"] .reveal-target {
+      opacity: 1;
+      pointer-events: auto;
+    }
 
-        .hero-sub {
-          font-size: 1.25rem;
-          opacity: 0.9;
-        }
+    @media (max-width: 820px) {
+      body {
+        --logo-start-width: clamp(300px, 88vw, 520px);
+        --logo-start-left: 50vw;
+        --logo-start-top: 50vh;
+        --logo-start-x: -50%;
+        --logo-start-y: -50%;
+        --logo-start-scale: 1.08;
+        --logo-final-width: clamp(160px, 46vw, 216px);
+        --logo-final-left: 50vw;
+        --logo-final-top: 0.85rem;
+        --logo-final-anchor: 50vw;
+        --logo-final-x: -50%;
+        --logo-header-clearance: clamp(68px, 15vw, 90px);
+      }
 
-        .coming-soon .muted {
-          opacity: 0.7;
-          font-size: 0.95rem;
-        }
-      
-        .email-button {
-          display: inline-block;
-          margin-top: 1.5rem;
-          padding: 0.75rem 1.75rem;
-          background: transparent;
-          color: #ffffff;
-          border: 2px solid rgba(255,255,255,0.6);
-          border-radius: 10px;
-          font-weight: 600;
-          text-decoration: none;
-          transition: all 0.25s ease;
-        }
+      .brand-shell {
+        position: static;
+        pointer-events: auto;
+      }
 
-        .email-button:hover {
-          background: rgba(255,255,255,0.15);
-          border-color: rgba(255,255,255,0.9);
-        }
-      
-        /* --- Layout fix for desktop sidebar overlap --- */
-        .sidebar {
-          width: 260px;
-          flex-shrink: 0;
-        }
+      .top-nav {
+        width: min(100%, 22rem);
+        margin: calc(var(--logo-final-top) + var(--logo-header-clearance)) auto 0;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: center;
+      }
 
-        main {
-          margin-left: 260px;
-        }
+      .top-nav a {
+        text-align: center;
+      }
 
-        @media (max-width: 900px) {
-          main {
-            margin-left: 0;
-          }
-        }
-      
-        /* Defensive cleanup */
-        body::before,
-        main::before {
-          content: none !important;
-          display: none !important;
-        }
+      main {
+        margin-top: clamp(1rem, 4vw, 1.5rem);
+      }
+    }
 
-      </style>
+    @media (prefers-reduced-motion: reduce) {
+      .logo-link,
+      .reveal-target {
+        transition: none;
+      }
+    }
+  </style>
+  <script src="/brand.js" defer></script>
 </head>
-<body>
-    <button class="menu-toggle" id="menuToggle">
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
+<body data-stage="focus" data-entry-sequence="true">
+  <div class="page">
+    <header class="brand-shell">
+      <a class="logo-link logo-blurry" href="/" aria-label="Frosted Logic Home">
+        <img class="logo-image" src="../images/logo-large.png" data-icon-src="../images/logo-large.png" data-lockup-src="../images/logo-side.png" alt="Frosted Logic">
+      </a>
+      <nav class="top-nav reveal-target" aria-label="Site navigation" style="--reveal-order:0;">
+        <a href="/tools.html">Tools</a>
+        <a href="/instruments.html">Instruments</a>
+        <a href="/games.html">Games</a>
+        <a href="/about.html">About</a>
+        <a href="mailto:rmcmillan5@gmail.com">Contact</a>
+      </nav>
+    </header>
 
-    <div class="container">
-        <aside class="sidebar" id="sidebar">
-            
-<div class="logo-container">
-  <img src="images/logo-side.png" alt="Frosted//Logic Logo">
-</div>
-
-            <ul class="nav-menu">
-                <li><a href="#home" class="nav-link active">Home</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#products" class="nav-link">Products</a></li>
-                <li><a href="#services" class="nav-link">Services</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-            </ul>
-        </aside>
-
-        <main class="main-content">
-        <!-- Mobile-only large logo -->
-        <div class="mobile-logo">
-            <img src="/images/logo-large.png" alt="Frosted//Logic logo" width="1024" height="1024">
-        </div>
-        
-        <h1>Small software. Sharp edges. No fluff.</h1>
-        <p class="hero-sub">
-          Deliberate tools and experiments built to ship, learn, and stay lean.
-        </p>
-      
-        
-
-      </section>
-  
-            <section id="home" class="section active">
-                <div class="content-card">
-                    <h1>Welcome to Frosted//Logic</h1>
-                    <p>We are a <span class="highlight">cutting-edge technology company</span> specializing in innovative solutions for modern businesses.</p>
-                    <p>Our team combines expertise in software development, cloud infrastructure, and digital transformation to help organizations thrive in the digital age.</p>
-                </div>
-            </section>
-
-            <section id="about" class="section">
-        <div class="content-card">
-          <h1>About</h1>
-          <p>
-            Founded with a vision to revolutionize technology solutions,
-            Frosted//Logic will be at the forefront of innovation.
-          </p>
-        </div>
+    <main>
+      <section class="reveal-target" style="--reveal-order:1;">
+        <h2>WHO WE ARE</h2>
+        <p>A small team of developers and engineers that live and code by a motto:</p>
+        <p class="motto">Software should reduce cognitive friction, not create it.</p>
+        <p>Frosted//Logic builds developer tools and intelligence instruments designed to make building software clearer, faster, and more reliable.</p>
+        <p>Small tools. Clear signals. Fewer wasted decisions.</p>
       </section>
 
-            <section id="products" class="section">
-                <div class="content-card">
-                    <h1>EnvCheck</h1>
-                    <p>Audit .env files in seconds. Compare 2 or 3 environments, spot missing or mismatched variables, and export clean templates or fix patches.</p>
-                    <p><span class="highlight">Privacy-first:</span> runs entirely in your browser. Files are never uploaded.</p>
-                    <p class="product-cta">
-                        <a href="/envcheck/free/" class="email-button">Try EnvCheck (Free)</a>
-                        <a href="/envcheck/" class="email-button" style="margin-left: 0.5rem;">View Product Page</a>
-                        <a href="https://payhip.com/b/oOtWK" class="email-button" style="margin-left: 0.5rem;" target="_blank" rel="noopener noreferrer">Buy EnvCheck Pro (Offline)</a>
-                    </p>
-                </div>
-                <div class="content-card">
-                    <h1>JSONSanity</h1>
-                    <p>Offline JSON validator + deterministic sanity warnings (no AI). Paste JSON, get stats + structural risk flags.</p>
-                    <p><span class="highlight">Your JSON never leaves your machine.</span> Runs entirely offline.</p>
-                    <p class="product-cta">
-                        
-                        <a href="/jsonsanity/" class="email-button" style="margin-left: 0.5rem;">View Product Page</a>
-                        <a href="https://payhip.com/b/delz3" class="email-button" style="margin-left: 0.5rem;" target="_blank" rel="noopener noreferrer">Buy JSONSanity</a>
-                    </p>
-                </div>
-                <div class="content-card">
-                    <h1>SchemaFirst</h1>
-                    <p>CSV → JSON you can actually ship. Schema-aware conversion with type inference, confidence scoring, and strict validation.</p>
-                    <p><span class="highlight">100% browser-only.</span> Your files never leave your machine.</p>
-                    <p class="product-cta">
-                        <a href="/schemafirst/" class="email-button">View Product Page</a>
-                        <a href="https://payhip.com/b/TBD" class="email-button" style="margin-left: 0.5rem;" target="_blank" rel="noopener noreferrer">Buy SchemaFirst</a>
-                    </p>
-                </div>
-                <div class="content-card">
-                    <h1>GlyphScope</h1>
-                    <p>Understand what a regex pattern does — safely and with intent. Deterministic explanations plus optional match preview.</p>
-                    <p><span class="highlight">Client-side only.</span> No tracking, no uploads, no APIs.</p>
-                    <p class="product-cta">
-                        <a href="/glyphscope/" class="email-button">Use Free Online</a>
-                        <a href="/glyphscope/product/" class="email-button" style="margin-left: 0.5rem;">View Product Page</a>
-                        <a href="https://payhip.com/b/RdGC3" class="email-button" style="margin-left: 0.5rem;" target="_blank" rel="noopener noreferrer">Buy Offline Pro</a>
-                    </p>
-                </div>
-            </section>
-
-            <section id="services" class="section">
-                <div class="content-card">
-                    <h1>Our Services</h1>
-                    <h2>Software Development</h2>
-                    <p>Custom software solutions tailored to your business needs.</p>
-                    <h2>Cloud Solutions</h2>
-                    <p>Scalable cloud infrastructure and migration services.</p>
-                    <h2>Digital Transformation</h2>
-                    <p>Strategic consulting to modernize your business operations.</p>
-                </div>
-            </section>
-
-      <section id="contact" class="section">
-        <div class="content-card">
-          <h1>Contact</h1>
-          <p>
-            Questions, ideas, or something interesting to share?
-          </p>
-          <a href="mailto:rmcmillan5@gmail.com" class="email-button">
-            Email me
-          </a>
-        </div>
+      <section class="reveal-target" style="--reveal-order:2;">
+        <h2>HOW WE DESIGN</h2>
+        <ul>
+          <li>Clarity over feature count</li>
+          <li>Determinism where possible</li>
+          <li>Local-first by default</li>
+        </ul>
+        <p>If a feature increases cognitive drag without increasing useful signal, it does not ship.</p>
       </section>
 
-      <footer style="opacity:0.4;font-size:12px;padding:2rem 0 0 0;">
-        Frosted//Logic site — v5.01 · <a href="/beta/" style="color:inherit;">Beta Preview →</a>
-      </footer>
+      <section class="reveal-target" style="--reveal-order:3;">
+        <h2>THREE KINDS OF SYSTEMS</h2>
+        <h3>Microtools</h3>
+        <p>Deterministic utilities that solve narrowly scoped developer problems with predictable outputs and low overhead.</p>
+        <h3>Instruments</h3>
+        <p>Systems that improve strategic decisions by surfacing signal, leverage, and risk earlier in the workflow.</p>
+        <h3>Interactive Systems</h3>
+        <p>Exploratory environments for testing decision loops, constraints, and behavior under pressure.</p>
+        <p class="bridge">Microtools solve problems.
+Instruments discover which problems are worth solving.
+Interactive systems explore how those solutions behave in practice.</p>
+      </section>
 
     </main>
-    </div>
 
-    <script>
-        // Mobile menu toggle
-        const menuToggle = document.getElementById('menuToggle');
-        const sidebar = document.getElementById('sidebar');
-        
-        menuToggle.addEventListener('click', () => {
-            sidebar.classList.toggle('active');
-        });
+    <footer class="reveal-target" style="--reveal-order:5;">
+      <p>Built for practical software thinking.</p>
+    </footer>
 
-        // Navigation
-        const navLinks = document.querySelectorAll('.nav-link');
-        const sections = document.querySelectorAll('.section');
-        
-        navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                
-                // Remove active class from all links and sections
-                navLinks.forEach(l => l.classList.remove('active'));
-                sections.forEach(s => s.classList.remove('active'));
-                
-                // Add active class to clicked link
-                link.classList.add('active');
-                
-                // Show corresponding section
-                const targetId = link.getAttribute('href').substring(1);
-                document.getElementById(targetId).classList.add('active');
-                
-                // Close mobile menu
-                sidebar.classList.remove('active');
-            });
-        });
-    </script>
+    <section class="site-version reveal-target" style="--reveal-order:5;">
+      <p>Frosted//Logic site — v6.00</p>
+    </section>
+  </div>
+
+  <script>
+    (() => {
+      const FOCUS_MS = 650;
+      const BLUR_START_DELAY_MS = 500;
+      const SHARPEN_MS = 1500;
+      const SHARP_HOLD_MS = 1000;
+      const RETREAT_START_DELAY_MS = FOCUS_MS + BLUR_START_DELAY_MS + SHARPEN_MS + SHARP_HOLD_MS;
+      const RETREAT_MS = 800;
+      const STAGGER_MS = 540;
+      const REVEAL_DURATION_MS = 1800;
+      const REVEAL_PAUSE_MS = 550;
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const body = document.body;
+      const logoLink = document.querySelector('.logo-link');
+      const logoImage = document.querySelector('.logo-image');
+
+      body.style.setProperty('--stagger-ms', `${STAGGER_MS}ms`);
+      body.style.setProperty('--reveal-duration', `${REVEAL_DURATION_MS}ms`);
+
+      if (!logoImage) return;
+
+      const showLockup = () => {
+        const lockupSrc = logoImage.dataset.lockupSrc;
+        if (lockupSrc) logoImage.src = lockupSrc;
+      };
+
+      if (reducedMotion) {
+        logoLink?.classList.remove('logo-blurry', 'logo-sharpening');
+        showLockup();
+        body.dataset.stage = 'reveal';
+        return;
+      }
+
+      body.dataset.stage = 'focus';
+
+      window.setTimeout(() => {
+        if (!logoLink) return;
+        logoLink.classList.add('logo-sharpening');
+        logoLink.classList.remove('logo-blurry');
+      }, BLUR_START_DELAY_MS);
+
+      window.setTimeout(() => {
+        body.dataset.stage = 'retreat';
+
+        window.setTimeout(() => {
+          showLockup();
+
+          window.setTimeout(() => {
+            body.dataset.stage = 'reveal';
+          }, REVEAL_PAUSE_MS);
+        }, RETREAT_MS);
+      }, RETREAT_START_DELAY_MS);
+    })();
+  </script>
 </body>
 </html>
