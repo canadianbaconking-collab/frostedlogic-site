@@ -50,9 +50,22 @@
         top 800ms cubic-bezier(0.22, 0.61, 0.36, 1),
         left 800ms cubic-bezier(0.22, 0.61, 0.36, 1),
         width 800ms cubic-bezier(0.22, 0.61, 0.36, 1),
+        transform 800ms cubic-bezier(0.22, 0.61, 0.36, 1);
+      filter: blur(0) drop-shadow(0 14px 34px rgba(0,0,0,0.42));
+    }
+
+    .logo-link.logo-blurry {
+      filter: blur(8px) drop-shadow(0 14px 34px rgba(0,0,0,0.42));
+    }
+
+    .logo-link.logo-sharpening {
+      transition:
+        top 800ms cubic-bezier(0.22, 0.61, 0.36, 1),
+        left 800ms cubic-bezier(0.22, 0.61, 0.36, 1),
+        width 800ms cubic-bezier(0.22, 0.61, 0.36, 1),
         transform 800ms cubic-bezier(0.22, 0.61, 0.36, 1),
-        filter 650ms ease-out;
-      filter: blur(11px) drop-shadow(0 14px 34px rgba(0,0,0,0.42));
+        filter 1500ms ease;
+      filter: blur(0) drop-shadow(0 14px 34px rgba(0,0,0,0.42));
     }
 
     .logo-image {
@@ -60,10 +73,6 @@
       height: auto;
       display: block;
       filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.35));
-    }
-
-    body[data-stage="focus"] .logo-link {
-      filter: blur(0) drop-shadow(0 14px 34px rgba(0,0,0,0.42));
     }
 
     body[data-stage="retreat"] .logo-link,
@@ -157,7 +166,7 @@
 <body data-stage="focus" data-entry-sequence="true">
   <div class="page">
     <header class="brand-shell">
-      <a class="logo-link" href="/beta/index.html" aria-label="Frosted Logic Beta Home">
+      <a class="logo-link logo-blurry" href="/beta/index.html" aria-label="Frosted Logic Beta Home">
         <img class="logo-image" src="../images/logo-large.png" data-icon-src="../images/logo-large.png" data-lockup-src="../images/logo-side.png" alt="Frosted Logic Beta">
       </a>
       <nav class="top-nav reveal-target" aria-label="Beta navigation" style="--reveal-order:0;">
@@ -219,12 +228,17 @@ Interactive systems explore how those solutions behave in practice.</p>
   <script>
     (() => {
       const FOCUS_MS = 650;
+      const BLUR_START_DELAY_MS = 500;
+      const SHARPEN_MS = 1500;
+      const SHARP_HOLD_MS = 1000;
+      const RETREAT_START_DELAY_MS = FOCUS_MS + BLUR_START_DELAY_MS + SHARPEN_MS + SHARP_HOLD_MS;
       const RETREAT_MS = 800;
       const STAGGER_MS = 540;
       const REVEAL_DURATION_MS = 1800;
       const REVEAL_PAUSE_MS = 550;
       const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const body = document.body;
+      const logoLink = document.querySelector('.logo-link');
       const logoImage = document.querySelector('.logo-image');
 
       body.style.setProperty('--stagger-ms', `${STAGGER_MS}ms`);
@@ -238,12 +252,19 @@ Interactive systems explore how those solutions behave in practice.</p>
       };
 
       if (reducedMotion) {
+        logoLink?.classList.remove('logo-blurry', 'logo-sharpening');
         showLockup();
         body.dataset.stage = 'reveal';
         return;
       }
 
       body.dataset.stage = 'focus';
+
+      window.setTimeout(() => {
+        if (!logoLink) return;
+        logoLink.classList.add('logo-sharpening');
+        logoLink.classList.remove('logo-blurry');
+      }, BLUR_START_DELAY_MS);
 
       window.setTimeout(() => {
         body.dataset.stage = 'retreat';
@@ -255,7 +276,7 @@ Interactive systems explore how those solutions behave in practice.</p>
             body.dataset.stage = 'reveal';
           }, REVEAL_PAUSE_MS);
         }, RETREAT_MS);
-      }, FOCUS_MS);
+      }, RETREAT_START_DELAY_MS);
     })();
   </script>
 </body>
