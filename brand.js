@@ -52,7 +52,7 @@
     });
   };
 
-  const isInterceptableBetaLink = (anchor) => {
+  const isInterceptableInternalLink = (anchor) => {
     const rawHref = anchor.getAttribute('href');
     if (!rawHref || rawHref.startsWith('#')) return false;
     if (anchor.target && anchor.target !== '_self') return false;
@@ -82,7 +82,7 @@
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
 
     const anchor = event.target.closest('a[href]');
-    if (!anchor || !isInterceptableBetaLink(anchor)) return;
+    if (!anchor || !isInterceptableInternalLink(anchor)) return;
 
     event.preventDefault();
 
