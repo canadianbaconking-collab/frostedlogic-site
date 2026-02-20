@@ -148,9 +148,40 @@
         --logo-final-x: -50%;
       }
 
+      .brand-shell {
+        position: static;
+        pointer-events: auto;
+      }
+
+      .logo-link {
+        position: static;
+        top: auto;
+        left: auto;
+        width: var(--logo-final-width);
+        transform: none;
+        margin: 0 auto;
+      }
+
+      body[data-stage="retreat"] .logo-link,
+      body[data-stage="reveal"] .logo-link {
+        left: auto;
+        transform: none;
+      }
+
       .top-nav {
+        width: min(100%, 22rem);
+        margin: 0.9rem auto 0;
+        flex-direction: column;
+        align-items: stretch;
         justify-content: center;
-        margin-top: calc(var(--logo-final-top) + clamp(68px, 14vw, 92px));
+      }
+
+      .top-nav a {
+        text-align: center;
+      }
+
+      main {
+        margin-top: clamp(1rem, 4vw, 1.5rem);
       }
     }
 
@@ -211,9 +242,6 @@ Instruments discover which problems are worth solving.
 Interactive systems explore how those solutions behave in practice.</p>
       </section>
 
-      <section class="site-version reveal-target" style="--reveal-order:4;">
-        <p>Frosted//Logic site — v6.00</p>
-      </section>
     </main>
 
     <footer class="reveal-target" style="--reveal-order:5;">
