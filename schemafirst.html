@@ -3,15 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GlyphScope — Frosted//Logic</title>
-  <meta name="description" content="Understand what a regex pattern does — safely and with intent. Offline-friendly, deterministic, no tracking." />
+  <title>SchemaFirst — Frosted//Logic</title>
+  <meta name="description" content="Schema-aware CSV → JSON conversion with type inference, confidence scoring, and strict validation. Runs locally in your browser." />
 
+  <!-- If your site has a global stylesheet at this path, keep it.
+       If it 404s, it won't break anything because we style this page below. -->
+  <link rel="stylesheet" href="/styles.css" />
   <link rel="stylesheet" href="/styles/theme.css" />
-  <link rel="stylesheet" href="/beta/brand.css" />
+  <link rel="stylesheet" href="/brand.css" />
 
   <style>
     :root{
-      --fg: #ffffff;
+      --fg: #ffffff;         /* white */
       --muted: rgba(255,255,255,.78);
       --card: rgba(255,255,255,.08);
       --cardBorder: rgba(255,255,255,.18);
@@ -79,20 +82,6 @@
       margin: 14px 0 6px;
     }
 
-    @media (max-width: 720px){
-      .ctaButtons {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 12px;
-      }
-
-      .ctaButtons .btn {
-        width: 100%;
-        display: block;
-        margin: 0;
-      }
-    }
-
     .btn {
       display:inline-block;
       padding: 10px 14px;
@@ -151,14 +140,32 @@
       background: var(--card);
       border: 1px solid var(--cardBorder);
       border-radius: 16px;
-      overflow: hidden;
-      margin-top: 16px;
+      overflow:hidden;
     }
 
     .shot img {
       width: 100%;
       height: auto;
-      display: block;
+      display:block;
+    }
+
+    details {
+      background: var(--card);
+      border: 1px solid var(--cardBorder);
+      border-radius: 16px;
+      padding: 12px 14px;
+      margin: 10px 0;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 800;
+    }
+
+    details p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      line-height: 1.5;
     }
 
     footer {
@@ -177,42 +184,36 @@
 <body>
   <main class="wrap">
     <div class="topbar">
-      <a class="brand" href="/beta/index.html">Frosted//Logic</a>
-      <a class="btn" href="/beta/tools.html">Back to Tools</a>
+      <a class="brand" href="/">Frosted//Logic</a>
+      <a class="btn" href="/tools.html">Back to Tools</a>
     </div>
 
     <header class="hero">
       <p class="kicker">Microtool</p>
-      <h1>GlyphScope</h1>
-      <p class="tagline">Understand what a pattern does — safely and with intent.</p>
+      <h1>SchemaFirst</h1>
+      <p class="tagline">
+        CSV → JSON you can actually ship
+      </p>
 
-      <div class="ctaRow ctaButtons">
-        <a class="btn primary" href="/glyphscope/">Use Free Online</a>
-        <a class="btn" href="https://payhip.com/b/RdGC3" target="_blank" rel="noopener noreferrer">Buy Offline Pro</a>
+      <!-- 2 CTAs max: Buy + Back. Back already exists in topbar, so ONLY Buy here -->
+      <div class="ctaRow">
+        <a class="btn primary" href="https://payhip.com/b/CuS0H" target="_blank" rel="noopener noreferrer">Buy SchemaFirst</a>
       </div>
 
-      <p class="tagline" style="margin-top:10px;">Client-side only. No backend, no tracking.</p>
-
-      <div class="shot">
-        <img src="/images/GlyphScope-cover.png" alt="GlyphScope screenshot">
-      </div>
+      <p class="tagline" style="margin-top:10px;">
+        Schema-aware CSV → JSON conversion with type inference, confidence scoring, and strict validation. 100% browser-only.
+      </p>
     </header>
 
     <section>
-      <h2>What it is</h2>
+      <h2>What it does</h2>
       <ul>
-        <li>Deterministic regex pattern explainer</li>
-        <li>Safe, offline-friendly visualization of intent</li>
-        <li>Optional match preview for sample input</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>What it is not</h2>
-      <ul>
-        <li>Not a regex generator or AI assistant</li>
-        <li>Not a tracker or analytics tool</li>
-        <li>Not a cloud service or API</li>
+        <li>Typed JSON output</li>
+        <li>Inferred schema with confidence per column</li>
+        <li>Warnings for mixed types, empty-heavy columns, and invalid values</li>
+        <li>Clean vs Strict outputs</li>
+        <li>Export Clean JSON, Strict JSON, or schema</li>
+        <li>100% browser-only</li>
       </ul>
     </section>
 
@@ -220,52 +221,45 @@
       <h2>How it works</h2>
       <div class="grid3">
         <div class="card">
-          <h3>1) Parse</h3>
-          <p>Regexpp parses the pattern into a strict syntax tree.</p>
+          <h3>1) Paste CSV</h3>
+          <p>Paste your CSV text into SchemaFirst (no file upload required).</p>
         </div>
         <div class="card">
-          <h3>2) Explain</h3>
-          <p>GlyphScope renders a deterministic explanation of intent.</p>
+          <h3>2) Review schema</h3>
+          <p>See inferred types and confidence scores per column.</p>
         </div>
         <div class="card">
-          <h3>3) Preview</h3>
-          <p>Optionally test matches to validate understanding.</p>
+          <h3>3) Export JSON</h3>
+          <p>Download Clean JSON, Strict JSON, or the full schema.</p>
         </div>
       </div>
     </section>
 
     <section>
-      <h2>Free vs Offline Pro</h2>
-      <ul>
-        <li><strong>Free online:</strong> core explanation + match preview.</li>
-        <li><strong>Offline Pro:</strong> ZIP + exe launcher for offline use.</li>
-      </ul>
+      <h2>Screenshot</h2>
+      <div class="shot">
+        <!-- This MUST be an absolute path so it works from /schemafirst/ -->
+        <img src="/images/schemafirst-cover.png" alt="SchemaFirst screenshot">
+      </div>
     </section>
 
     <section>
-      <h2>Privacy</h2>
-      <ul>
-        <li>Client-side only. No APIs, no tracking, no uploads.</li>
-      </ul>
-    </section>
+      <h2>FAQ</h2>
 
-    <section>
-      <h2>ZIP contents</h2>
-      <ul>
-        <li>GlyphScope.exe</li>
-        <li>index.html</li>
-        <li>dist/app.js</li>
-        <li>logo.png</li>
-        <li>README</li>
-      </ul>
-    </section>
+      <details>
+        <summary>Is my CSV data uploaded anywhere?</summary>
+        <p>No. SchemaFirst runs locally in your browser. Files never leave your machine.</p>
+      </details>
 
-    <section>
-      <h2>Getting started</h2>
-      <ul>
-        <li><strong>Free:</strong> open <code>/glyphscope/</code>.</li>
-        <li><strong>Offline:</strong> unzip and double-click <code>GlyphScope.exe</code>.</li>
-      </ul>
+      <details>
+        <summary>Does this require installation?</summary>
+        <p>No. It's a simple offline tool—download, unzip, and open.</p>
+      </details>
+
+      <details>
+        <summary>What's the difference between Clean and Strict JSON?</summary>
+        <p>Clean keeps all rows; invalid values are coerced to null. Strict drops rows with schema violations; reports dropped row indices.</p>
+      </details>
     </section>
 
     <section class="site-version">
