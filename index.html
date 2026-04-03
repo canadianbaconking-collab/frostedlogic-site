@@ -120,8 +120,9 @@
     }
 
     .top-nav .nav-featured {
-      --badge-flow-duration: 2240ms;
-      --badge-gradient-spread: 200%;
+      --badge-flow-duration: 3200ms;
+      --badge-gradient-spread: 220%;
+      --badge-flow-direction: 1;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -146,18 +147,12 @@
         linear-gradient(
           90deg,
           #ff3658 0%,
-          #ff8c37 8.33%,
-          #ffe05a 16.66%,
-          #58e56f 25%,
-          #49c6ff 33.33%,
-          #7e7bff 41.66%,
-          #d368ff 50%,
-          #ff3658 58.33%,
-          #ff8c37 66.66%,
-          #ffe05a 75%,
-          #58e56f 83.33%,
-          #49c6ff 91.66%,
-          #7e7bff 100%
+          #ff8c37 16%,
+          #ffe05a 33%,
+          #58e56f 50%,
+          #49c6ff 67%,
+          #7e7bff 84%,
+          #d368ff 100%
         );
       background-size: var(--badge-gradient-spread) 100%;
       background-position: 0% 50%;
@@ -167,8 +162,8 @@
     }
 
     @keyframes nav-badge-rainbow {
-      from { background-position: 0% 50%; }
-      to { background-position: 100% 50%; }
+      from { background-position: calc(0% * var(--badge-flow-direction)) 50%; }
+      to { background-position: calc(100% * var(--badge-flow-direction)) 50%; }
     }
 
     main {
