@@ -11,13 +11,13 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; background: var(--site-bg); color: #fff; }
     .page { max-width: 1100px; margin: 0 auto; padding: 1.2rem 1rem 2.5rem; }
-    .layout { display: grid; grid-template-columns: 230px 1fr; gap: 1.3rem; align-items: start; }
-    .brand-shell { position: sticky; top: 1.2rem; }
+    .layout { display: grid; grid-template-columns: 248px minmax(0, 1fr); gap: 1.3rem; align-items: start; }
+    .brand-shell { position: sticky; top: 1.2rem; width: 100%; }
     .logo-link { display: inline-block; margin-bottom: 0.75rem; }
     .logo-link img { width: clamp(170px, 24vw, 238px); height: auto; display: block; filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.35)); }
-    .top-nav { display: flex; flex-wrap: wrap; gap: 0.7rem; }
-    .top-nav a { color: #fff; text-decoration: none; font-size: 0.94rem; border: 1px solid rgba(255,255,255,0.38); border-radius: 999px; padding: 0.38rem 0.72rem; background: rgba(255,255,255,0.06); }
-    .top-nav a:hover { background: rgba(255,255,255,0.16); }
+    .top-nav { display: grid; gap: 0.5rem; width: 100%; }
+    .top-nav a { display: block; width: 100%; color: #fff; text-decoration: none; font-size: 0.92rem; border: 1px solid rgba(255,255,255,0.32); border-radius: 12px; padding: 0.52rem 0.75rem; background: rgba(255,255,255,0.08); }
+    .top-nav a:hover, .top-nav a.active { background: rgba(255,255,255,0.16); border-color: rgba(255,255,255,0.48); }
     section, footer { margin-top: 1rem; padding: 1.15rem; border-radius: 12px; background: rgba(255,255,255,0.1); backdrop-filter: blur(8px); }
     p { line-height: 1.58; margin-bottom: 0.75rem; }
     ul { margin-left: 1.2rem; margin-bottom: 0.8rem; }
@@ -40,7 +40,7 @@
         </a>
         <nav class="top-nav" aria-label="Primary navigation">
           <a href="/tools.html">Tools</a>
-          <a href="/instruments.html">Instruments</a>
+          <a href="/instruments.html" class="active">Instruments</a>
           <a href="/games.html">Games</a>
           <a href="/operations-review.html">Operations Review</a>
           <a href="/about.html">About</a>
