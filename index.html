@@ -24,6 +24,10 @@
       --logo-final-scale: 1;
       --logo-final-anchor: 0;
       --logo-header-clearance: clamp(58px, 9vw, 74px);
+      --nav-rail-width: 248px;
+      --badge-cycle-speed: 4.8s;
+      --badge-gradient-spread: 240%;
+      --badge-gradient-direction: 90deg;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
       background: var(--site-bg);
       color: #fff;
@@ -94,24 +98,67 @@
 
     .top-nav {
       margin-top: calc(var(--logo-final-top) + var(--logo-header-clearance));
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.7rem;
+      margin-left: 1rem;
+      width: min(var(--nav-rail-width), calc(100vw - 2rem));
+      display: grid;
+      gap: 0.5rem;
       pointer-events: auto;
     }
 
     .top-nav a {
+      display: block;
+      width: 100%;
       color: #fff;
       text-decoration: none;
-      font-size: 0.94rem;
-      border: 1px solid rgba(255,255,255,0.38);
-      border-radius: 999px;
-      padding: 0.38rem 0.72rem;
-      background: rgba(255,255,255,0.06);
+      font-size: 0.92rem;
+      border: 1px solid rgba(255,255,255,0.32);
+      border-radius: 12px;
+      padding: 0.52rem 0.75rem;
+      background: rgba(255,255,255,0.08);
     }
 
     .top-nav a:hover {
       background: rgba(255,255,255,0.16);
+      border-color: rgba(255,255,255,0.48);
+    }
+
+    .top-nav .nav-featured {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 0.5in;
+    }
+
+    .top-nav .nav-featured a {
+      flex: 1 1 auto;
+    }
+
+    .top-nav .nav-badge {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      background-image: linear-gradient(
+        var(--badge-gradient-direction),
+        #ff5f6d,
+        #ffc371,
+        #47cf73,
+        #1fa2ff,
+        #a66bff,
+        #ff5f6d
+      );
+      background-size: var(--badge-gradient-spread) 100%;
+      background-position: 0% 50%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: navBadgeRainbow var(--badge-cycle-speed) linear infinite;
+    }
+
+    @keyframes navBadgeRainbow {
+      from { background-position: 0% 50%; }
+      to { background-position: 100% 50%; }
     }
 
     main {
@@ -173,13 +220,14 @@
       .top-nav {
         width: min(100%, 22rem);
         margin: calc(var(--logo-final-top) + var(--logo-header-clearance)) auto 0;
-        flex-direction: column;
-        align-items: stretch;
-        justify-content: center;
       }
 
       .top-nav a {
         text-align: center;
+      }
+
+      .top-nav .nav-featured {
+        gap: 0.5rem;
       }
 
       main {
@@ -192,6 +240,10 @@
       .reveal-target {
         transition: none;
       }
+
+      .top-nav .nav-badge {
+        animation: none;
+      }
     }
   </style>
   <script src="/brand.js" defer></script>
@@ -203,10 +255,13 @@
         <img class="logo-image" src="../images/logo-large.png" data-icon-src="../images/logo-large.png" data-lockup-src="../images/logo-side.png" alt="Frosted Logic">
       </a>
       <nav class="top-nav reveal-target" aria-label="Primary navigation" style="--reveal-order:0;">
+        <div class="nav-featured">
+          <a href="/operations-review.html">Operations Review</a>
+          <span class="nav-badge" aria-label="New">NEW</span>
+        </div>
         <a href="/tools.html">Tools</a>
         <a href="/instruments.html">Instruments</a>
         <a href="/games.html">Games</a>
-        <a href="/operations-review.html">Operations Review</a>
         <a href="/about.html">About</a>
         <a href="mailto:rmcmillan5@gmail.com">Contact</a>
       </nav>
