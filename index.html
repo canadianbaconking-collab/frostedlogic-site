@@ -105,10 +105,6 @@
     .top-nav a {
       display: block;
       width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.6rem;
       color: #fff;
       text-decoration: none;
       font-size: 0.92rem;
@@ -121,30 +117,6 @@
     .top-nav a:hover {
       background: rgba(255,255,255,0.16);
       border-color: rgba(255,255,255,0.48);
-    }
-
-    .top-nav .nav-badge {
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: #f7fbff;
-      border: 1px solid rgba(255,255,255,0.52);
-      border-radius: 999px;
-      padding: 0.12rem 0.42rem;
-      background: rgba(255,255,255,0.2);
-      animation: navBadgePulse 2.2s ease-in-out infinite;
-    }
-
-    @keyframes navBadgePulse {
-      0%, 100% {
-        opacity: 0.78;
-        transform: translateY(0);
-      }
-      50% {
-        opacity: 1;
-        transform: translateY(-1px);
-      }
     }
 
     main {
