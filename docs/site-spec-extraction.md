@@ -1,167 +1,65 @@
-# Frosted//Logic Website Spec Extraction
+# Frosted//Logic site specification
 
-## 1) Product + Site Intent
-- **Primary site goal:** Present Frosted//Logic as an independent studio focused on developer clarity, then route visitors into product pages (Tools), concept tracks (Instruments/Games), and contact.
-- **Core positioning:** “Reduce cognitive friction” through deterministic, local-first software and readable systems.
-- **Conversion model:** Lightweight brochure flow with direct CTAs to product pages, free web tools, and Payhip purchase links.
+## Positioning
 
-## 2) Information Architecture (IA)
+Independent systems and security practice. The canonical philosophy is:
 
-### Primary navigation
-- Tools
-- Instruments
-- Games
-- About
-- Contact (mailto)
+**Trust deliberately. Enforce predictably. Keep systems understandable.**
 
-### Top-level pages extracted
-- `/` (home/brand narrative)
-- `/tools.html` (tool index)
-- `/instruments.html` (instrument concepts)
-- `/games.html` (interactive systems concepts)
-- `/about.html` (studio framing)
-- `/envcheck.html` (tool landing)
-- `/jsonsanity.html` (tool landing)
-- `/schemafirst.html` (tool landing)
-- `/glyphscope.html` (tool landing)
+The homepage introduces security focus areas as conversation topics, not verified professional credentials, contracted coverage, or a catalogue of guaranteed services. About identifies Richard McMillan and distinguishes the existing tools from the growing security focus.
 
-### Tool funnel structure
-1. Discover tool from `/tools.html`
-2. Read single-product pitch page
-3. Click CTA to either:
-   - Buy on Payhip
-   - Open free/browser version (where available)
+## Presentation
 
-## 3) Global UX/UI Spec
+- Homepage and About share `styles/security.css` and `security.js`.
+- Dark glass surfaces, neutral readable text, and yellow → orange → purple ambient light.
+- The ambient layer drifts on a 32-second alternating transform animation.
+- Reduced-motion preferences produce a static composition.
+- Glass has an opaque fallback without backdrop-filter.
+- The existing logo assets are unmodified.
+- System fonts avoid third-party font requests and additional build dependencies.
+- Content is present immediately; navigation remains available without JavaScript.
+- Mobile navigation uses an explicit Menu button with expanded state, Escape support, and focus handling.
 
-### Layout system
-- **Home (`/`)** uses centered page container and animated hero/logo sequence.
-- **Section pages** (`tools/instruments/games/about`) use a 2-column layout:
-  - Left sticky brand/nav rail (desktop)
-  - Right content column
-- **Product pages** use single-column marketing layout with topbar + hero + section stack.
+## Routes and products
 
-### Visual design language
-- **Background:** Blue diagonal gradient (`--site-bg`) for a consistent brand field.
-- **Cards/surfaces:** Frosted-glass style blocks (semi-transparent white backgrounds + rounded corners + blur).
-- **Typography:** System sans stack; heavy headings and plain-language body copy.
-- **Buttons/links:** Rounded pills with white outlines; primary CTA buttons invert to white fill.
+All existing top-level filenames remain unchanged:
 
-### Design tokens inferred
-- `--site-bg: linear-gradient(135deg, #5B9FD4 0%, #4A8BC2 100%)`
-- `--site-accent: #4A8BC2`
-- Product page utility tokens:
-  - `--fg`, `--muted`, `--card`, `--cardBorder`, `--btnBorder`
+`/`, `/about.html`, `/tools.html`, `/instruments.html`, `/games.html`,
+`/operations-review.html`, `/envcheck.html`, `/jsonsanity.html`,
+`/schemafirst.html`, `/glyphscope.html`.
 
-### Responsive behavior
-- Breakpoints primarily at ~`820px` or `860px`.
-- Desktop: sticky side rail where applicable.
-- Mobile: layouts collapse to one column, nav/buttons stack, large headings scale down.
+Cloudflare handles extensionless paths as before. Do not add a router or rewrite rules.
 
-## 4) Motion + Interaction Spec
+Tools, Instruments, Games, Operations Review, and the product landing pages retain their content and links. The shared theme supplies the darker background and a contrast-safe accent on existing white buttons. Product-specific behavior remains factual feature copy, not a separate brand doctrine.
 
-### Entry animation model
-- Home page runs a staged logo sequence (`focus → retreat → reveal`) with timed blur/sharpen/position transitions.
-- Non-home pages use staggered reveal-on-load by adding target classes + CSS transition delays.
+The homepage highlights EnvCheck with an explicitly illustrative comparison, not a customer case study. Payhip URLs and the existing public contact email are unchanged.
 
-### Navigation transition model
-- Internal links are intercepted (same-origin path links).
-- A full-screen overlay briefly fades in before route change (`BLANK_BEAT_MS`), creating a “blank beat” transition.
-- External links, hashes, and modified clicks are not intercepted.
+## Hosting contract
 
-### Accessibility/reduced motion
-- `prefers-reduced-motion: reduce` disables transition choreography and reveals content immediately.
+The repository is static HTML/CSS/JS, with no package manifest, generated output, Workers runtime, or build dependency. Cloudflare Pages' GitHub integration deployed baseline commit `8fcbd56b449e4c79d3d58e15ef61e3b59e86bc54` successfully.
 
-## 5) Page-by-Page Functional Spec
+Preserve the existing Pages project, publishing directory, build setting, production branch, DNS, custom domains, redirects, environment variables, and account permissions. None is changed by this redesign.
 
-## `/` Home
-- Animated logo intro and staged reveal of nav/content.
-- Narrative sections:
-  - Who we are
-  - How we design
-  - Three system categories (Microtools, Instruments, Interactive Systems)
-- Footer line + explicit site version label (`v6.00`).
+The homepage and About no longer load the legacy intro/navigation-transition scripts. Those files remain unchanged for other pages.
 
-## `/tools.html`
-- Mission statement for tools.
-- Grid/list of 4 tool cards with screenshot + short value prop:
-  - EnvCheck
-  - JSONSanity
-  - SchemaFirst
-  - GlyphScope
-- Each card links to dedicated tool page.
+## Verification
 
-## `/instruments.html`
-- Defines “instruments” as decision-intelligence systems.
-- Highlights SignalForge (active development) and AlphaTrace (internal research).
+Run the dependency-free checks from the repository root:
 
-## `/games.html`
-- Frames games as interactive decision systems.
-- Lists active concepts: Fracture Protocol, The Iron Outlaw, Cascadia.
+```powershell
+Set-Location C:/dev/playground/frostedlogic-site
+python tests/check_site.py
+node --check security.js
+git diff --check
+python -m http.server 8080
+```
 
-## `/about.html`
-- Company/studio narrative and operating philosophy.
-- Reinforces triad: microtools, instruments, interactive systems.
+The static checks cover changed-page landmarks, local assets and navigation destinations, anchors, logo dimensions, doctrine replacement, motion/fallback rules, and product/hosting preservation against the recorded baseline when Git is available. They are not a substitute for browser testing.
 
-## `/envcheck.html`
-- Product page for .env comparison tool.
-- CTA set: Buy + free version link.
-- Feature bullets, 3-step workflow, screenshot, FAQ, privacy emphasis (local-only).
+No npm build, lint, or test command exists; do not invent one. Cloudflare's actual preview deployment is the integration test for static publishing.
 
-## `/jsonsanity.html`
-- Product page for offline JSON validator + sanity checker.
-- CTA set: Buy.
-- “What it does”, “Why offline”, 3-step process, screenshot, FAQ.
+## Pre-existing route caveats
 
-## `/schemafirst.html`
-- Product page for schema-aware CSV→JSON conversion.
-- CTA set: Buy.
-- Feature bullets, 3-step process, screenshot, FAQ.
+At baseline, the repository has no `envcheck/free/index.html`; the former tool is under `_old_site_backup`. A live request to `/envcheck/free/` returned homepage HTML. The free-tool link is preserved, not silently rerouted as part of this design change. Do not report it as a working free tool.
 
-## `/glyphscope.html`
-- Product page for deterministic regex explanation.
-- CTA set: free online + offline pro buy link.
-- Includes “what it is / not”, process, free vs pro, privacy, ZIP contents, getting started.
-
-## 6) Copywriting + Messaging Spec (Feel & Tone Notes)
-
-### Core tone profile
-- **Pragmatic and anti-hype:** Avoids buzzwords, repeatedly rejects “vibes,” noise, and unnecessary complexity.
-- **Engineering-forward:** Emphasizes deterministic behavior, local execution, and trust via explicit constraints.
-- **Calm confidence:** Short declarative lines, direct claims, minimal fluff.
-- **Privacy-assuring:** Repeated “runs locally,” “no uploads,” “no tracking,” “no backend” statements.
-
-### Messaging patterns
-- Frequent use of triads and contrasts:
-  - “Clarity over feature count”
-  - “Determinism where possible”
-  - “Local-first by default”
-- “What it is / what it is not” framing to narrow expectations.
-- Outcome language centered on reduced cognitive load and faster, safer decisions.
-
-### Brand personality distilled
-- **Builder archetype:** disciplined, systems-oriented, reliability-first.
-- **Audience assumption:** developers and technical operators who value predictability over novelty.
-
-## 7) Content + Product Strategy Signals
-- Studio is organized into three parallel tracks:
-  1. Shipping microtools (current monetization path)
-  2. Developing intelligence instruments (longer-horizon differentiation)
-  3. Exploring game-like interactive systems (experimental R&D loop)
-- Current commercial emphasis appears strongest in microtool pages via clear pay links and concrete utility framing.
-
-## 8) Technical Implementation Notes (Extracted)
-- Site is static HTML/CSS/JS (no framework dependency evident in the extracted pages).
-- Shared behavior layers:
-  - `brand.js` for reveal/nav transitions + bfcache recovery handling.
-  - `shared-reveal.js` + `shared-reveal.css` for generic staggered reveal.
-  - `brand.css` for overlay + reveal helpers + site-version styling.
-- Version marker appears manually in page content (`Frosted//Logic site — v6.00`).
-
-## 9) Spec Gaps / Ambiguities
-- No explicit analytics/telemetry implementation found in extracted page set.
-- No canonical design system doc; token usage is consistent but distributed across files.
-- Some pages reference `/styles.css`; availability/usage is unclear from current top-level extraction.
-
-## 10) Final Extraction Summary
-Frosted//Logic is a static, clarity-first product studio website with a cohesive visual shell, lightweight motion system, and strongly opinionated technical voice. The site’s functional center is microtool conversion (product pages + buy links), while Instruments and Games communicate strategic direction and worldview. Tone is disciplined, privacy-forward, deterministic, and intentionally anti-marketing in style.
+No backup files or product assets were deleted. Restoring archived tools is a separate task.

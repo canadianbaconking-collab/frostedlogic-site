@@ -1,4 +1,19 @@
 :root {
-  --site-bg: linear-gradient(135deg, #5B9FD4 0%, #4A8BC2 100%);
-  --site-accent: #4A8BC2;
+  color-scheme: dark;
+  --site-bg: radial-gradient(ellipse at 10% 0%, #26202b 0%, transparent 48%), linear-gradient(160deg, #0a0f1e, #151527 60%, #0a0f1e);
+  /* Used as text on white product buttons; keep this dark for contrast. */
+  --site-accent: #663488;
+  --spectrum-yellow: #ffca28;
+  --spectrum-orange: #f57c00;
+  --spectrum-purple: #a855f7;
+  --ink: #eaf1fb;
+  --muted-ink: #adb4c8;
+  --glass-border: rgba(255, 255, 255, .14);
+}
+
+html { background-color: #0a0f1e; }
+body { min-height: 100vh; }
+:focus-visible { outline: 2px solid #ffca28; outline-offset: 5px; }
+@media (forced-colors: active) {
+  :focus-visible { outline-color: Highlight; }
 }
