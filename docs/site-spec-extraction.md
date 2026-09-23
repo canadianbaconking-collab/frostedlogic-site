@@ -8,11 +8,13 @@ Independent systems and security practice. The canonical philosophy is:
 
 The homepage introduces security focus areas as conversation topics, not verified professional credentials, contracted coverage, or a catalogue of guaranteed services. About identifies Richard McMillan and distinguishes the existing tools from the growing security focus.
 
+The Victoria Tech Week research (September 21, 2026) points to a practical, diverse builder community: recurring collaborative developer sessions, AI/data governance discussions, applied ocean and manufacturing engineering, and a local security conference. This is evidence about the scene's interests, not proof of any particular audience's expectations or Frosted//Logic's affiliation with those groups. Site copy therefore leads with the named builder, actual tools, inspectable examples, and focused questions about access, configuration, and agent workflows. Avoid event-name dropping, client claims, or a generic security-service menu.
+
 ## Presentation
 
 - Homepage and About share `styles/security.css` and `security.js`.
-- Dark glass surfaces, neutral readable text, and yellow → orange → purple ambient light.
-- The ambient layer drifts on a 32-second alternating transform animation.
+- Dark glass surfaces and neutral readable text. One prominent hero field moves from Firebase yellow (`#ffc400`) and orange (`#ff9100`) into a Frosted//Logic purple; the rest of the page stays dark.
+- The hero field drifts on a 48-second alternating transform animation. Color stops do not cycle.
 - Reduced-motion preferences produce a static composition.
 - Glass has an opaque fallback without backdrop-filter.
 - The existing logo assets are unmodified.

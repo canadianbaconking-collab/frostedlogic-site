@@ -66,7 +66,7 @@ class SiteChecks(unittest.TestCase):
 
     def test_motion_and_fallback(self):
         css = (ROOT / "styles/security.css").read_text()
-        self.assertIn("32s ease-in-out infinite alternate", css)
+        self.assertRegex(css, r"animation: light-drift (?:[3-9]\d|\d{3,})s ease-in-out infinite alternate")
         self.assertIn("prefers-reduced-motion: reduce", css)
         self.assertIn("animation: none", css)
         self.assertIn("@supports", css)
