@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 124" role="img" aria-labelledby="title">
+  <title id="title">Frosted Logic crystal mark</title>
+  <defs>
+    <linearGradient id="ice" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#d8f5ff"/><stop offset=".28" stop-color="#6cd7ff"/><stop offset=".62" stop-color="#087bbd"/><stop offset="1" stop-color="#173877"/>
+    </linearGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#e2faff"/><stop offset="1" stop-color="#4e8fe5"/>
+    </linearGradient>
+  </defs>
+  <g stroke="#bdeaff" stroke-width="1.3" stroke-linejoin="round">
+    <path fill="url(#ice)" d="M32 67 41 65 35 86 26 88z"/>
+    <path fill="url(#ice)" d="M46 38 57 36 44 87 33 89z"/>
+    <path fill="url(#ice)" d="M64 11 83 8 56 114 37 116z"/>
+    <path fill="url(#ice)" d="M95 8 114 10 87 116 68 114z"/>
+    <path fill="url(#ice)" d="M119 40 132 42 120 87 107 85z"/>
+    <path fill="url(#ice)" d="M130 68 138 70 133 88 124 86z"/>
+  </g>
+  <g fill="url(#edge)" opacity=".7">
+    <path d="m64 11 19-3-15 24-11 6zM37 116l19-2 13-50-18 27zM95 8l19 2-22 27-11 13zM68 114l19 2 8-31-16 10zM46 38l11-2-7 22-10 5zM119 40l13 2-9 21-10 3z"/>
+  </g>
+  <g fill="none" stroke="#eafcff" stroke-width="1" opacity=".62">
+    <path d="m64 11 4 21-15 39 3 43M95 8l-4 30-13 44 9 34M46 38l-2 24-11 27M119 40l4 23-16 22"/>
+  </g>
+</svg>

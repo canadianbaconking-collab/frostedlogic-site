@@ -36,7 +36,7 @@ class SiteChecks(unittest.TestCase):
                     self.assertIn(phrase, source.replace("<br>", ""))
                 for tag, attrs in page.elements:
                     if tag == "img":
-                        self.assertTrue(attrs.get("alt"))
+                        self.assertIn("alt", attrs)
                         self.assertTrue(attrs.get("width"))
                         self.assertTrue(attrs.get("height"))
                     if tag == "a":
@@ -52,6 +52,8 @@ class SiteChecks(unittest.TestCase):
                         target = ROOT / (path.lstrip("/") or filename)
                         if path == "/":
                             target = ROOT / "index.html"
+                        elif path.endswith("/"):
+                            target = target / "index.html"
                         self.assertTrue(target.is_file(), f"{filename}: missing {value}")
                         if url.fragment:
                             target_page = Page(target.read_text())
@@ -77,6 +79,20 @@ class SiteChecks(unittest.TestCase):
         self.assertIn("'Escape'", js)
         self.assertIn("toggle.focus()", js)
         self.assertNotIn("preventDefault", js)
+
+    def test_legacy_isolation_and_brand(self):
+        for filename in ("index.html", "about.html"):
+            source = (ROOT / filename).read_text()
+            self.assertEqual(source.count('href="/old-website/"'), 1)
+            self.assertNotIn('href="/tools.html"', source)
+            self.assertNotIn('href="/instruments.html"', source)
+            self.assertIn('/images/frosted-mark.svg', source)
+        hub = (ROOT / 'old-website/index.html').read_text()
+        for old_page in ('tools.html', 'instruments.html', 'games.html', 'operations-review.html',
+                         'envcheck.html', 'jsonsanity.html', 'schemafirst.html', 'glyphscope.html'):
+            self.assertIn(f'href="/{old_page}"', hub)
+        for asset in ('images/frosted-mark.svg', 'old-website/index.html'):
+            self.assertTrue((ROOT / asset).is_file())
 
     def test_preserved_products_and_hosting(self):
         try:

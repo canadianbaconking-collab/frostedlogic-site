@@ -6,5 +6,5 @@ output-directory, domain, and branch settings unchanged.
 
 Security philosophy: **Trust deliberately. Enforce predictably. Keep systems understandable.**
 
-See [the site specification](docs/site-spec-extraction.md) for routes, design,
-verification commands, and known pre-existing route caveats.
+See [the current refresh](docs/redesign-2026-09.md) for the public and legacy routes.
+The [previous specification](docs/site-spec-extraction.md) records earlier design decisions and route caveats.
