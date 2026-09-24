@@ -1,25 +1,39 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 124" role="img" aria-labelledby="title">
   <title id="title">Frosted Logic crystal mark</title>
   <defs>
-    <linearGradient id="ice" x1="0" y1="0" x2="1" y2="1">
-      <stop stop-color="#d8f5ff"/><stop offset=".28" stop-color="#6cd7ff"/><stop offset=".62" stop-color="#087bbd"/><stop offset="1" stop-color="#173877"/>
+    <linearGradient id="ice" x1=".12" y1="0" x2=".83" y2="1">
+      <stop stop-color="#d8f8ff"/><stop offset=".4" stop-color="#8de4ff"/><stop offset=".76" stop-color="#35b7ed"/><stop offset="1" stop-color="#1577bb"/>
     </linearGradient>
-    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1">
-      <stop stop-color="#e2faff"/><stop offset="1" stop-color="#4e8fe5"/>
+    <linearGradient id="core" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#e6fcff"/><stop offset=".35" stop-color="#a5eafa"/><stop offset=".7" stop-color="#45c1ec"/><stop offset="1" stop-color="#3294d2"/>
     </linearGradient>
+    <clipPath id="upper-left"><path d="M46 4h22q4 0 3 5L59 40q-1 3-4 3H37q-5 0-3-5Z"/></clipPath>
+    <clipPath id="lower-left"><path d="M33 51h19q5 0 3 5L43 89q-1 4-5 4H22q-5 0-4-5Z"/></clipPath>
+    <clipPath id="center"><path d="M88 4h19q5 0 3 6L55 116q-2 4-6 4H34q-6 0-4-6Z"/></clipPath>
+    <clipPath id="upper-right"><path d="M118 30h19q5 0 3 6l-12 33q-1 3-5 3H90q-6 0-4-5Z"/></clipPath>
+    <clipPath id="lower-right"><path d="M88 80h23q4 0 6 5l4 6-9 26q-1 3-5 3H73q-6 0-4-5l13-31q2-4 6-4Z"/></clipPath>
   </defs>
-  <g stroke="#bdeaff" stroke-width="1.3" stroke-linejoin="round">
-    <path fill="url(#ice)" d="M32 67 41 65 35 86 26 88z"/>
-    <path fill="url(#ice)" d="M46 38 57 36 44 87 33 89z"/>
-    <path fill="url(#ice)" d="M64 11 83 8 56 114 37 116z"/>
-    <path fill="url(#ice)" d="M95 8 114 10 87 116 68 114z"/>
-    <path fill="url(#ice)" d="M119 40 132 42 120 87 107 85z"/>
-    <path fill="url(#ice)" d="M130 68 138 70 133 88 124 86z"/>
+  <!-- One continuous diagonal crystal and four distinct satellite pieces. -->
+  <g fill="url(#ice)" stroke="#bfefff" stroke-width=".75" stroke-linejoin="round">
+    <path d="M46 4h22q4 0 3 5L59 40q-1 3-4 3H37q-5 0-3-5Z"/>
+    <path d="M33 51h19q5 0 3 5L43 89q-1 4-5 4H22q-5 0-4-5Z"/>
+    <path fill="url(#core)" d="M88 4h19q5 0 3 6L55 116q-2 4-6 4H34q-6 0-4-6Z"/>
+    <path d="M118 30h19q5 0 3 6l-12 33q-1 3-5 3H90q-6 0-4-5Z"/>
+    <path d="M88 80h23q4 0 6 5l4 6-9 26q-1 3-5 3H73q-6 0-4-5l13-31q2-4 6-4Z"/>
   </g>
-  <g fill="url(#edge)" opacity=".7">
-    <path d="m64 11 19-3-15 24-11 6zM37 116l19-2 13-50-18 27zM95 8l19 2-22 27-11 13zM68 114l19 2 8-31-16 10zM46 38l11-2-7 22-10 5zM119 40l13 2-9 21-10 3z"/>
+  <g clip-path="url(#upper-left)">
+    <path fill="#c5f5ff" d="M43 2h32L60 15H51Z"/><path fill="#71cfec" d="m60 15-1 29H43Z"/><path fill="#e1fbff" opacity=".72" d="m34 42 17-27-6 29Z"/>
   </g>
-  <g fill="none" stroke="#eafcff" stroke-width="1" opacity=".62">
-    <path d="m64 11 4 21-15 39 3 43M95 8l-4 30-13 44 9 34M46 38l-2 24-11 27M119 40l4 23-16 22"/>
+  <g clip-path="url(#lower-left)">
+    <path fill="#c9f5ff" d="M29 48h29L43 61H31Z"/><path fill="#edffff" opacity=".7" d="m31 61-13 30 16 2Z"/><path fill="#4abfe8" d="m43 61 12-8-12 42-9-2Z"/>
+  </g>
+  <g clip-path="url(#center)">
+    <path fill="#e5fbff" d="M84 2h31L92 19h-9Z"/><path fill="#b8f4ff" d="M92 19 80 54 54 101 42 90Z"/><path fill="#47bfe9" d="m110 10-30 44-25 66H45l-3-30Z"/><path fill="#f3ffff" opacity=".72" d="M53 79 80 54 64 85l-9 35H43Z"/><path fill="#188fca" opacity=".55" d="m30 116 12-26 13 30H30Z"/>
+  </g>
+  <g clip-path="url(#upper-right)">
+    <path fill="#e4fbff" d="M116 28h28l-15 14h-17Z"/><path fill="#91dfff" d="m112 42 17 0-8 30H88Z"/><path fill="#369ed6" opacity=".76" d="m129 42 14-8-14 39h-8Z"/>
+  </g>
+  <g clip-path="url(#lower-right)">
+    <path fill="#d7f9ff" d="M83 78h30l-16 17H87Z"/><path fill="#93e3f5" d="m87 95 10 0-5 25H70Z"/><path fill="#46b9e4" d="m97 95 20-12 6 10-12 28H92Z"/>
   </g>
 </svg>
