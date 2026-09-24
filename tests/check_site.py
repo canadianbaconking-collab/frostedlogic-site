@@ -86,12 +86,13 @@ class SiteChecks(unittest.TestCase):
             self.assertEqual(source.count('href="/old-website/"'), 1)
             self.assertNotIn('href="/tools.html"', source)
             self.assertNotIn('href="/instruments.html"', source)
-            self.assertIn('/images/frosted-mark.svg', source)
+            self.assertIn('/images/logo-side.png', source)
+        self.assertIn('/images/logo-top.png', (ROOT / 'index.html').read_text())
         hub = (ROOT / 'old-website/index.html').read_text()
         for old_page in ('tools.html', 'instruments.html', 'games.html', 'operations-review.html',
                          'envcheck.html', 'jsonsanity.html', 'schemafirst.html', 'glyphscope.html'):
             self.assertIn(f'href="/{old_page}"', hub)
-        for asset in ('images/frosted-mark.svg', 'old-website/index.html'):
+        for asset in ('images/logo-top.png', 'images/logo-side.png', 'old-website/index.html'):
             self.assertTrue((ROOT / asset).is_file())
 
     def test_preserved_products_and_hosting(self):
