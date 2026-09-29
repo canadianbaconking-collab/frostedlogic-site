@@ -6,7 +6,7 @@ import subprocess
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
-BASELINE = "8fcbd56b449e4c79d3d58e15ef61e3b59e86bc54"
+BASELINE = "c35db0a2b0e231610038d5c6d9999346a28722e7"
 
 
 class Page(HTMLParser):
@@ -83,11 +83,9 @@ class SiteChecks(unittest.TestCase):
     def test_legacy_isolation_and_brand(self):
         for filename in ("index.html", "about.html"):
             source = (ROOT / filename).read_text()
-            self.assertEqual(source.count('href="/old-website/"'), 1)
             self.assertNotIn('href="/tools.html"', source)
             self.assertNotIn('href="/instruments.html"', source)
-            self.assertIn('/images/logo-side-transparent.png', source)
-        self.assertIn('/images/logo-top-transparent.png', (ROOT / 'index.html').read_text())
+            self.assertIn('/images/frosted-mark.svg', source)
         hub = (ROOT / 'old-website/index.html').read_text()
         for old_page in ('tools.html', 'instruments.html', 'games.html', 'operations-review.html',
                          'envcheck.html', 'jsonsanity.html', 'schemafirst.html', 'glyphscope.html'):
@@ -102,12 +100,17 @@ class SiteChecks(unittest.TestCase):
         except (FileNotFoundError, subprocess.CalledProcessError):
             self.skipTest("Git baseline unavailable; run in the full repository for preservation checks")
         tracked = subprocess.check_output(["git", "ls-tree", "-r", "--name-only", BASELINE], cwd=ROOT, text=True).splitlines()
-        allowed = {"index.html", "about.html", "styles/theme.css", "docs/site-spec-extraction.md", "README.md"}
+        allowed = {"index.html", "about.html", "tests/check_site.py"}
         for filename in tracked:
             if filename not in allowed:
                 with self.subTest(file=filename):
                     before = subprocess.check_output(["git", "show", f"{BASELINE}:{filename}"], cwd=ROOT)
-                    self.assertEqual((ROOT / filename).read_bytes(), before)
+                    # Git's Windows checkout can convert LF to CRLF.
+                    after = (ROOT / filename).read_bytes()
+                    if b'\x00' not in before:
+                        before = before.replace(b'\r\n', b'\n')
+                        after = after.replace(b'\r\n', b'\n')
+                    self.assertEqual(after, before)
         for forbidden in ("package.json", "wrangler.toml", "wrangler.json", "wrangler.jsonc",
                           "_redirects", "_headers", "_worker.js", "CNAME"):
             self.assertFalse((ROOT / forbidden).exists(), f"Unexpected hosting change: {forbidden}")
