@@ -85,7 +85,7 @@ class SiteChecks(unittest.TestCase):
             source = (ROOT / filename).read_text()
             self.assertNotIn('href="/tools.html"', source)
             self.assertNotIn('href="/instruments.html"', source)
-            self.assertIn('/images/frosted-mark.svg', source)
+            self.assertIn('/images/logo-top-transparent.png', source)
         hub = (ROOT / 'old-website/index.html').read_text()
         for old_page in ('tools.html', 'instruments.html', 'games.html', 'operations-review.html',
                          'envcheck.html', 'jsonsanity.html', 'schemafirst.html', 'glyphscope.html'):
