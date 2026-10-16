@@ -27,3 +27,7 @@ Before production merge, visually review desktop/mobile rendering and the Cloudf
 Completed homepage placement, service/example links, About navigation, three walkthrough pages, dedicated responsive CSS, and full synthetic evidence JSON. The reproduction script checks clean pinned checkouts and asserts the public result claims. All three examples reproduced on Linux / Node 24.19.0; the five existing site checks, JavaScript syntax and diff whitespace checks passed. A separate structural check covered all five current pages, their local links, anchors and assets.
 
 Browser rendering was not inspected: this managed runtime has no supported browser QA tool. Desktop/mobile visual review remains an explicit PR gate. This branch is a reviewable first revision; production deployment is not claimed.
+
+## User acceptance — 2026-10-16
+
+Richard reviewed and accepted the completed work, requesting one final correction to the lower-right logo shard. Cloudflare preview deployment for 547cbdb passed. Browser QA was not performed by this runtime; acceptance is user review, not an automated rendering claim.
