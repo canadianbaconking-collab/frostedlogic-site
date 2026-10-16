@@ -1,0 +1,215 @@
+{
+  "synthetic": true,
+  "source_commit": "e6858ef591b0012d3334d8943ef853eb4a6b04d4",
+  "baseline": {
+    "schema_version": 1,
+    "default": "deny",
+    "rules": [
+      {
+        "id": "write-repo",
+        "allow": {
+          "tool": "files.write",
+          "effect": "WRITE",
+          "resource": "repo/*"
+        }
+      }
+    ]
+  },
+  "candidate": {
+    "schema_version": 1,
+    "default": "deny",
+    "rules": [
+      {
+        "id": "write-repo",
+        "allow": {
+          "tool": "files.write",
+          "effect": "WRITE"
+        }
+      }
+    ]
+  },
+  "traces": [
+    {
+      "id": "recorded-write",
+      "schema_version": 1,
+      "events": [
+        {
+          "schema_version": 1,
+          "tool": "files.write",
+          "effect": "WRITE",
+          "resource": "repo/readme"
+        }
+      ]
+    }
+  ],
+  "result": {
+    "schema_version": 1,
+    "gate": {
+      "passed": false,
+      "historical_regressions": 0,
+      "newly_allowed_cells": 16
+    },
+    "comparison": {
+      "schema_version": 1,
+      "summary": {
+        "traces": 1,
+        "events": 1,
+        "baseline": {
+          "ALLOW": 1,
+          "DENY": 0,
+          "REQUIRE_APPROVAL": 0
+        },
+        "candidate": {
+          "ALLOW": 1,
+          "DENY": 0,
+          "REQUIRE_APPROVAL": 0
+        },
+        "changes": {
+          "newly_allowed": 0,
+          "newly_denied": 0,
+          "newly_approved": 0,
+          "unchanged": 1
+        },
+        "regressions": 0,
+        "restored": 0,
+        "rule_reassignments": 0,
+        "coverage": {
+          "newly_explicit": 0,
+          "newly_defaulted": 0
+        }
+      },
+      "traces": [
+        {
+          "id": "recorded-write",
+          "summary": {
+            "events": 1,
+            "changes": {
+              "newly_allowed": 0,
+              "newly_denied": 0,
+              "newly_approved": 0,
+              "unchanged": 1
+            },
+            "regressions": 0,
+            "restored": 0,
+            "rule_reassignments": 0
+          },
+          "differences": []
+        }
+      ]
+    },
+    "policy_diff": {
+      "schema_version": 1,
+      "method": "exact",
+      "authority": "widened",
+      "decisions_equal": false,
+      "representative_cells": 121,
+      "categories": {
+        "newly_allowed": 16,
+        "newly_nonpassing": 0,
+        "newly_approved": 0,
+        "newly_denied": 0,
+        "coverage_changed": 16,
+        "rule_reassigned": 0
+      },
+      "witnesses": {
+        "newly_allowed": {
+          "event": {
+            "schema_version": 1,
+            "tool": "files.write",
+            "effect": "WRITE",
+            "resource_scope": {
+              "schema_version": 1,
+              "state": "unknown"
+            }
+          },
+          "baseline": {
+            "decision": "DENY",
+            "source": "default",
+            "winning_rule_ids": []
+          },
+          "candidate": {
+            "decision": "ALLOW",
+            "source": "rule",
+            "winning_rule_ids": [
+              "write-repo"
+            ]
+          }
+        },
+        "newly_nonpassing": null,
+        "newly_approved": null,
+        "newly_denied": null,
+        "coverage_changed": {
+          "event": {
+            "schema_version": 1,
+            "tool": "files.write",
+            "effect": "WRITE",
+            "resource_scope": {
+              "schema_version": 1,
+              "state": "unknown"
+            }
+          },
+          "baseline": {
+            "decision": "DENY",
+            "source": "default",
+            "winning_rule_ids": []
+          },
+          "candidate": {
+            "decision": "ALLOW",
+            "source": "rule",
+            "winning_rule_ids": [
+              "write-repo"
+            ]
+          }
+        },
+        "rule_reassigned": null
+      }
+    }
+  },
+  "witness": {
+    "event": {
+      "schema_version": 1,
+      "tool": "files.write",
+      "effect": "WRITE",
+      "resource": "outside/payroll"
+    },
+    "baseline": {
+      "match_state": "UNMATCHED",
+      "decision": "DENY",
+      "source": "default",
+      "matching_rule_ids": [],
+      "winning_rule_ids": [],
+      "specificity": null,
+      "non_matching_higher_priority": [
+        {
+          "id": "write-repo",
+          "specificity": [
+            1,
+            0,
+            1,
+            0
+          ],
+          "reasons": [
+            "resource mismatch"
+          ]
+        }
+      ]
+    },
+    "candidate": {
+      "match_state": "MATCHED",
+      "decision": "ALLOW",
+      "source": "rule",
+      "matching_rule_ids": [
+        "write-repo"
+      ],
+      "winning_rule_ids": [
+        "write-repo"
+      ],
+      "specificity": [
+        1,
+        0,
+        0,
+        0
+      ]
+    }
+  }
+}
