@@ -1,0 +1,459 @@
+{
+  "synthetic": true,
+  "source_commit": "bfe0a9f93d7049ac9554061a58c119ae5ba517da",
+  "scenarios": [
+    {
+      "input": [
+        {
+          "title": "Tool X supports approval review",
+          "url": "https://example.org/article-a",
+          "snippet": "Synthetic observation",
+          "published_at": "2026-10-15T12:00:00Z",
+          "source": "synthetic",
+          "claim_key": "approval-review",
+          "stance": "supports",
+          "primary_url": "https://example.org/original",
+          "metadata_origin": "operator"
+        },
+        {
+          "title": "Tool X supports approval review",
+          "url": "https://example.org/article-b",
+          "snippet": "Synthetic observation",
+          "published_at": "2026-10-15T12:00:00Z",
+          "source": "synthetic",
+          "claim_key": "approval-review",
+          "stance": "supports",
+          "primary_url": "https://example.org/original",
+          "metadata_origin": "operator"
+        },
+        {
+          "title": "Tool X supports approval review",
+          "url": "https://example.org/article-c",
+          "snippet": "Synthetic observation",
+          "published_at": "2026-10-15T12:00:00Z",
+          "source": "synthetic",
+          "claim_key": "approval-review",
+          "stance": "supports",
+          "primary_url": "https://example.org/original",
+          "metadata_origin": "operator"
+        }
+      ],
+      "result": {
+        "schema_version": 3,
+        "run_date": "2026-10-16",
+        "reference_at": "2026-10-16T23:59:59.999Z",
+        "window_days": 30,
+        "accepted": [
+          {
+            "evidence_id": "ev:4a53e6676b1e3778342a367171eac42b29f9e62598d468ff28eebfd13d0f4bf8",
+            "claim_id": "claim:924547c52c72721fec4aa3473fff27288e1f0c4648358edb8f4b0297effb3c20",
+            "claim_key": "approval-review",
+            "title": "Tool X supports approval review",
+            "url": "https://example.org/article-a",
+            "snippet": "Synthetic observation",
+            "published_at": "2026-10-15T12:00:00.000Z",
+            "source": "synthetic",
+            "timestamp_tier": "T1",
+            "stance": "supports",
+            "family_id": "family:405860d19edf197ec1067f0799d6c50eb58cfada925117b5dbbafadf990199d1",
+            "family_basis": "primary_url",
+            "primary_url": "https://example.org/original",
+            "metadata_origin": "operator"
+          },
+          {
+            "evidence_id": "ev:a56a7e14847f24619ca452503937d6dd69343c7afc51b2fa79cc86a4532ec845",
+            "claim_id": "claim:924547c52c72721fec4aa3473fff27288e1f0c4648358edb8f4b0297effb3c20",
+            "claim_key": "approval-review",
+            "title": "Tool X supports approval review",
+            "url": "https://example.org/article-b",
+            "snippet": "Synthetic observation",
+            "published_at": "2026-10-15T12:00:00.000Z",
+            "source": "synthetic",
+            "timestamp_tier": "T1",
+            "stance": "supports",
+            "family_id": "family:405860d19edf197ec1067f0799d6c50eb58cfada925117b5dbbafadf990199d1",
+            "family_basis": "primary_url",
+            "primary_url": "https://example.org/original",
+            "metadata_origin": "operator"
+          },
+          {
+            "evidence_id": "ev:4055ddb6702b03dd2cf16a126f6d8bdedd8dc1a5990ad2592b556ed1944eae8b",
+            "claim_id": "claim:924547c52c72721fec4aa3473fff27288e1f0c4648358edb8f4b0297effb3c20",
+            "claim_key": "approval-review",
+            "title": "Tool X supports approval review",
+            "url": "https://example.org/article-c",
+            "snippet": "Synthetic observation",
+            "published_at": "2026-10-15T12:00:00.000Z",
+            "source": "synthetic",
+            "timestamp_tier": "T1",
+            "stance": "supports",
+            "family_id": "family:405860d19edf197ec1067f0799d6c50eb58cfada925117b5dbbafadf990199d1",
+            "family_basis": "primary_url",
+            "primary_url": "https://example.org/original",
+            "metadata_origin": "operator"
+          }
+        ],
+        "rejected": [],
+        "claims": [
+          {
+            "claim_id": "claim:924547c52c72721fec4aa3473fff27288e1f0c4648358edb8f4b0297effb3c20",
+            "label": "Tool X supports approval review",
+            "evidence_ids": [
+              "ev:4055ddb6702b03dd2cf16a126f6d8bdedd8dc1a5990ad2592b556ed1944eae8b",
+              "ev:4a53e6676b1e3778342a367171eac42b29f9e62598d468ff28eebfd13d0f4bf8",
+              "ev:a56a7e14847f24619ca452503937d6dd69343c7afc51b2fa79cc86a4532ec845"
+            ],
+            "support_ids": [
+              "ev:4055ddb6702b03dd2cf16a126f6d8bdedd8dc1a5990ad2592b556ed1944eae8b",
+              "ev:4a53e6676b1e3778342a367171eac42b29f9e62598d468ff28eebfd13d0f4bf8",
+              "ev:a56a7e14847f24619ca452503937d6dd69343c7afc51b2fa79cc86a4532ec845"
+            ],
+            "counter_ids": [],
+            "independent_support_families": 1,
+            "independent_counter_families": 0,
+            "observed_families": 1,
+            "dependence_unverified": false,
+            "status": "single_origin",
+            "revalidation": "current",
+            "revalidate_by": "2026-11-14T12:00:00.000Z"
+          }
+        ],
+        "flags": [],
+        "artifact_id": "evidence:61735d82030d2be98052060c78ae15fa593353795f70660266299250ec6a785f",
+        "evidence_hash": "61735d82030d2be98052060c78ae15fa593353795f70660266299250ec6a785f"
+      }
+    },
+    {
+      "input": [
+        {
+          "title": "Tool X supports approval review",
+          "url": "https://example.org/article-a",
+          "snippet": "Synthetic observation",
+          "published_at": "2026-10-15T12:00:00Z",
+          "source": "synthetic",
+          "claim_key": "approval-review",
+          "stance": "supports",
+          "primary_url": "https://example.org/original",
+          "metadata_origin": "operator"
+        },
+        {
+          "title": "Tool X supports approval review",
+          "url": "https://example.org/article-b",
+          "snippet": "Synthetic observation",
+          "published_at": "2026-10-15T12:00:00Z",
+          "source": "synthetic",
+          "claim_key": "approval-review",
+          "stance": "supports",
+          "primary_url": "https://example.org/original",
+          "metadata_origin": "operator"
+        },
+        {
+          "title": "Tool X supports approval review",
+          "url": "https://example.org/article-c",
+          "snippet": "Synthetic observation",
+          "published_at": "2026-10-15T12:00:00Z",
+          "source": "synthetic",
+          "claim_key": "approval-review",
+          "stance": "supports",
+          "primary_url": "https://example.org/original",
+          "metadata_origin": "operator"
+        },
+        {
+          "title": "Tool X supports approval review",
+          "url": "https://example.org/independent-test",
+          "snippet": "Synthetic observation",
+          "published_at": "2026-10-15T12:00:00Z",
+          "source": "synthetic",
+          "claim_key": "approval-review",
+          "stance": "supports",
+          "primary_url": "https://example.org/test-report",
+          "metadata_origin": "operator"
+        }
+      ],
+      "result": {
+        "schema_version": 3,
+        "run_date": "2026-10-16",
+        "reference_at": "2026-10-16T23:59:59.999Z",
+        "window_days": 30,
+        "accepted": [
+          {
+            "evidence_id": "ev:4a53e6676b1e3778342a367171eac42b29f9e62598d468ff28eebfd13d0f4bf8",
+            "claim_id": "claim:924547c52c72721fec4aa3473fff27288e1f0c4648358edb8f4b0297effb3c20",
+            "claim_key": "approval-review",
+            "title": "Tool X supports approval review",
+            "url": "https://example.org/article-a",
+            "snippet": "Synthetic observation",
+            "published_at": "2026-10-15T12:00:00.000Z",
+            "source": "synthetic",
+            "timestamp_tier": "T1",
+            "stance": "supports",
+            "family_id": "family:405860d19edf197ec1067f0799d6c50eb58cfada925117b5dbbafadf990199d1",
+            "family_basis": "primary_url",
+            "primary_url": "https://example.org/original",
+            "metadata_origin": "operator"
+          },
+          {
+            "evidence_id": "ev:a56a7e14847f24619ca452503937d6dd69343c7afc51b2fa79cc86a4532ec845",
+            "claim_id": "claim:924547c52c72721fec4aa3473fff27288e1f0c4648358edb8f4b0297effb3c20",
+            "claim_key": "approval-review",
+            "title": "Tool X supports approval review",
+            "url": "https://example.org/article-b",
+            "snippet": "Synthetic observation",
+            "published_at": "2026-10-15T12:00:00.000Z",
+            "source": "synthetic",
+            "timestamp_tier": "T1",
+            "stance": "supports",
+            "family_id": "family:405860d19edf197ec1067f0799d6c50eb58cfada925117b5dbbafadf990199d1",
+            "family_basis": "primary_url",
+            "primary_url": "https://example.org/original",
+            "metadata_origin": "operator"
+          },
+          {
+            "evidence_id": "ev:4055ddb6702b03dd2cf16a126f6d8bdedd8dc1a5990ad2592b556ed1944eae8b",
+            "claim_id": "claim:924547c52c72721fec4aa3473fff27288e1f0c4648358edb8f4b0297effb3c20",
+            "claim_key": "approval-review",
+            "title": "Tool X supports approval review",
+            "url": "https://example.org/article-c",
+            "snippet": "Synthetic observation",
+            "published_at": "2026-10-15T12:00:00.000Z",
+            "source": "synthetic",
+            "timestamp_tier": "T1",
+            "stance": "supports",
+            "family_id": "family:405860d19edf197ec1067f0799d6c50eb58cfada925117b5dbbafadf990199d1",
+            "family_basis": "primary_url",
+            "primary_url": "https://example.org/original",
+            "metadata_origin": "operator"
+          },
+          {
+            "evidence_id": "ev:fdff31ff4a0b58f43c4bf95dfc8c85fe8c3b33090c0ff6c1824fbf6cecf51f51",
+            "claim_id": "claim:924547c52c72721fec4aa3473fff27288e1f0c4648358edb8f4b0297effb3c20",
+            "claim_key": "approval-review",
+            "title": "Tool X supports approval review",
+            "url": "https://example.org/independent-test",
+            "snippet": "Synthetic observation",
+            "published_at": "2026-10-15T12:00:00.000Z",
+            "source": "synthetic",
+            "timestamp_tier": "T1",
+            "stance": "supports",
+            "family_id": "family:1397d331570283bfe75e7a92627a15cfe56b17b0b181b4a6206e2f7c09102458",
+            "family_basis": "primary_url",
+            "primary_url": "https://example.org/test-report",
+            "metadata_origin": "operator"
+          }
+        ],
+        "rejected": [],
+        "claims": [
+          {
+            "claim_id": "claim:924547c52c72721fec4aa3473fff27288e1f0c4648358edb8f4b0297effb3c20",
+            "label": "Tool X supports approval review",
+            "evidence_ids": [
+              "ev:4055ddb6702b03dd2cf16a126f6d8bdedd8dc1a5990ad2592b556ed1944eae8b",
+              "ev:4a53e6676b1e3778342a367171eac42b29f9e62598d468ff28eebfd13d0f4bf8",
+              "ev:a56a7e14847f24619ca452503937d6dd69343c7afc51b2fa79cc86a4532ec845",
+              "ev:fdff31ff4a0b58f43c4bf95dfc8c85fe8c3b33090c0ff6c1824fbf6cecf51f51"
+            ],
+            "support_ids": [
+              "ev:4055ddb6702b03dd2cf16a126f6d8bdedd8dc1a5990ad2592b556ed1944eae8b",
+              "ev:4a53e6676b1e3778342a367171eac42b29f9e62598d468ff28eebfd13d0f4bf8",
+              "ev:a56a7e14847f24619ca452503937d6dd69343c7afc51b2fa79cc86a4532ec845",
+              "ev:fdff31ff4a0b58f43c4bf95dfc8c85fe8c3b33090c0ff6c1824fbf6cecf51f51"
+            ],
+            "counter_ids": [],
+            "independent_support_families": 2,
+            "independent_counter_families": 0,
+            "observed_families": 2,
+            "dependence_unverified": false,
+            "status": "corroborated",
+            "revalidation": "current",
+            "revalidate_by": "2026-11-14T12:00:00.000Z"
+          }
+        ],
+        "flags": [],
+        "artifact_id": "evidence:55fa16dddf5d609fc3974ba6c71d498921e1dff888ff0896f8b350cb7a29d3bc",
+        "evidence_hash": "55fa16dddf5d609fc3974ba6c71d498921e1dff888ff0896f8b350cb7a29d3bc"
+      }
+    },
+    {
+      "input": [
+        {
+          "title": "Tool X supports approval review",
+          "url": "https://example.org/article-a",
+          "snippet": "Synthetic observation",
+          "published_at": "2026-10-15T12:00:00Z",
+          "source": "synthetic",
+          "claim_key": "approval-review",
+          "stance": "supports",
+          "primary_url": "https://example.org/original",
+          "metadata_origin": "operator"
+        },
+        {
+          "title": "Tool X supports approval review",
+          "url": "https://example.org/article-b",
+          "snippet": "Synthetic observation",
+          "published_at": "2026-10-15T12:00:00Z",
+          "source": "synthetic",
+          "claim_key": "approval-review",
+          "stance": "supports",
+          "primary_url": "https://example.org/original",
+          "metadata_origin": "operator"
+        },
+        {
+          "title": "Tool X supports approval review",
+          "url": "https://example.org/article-c",
+          "snippet": "Synthetic observation",
+          "published_at": "2026-10-15T12:00:00Z",
+          "source": "synthetic",
+          "claim_key": "approval-review",
+          "stance": "supports",
+          "primary_url": "https://example.org/original",
+          "metadata_origin": "operator"
+        },
+        {
+          "title": "Tool X supports approval review",
+          "url": "https://example.org/independent-test",
+          "snippet": "Synthetic observation",
+          "published_at": "2026-10-15T12:00:00Z",
+          "source": "synthetic",
+          "claim_key": "approval-review",
+          "stance": "supports",
+          "primary_url": "https://example.org/test-report",
+          "metadata_origin": "operator"
+        },
+        {
+          "title": "Tool X supports approval review",
+          "url": "https://example.org/counter-test",
+          "snippet": "Synthetic observation",
+          "published_at": "2026-10-15T12:00:00Z",
+          "source": "synthetic",
+          "claim_key": "approval-review",
+          "stance": "refutes",
+          "primary_url": "https://example.org/counter-report",
+          "metadata_origin": "operator"
+        }
+      ],
+      "result": {
+        "schema_version": 3,
+        "run_date": "2026-10-16",
+        "reference_at": "2026-10-16T23:59:59.999Z",
+        "window_days": 30,
+        "accepted": [
+          {
+            "evidence_id": "ev:4a53e6676b1e3778342a367171eac42b29f9e62598d468ff28eebfd13d0f4bf8",
+            "claim_id": "claim:924547c52c72721fec4aa3473fff27288e1f0c4648358edb8f4b0297effb3c20",
+            "claim_key": "approval-review",
+            "title": "Tool X supports approval review",
+            "url": "https://example.org/article-a",
+            "snippet": "Synthetic observation",
+            "published_at": "2026-10-15T12:00:00.000Z",
+            "source": "synthetic",
+            "timestamp_tier": "T1",
+            "stance": "supports",
+            "family_id": "family:405860d19edf197ec1067f0799d6c50eb58cfada925117b5dbbafadf990199d1",
+            "family_basis": "primary_url",
+            "primary_url": "https://example.org/original",
+            "metadata_origin": "operator"
+          },
+          {
+            "evidence_id": "ev:a56a7e14847f24619ca452503937d6dd69343c7afc51b2fa79cc86a4532ec845",
+            "claim_id": "claim:924547c52c72721fec4aa3473fff27288e1f0c4648358edb8f4b0297effb3c20",
+            "claim_key": "approval-review",
+            "title": "Tool X supports approval review",
+            "url": "https://example.org/article-b",
+            "snippet": "Synthetic observation",
+            "published_at": "2026-10-15T12:00:00.000Z",
+            "source": "synthetic",
+            "timestamp_tier": "T1",
+            "stance": "supports",
+            "family_id": "family:405860d19edf197ec1067f0799d6c50eb58cfada925117b5dbbafadf990199d1",
+            "family_basis": "primary_url",
+            "primary_url": "https://example.org/original",
+            "metadata_origin": "operator"
+          },
+          {
+            "evidence_id": "ev:4055ddb6702b03dd2cf16a126f6d8bdedd8dc1a5990ad2592b556ed1944eae8b",
+            "claim_id": "claim:924547c52c72721fec4aa3473fff27288e1f0c4648358edb8f4b0297effb3c20",
+            "claim_key": "approval-review",
+            "title": "Tool X supports approval review",
+            "url": "https://example.org/article-c",
+            "snippet": "Synthetic observation",
+            "published_at": "2026-10-15T12:00:00.000Z",
+            "source": "synthetic",
+            "timestamp_tier": "T1",
+            "stance": "supports",
+            "family_id": "family:405860d19edf197ec1067f0799d6c50eb58cfada925117b5dbbafadf990199d1",
+            "family_basis": "primary_url",
+            "primary_url": "https://example.org/original",
+            "metadata_origin": "operator"
+          },
+          {
+            "evidence_id": "ev:69d90f3289e13f9f0e6c4979a3fdfa22e0fa4a085e52855d7bac68e3a19e5e9b",
+            "claim_id": "claim:924547c52c72721fec4aa3473fff27288e1f0c4648358edb8f4b0297effb3c20",
+            "claim_key": "approval-review",
+            "title": "Tool X supports approval review",
+            "url": "https://example.org/counter-test",
+            "snippet": "Synthetic observation",
+            "published_at": "2026-10-15T12:00:00.000Z",
+            "source": "synthetic",
+            "timestamp_tier": "T1",
+            "stance": "refutes",
+            "family_id": "family:1e3cda9db5bb86d3023a2c1ea80581da6c222a2525997d4b9c88258be716cb88",
+            "family_basis": "primary_url",
+            "primary_url": "https://example.org/counter-report",
+            "metadata_origin": "operator"
+          },
+          {
+            "evidence_id": "ev:fdff31ff4a0b58f43c4bf95dfc8c85fe8c3b33090c0ff6c1824fbf6cecf51f51",
+            "claim_id": "claim:924547c52c72721fec4aa3473fff27288e1f0c4648358edb8f4b0297effb3c20",
+            "claim_key": "approval-review",
+            "title": "Tool X supports approval review",
+            "url": "https://example.org/independent-test",
+            "snippet": "Synthetic observation",
+            "published_at": "2026-10-15T12:00:00.000Z",
+            "source": "synthetic",
+            "timestamp_tier": "T1",
+            "stance": "supports",
+            "family_id": "family:1397d331570283bfe75e7a92627a15cfe56b17b0b181b4a6206e2f7c09102458",
+            "family_basis": "primary_url",
+            "primary_url": "https://example.org/test-report",
+            "metadata_origin": "operator"
+          }
+        ],
+        "rejected": [],
+        "claims": [
+          {
+            "claim_id": "claim:924547c52c72721fec4aa3473fff27288e1f0c4648358edb8f4b0297effb3c20",
+            "label": "Tool X supports approval review",
+            "evidence_ids": [
+              "ev:4055ddb6702b03dd2cf16a126f6d8bdedd8dc1a5990ad2592b556ed1944eae8b",
+              "ev:4a53e6676b1e3778342a367171eac42b29f9e62598d468ff28eebfd13d0f4bf8",
+              "ev:69d90f3289e13f9f0e6c4979a3fdfa22e0fa4a085e52855d7bac68e3a19e5e9b",
+              "ev:a56a7e14847f24619ca452503937d6dd69343c7afc51b2fa79cc86a4532ec845",
+              "ev:fdff31ff4a0b58f43c4bf95dfc8c85fe8c3b33090c0ff6c1824fbf6cecf51f51"
+            ],
+            "support_ids": [
+              "ev:4055ddb6702b03dd2cf16a126f6d8bdedd8dc1a5990ad2592b556ed1944eae8b",
+              "ev:4a53e6676b1e3778342a367171eac42b29f9e62598d468ff28eebfd13d0f4bf8",
+              "ev:a56a7e14847f24619ca452503937d6dd69343c7afc51b2fa79cc86a4532ec845",
+              "ev:fdff31ff4a0b58f43c4bf95dfc8c85fe8c3b33090c0ff6c1824fbf6cecf51f51"
+            ],
+            "counter_ids": [
+              "ev:69d90f3289e13f9f0e6c4979a3fdfa22e0fa4a085e52855d7bac68e3a19e5e9b"
+            ],
+            "independent_support_families": 2,
+            "independent_counter_families": 1,
+            "observed_families": 3,
+            "dependence_unverified": false,
+            "status": "contested",
+            "revalidation": "current",
+            "revalidate_by": "2026-11-14T12:00:00.000Z"
+          }
+        ],
+        "flags": [
+          "CONTRADICTORY_EVIDENCE"
+        ],
+        "artifact_id": "evidence:c7ae73fa4a142934efca3f018f436138972a39ed5d95c85376c0703d3b84bc97",
+        "evidence_hash": "c7ae73fa4a142934efca3f018f436138972a39ed5d95c85376c0703d3b84bc97"
+      }
+    }
+  ]
+}

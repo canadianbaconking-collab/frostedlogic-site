@@ -1,0 +1,558 @@
+{
+  "synthetic": true,
+  "source_commit": "87844dd8bbfeefae60202d175f18eefc51eecb0f",
+  "before": [
+    {
+      "schemaVersion": "0.1",
+      "source": "before-config.json",
+      "format": "mcp-client-json",
+      "records": [
+        {
+          "id": "repository.create_issue",
+          "principal": {
+            "kind": "mcp_server",
+            "name": "repository",
+            "claim": {
+              "value": "repository",
+              "status": "DECLARED",
+              "source": "mcpServers.repository",
+              "explanation": "Declared in static input"
+            }
+          },
+          "capability": {
+            "provider": "repository",
+            "operation": "create_issue",
+            "parameters": {
+              "value": {
+                "fingerprint": "4f4fc68b8c9b1cbf366722566b64e672ad84793f499ab5c16fd333592ba9ea80",
+                "finiteProperties": [
+                  "repo"
+                ]
+              },
+              "status": "DECLARED",
+              "source": "mcpServers.repository.tools.create_issue.inputSchema",
+              "explanation": "Input schema declaration; fingerprint is not an enforcement or equivalence proof"
+            },
+            "effects": {
+              "value": [
+                "WRITE"
+              ],
+              "status": "INFERRED",
+              "source": "mcpServers.repository.tools.create_issue.annotations + mcpServers.repository.tools.create_issue.name",
+              "explanation": "Aggregate status is no stronger than its weakest member; see effectEvidence"
+            },
+            "effectEvidence": [
+              {
+                "value": "WRITE",
+                "status": "DECLARED",
+                "source": "mcpServers.repository.tools.create_issue.annotations",
+                "explanation": "Untrusted MCP descriptive hint"
+              },
+              {
+                "value": "WRITE",
+                "status": "INFERRED",
+                "source": "mcpServers.repository.tools.create_issue.name",
+                "explanation": "Hypothesis from operation name"
+              }
+            ],
+            "boundaries": [
+              {
+                "kind": "repository_pattern",
+                "value": "canadianbaconking-collab/coldgate",
+                "claim": {
+                  "value": "canadianbaconking-collab/coldgate",
+                  "status": "DECLARED",
+                  "source": "mcpServers.repository.tools.create_issue.repositories",
+                  "explanation": "Declared in static input"
+                }
+              }
+            ],
+            "destination": {
+              "value": "unknown",
+              "status": "UNKNOWN",
+              "source": "mcpServers.repository.tools.create_issue",
+              "explanation": "No supported static evidence"
+            },
+            "credentialNames": {
+              "value": [
+                "READ_TOKEN"
+              ],
+              "status": "DECLARED",
+              "source": "mcpServers.repository.env keys",
+              "explanation": "Declared in static input"
+            },
+            "scopes": {
+              "value": [],
+              "status": "UNKNOWN",
+              "source": "mcpServers.repository.tools.create_issue",
+              "explanation": "No supported static evidence"
+            },
+            "approval": {
+              "value": "REQUIRED",
+              "status": "DECLARED",
+              "source": "mcpServers.repository.tools.create_issue.requiresApproval",
+              "explanation": "Coldgate overlay declaration, not MCP enforcement"
+            },
+            "delegation": {
+              "value": "unknown",
+              "status": "UNKNOWN",
+              "source": "mcpServers.repository.tools.create_issue",
+              "explanation": "No supported static evidence"
+            },
+            "persistence": {
+              "value": "unknown",
+              "status": "UNKNOWN",
+              "source": "mcpServers.repository.tools.create_issue",
+              "explanation": "No supported static evidence"
+            },
+            "annotations": {
+              "readOnlyHint": false,
+              "destructiveHint": false
+            }
+          },
+          "inventory": {
+            "value": "snapshot",
+            "status": "DECLARED",
+            "source": "mcpServers.repository.tools.create_issue",
+            "explanation": "Static snapshot may differ from live server"
+          }
+        }
+      ],
+      "findings": [
+        {
+          "rule": "CG005",
+          "level": "INFO",
+          "recordId": "repository.create_issue",
+          "observed": "Approval is explicitly configured as required.",
+          "inferred": "None.",
+          "reason": "Static configuration does not prove runtime enforcement or a human reviewer.",
+          "missing": "Runtime enforcement evidence.",
+          "evidence": [
+            "mcpServers.repository.tools.create_issue.requiresApproval"
+          ]
+        }
+      ],
+      "errors": [],
+      "coverage": {
+        "records": 1,
+        "effect": {
+          "declaredOnly": 0,
+          "inferredOnly": 0,
+          "mixed": 1,
+          "observedClaim": 0,
+          "enforcedClaim": 0,
+          "unknown": 0
+        },
+        "approval": {
+          "explicit": 1,
+          "conditionalInherited": 0,
+          "observedClaim": 0,
+          "unknown": 0
+        },
+        "inventory": {
+          "snapshot": 1,
+          "observedClaim": 0,
+          "unknown": 0
+        },
+        "boundary": {
+          "explicit": 1,
+          "inferred": 0,
+          "observedClaim": 0,
+          "unknown": 0
+        }
+      }
+    }
+  ],
+  "after": [
+    {
+      "schemaVersion": "0.1",
+      "source": "after-config.json",
+      "format": "mcp-client-json",
+      "records": [
+        {
+          "id": "repository.create_issue",
+          "principal": {
+            "kind": "mcp_server",
+            "name": "repository",
+            "claim": {
+              "value": "repository",
+              "status": "DECLARED",
+              "source": "mcpServers.repository",
+              "explanation": "Declared in static input"
+            }
+          },
+          "capability": {
+            "provider": "repository",
+            "operation": "create_issue",
+            "parameters": {
+              "value": {
+                "fingerprint": "e0746f19d152448f58cb39f252f8edf26ca0aa3a60da752774a4ebd58f8d6a8b",
+                "finiteProperties": []
+              },
+              "status": "DECLARED",
+              "source": "mcpServers.repository.tools.create_issue.inputSchema",
+              "explanation": "Input schema declaration; fingerprint is not an enforcement or equivalence proof"
+            },
+            "effects": {
+              "value": [
+                "WRITE",
+                "DESTRUCTIVE"
+              ],
+              "status": "INFERRED",
+              "source": "mcpServers.repository.tools.create_issue.annotations + mcpServers.repository.tools.create_issue.name",
+              "explanation": "Aggregate status is no stronger than its weakest member; see effectEvidence"
+            },
+            "effectEvidence": [
+              {
+                "value": "WRITE",
+                "status": "DECLARED",
+                "source": "mcpServers.repository.tools.create_issue.annotations",
+                "explanation": "Untrusted MCP descriptive hint"
+              },
+              {
+                "value": "DESTRUCTIVE",
+                "status": "DECLARED",
+                "source": "mcpServers.repository.tools.create_issue.annotations",
+                "explanation": "Untrusted MCP descriptive hint"
+              },
+              {
+                "value": "WRITE",
+                "status": "INFERRED",
+                "source": "mcpServers.repository.tools.create_issue.name",
+                "explanation": "Hypothesis from operation name"
+              }
+            ],
+            "boundaries": [
+              {
+                "kind": "repository_pattern",
+                "value": "*",
+                "claim": {
+                  "value": "*",
+                  "status": "DECLARED",
+                  "source": "mcpServers.repository.tools.create_issue.repositories",
+                  "explanation": "Declared in static input"
+                }
+              }
+            ],
+            "destination": {
+              "value": "unknown",
+              "status": "UNKNOWN",
+              "source": "mcpServers.repository.tools.create_issue",
+              "explanation": "No supported static evidence"
+            },
+            "credentialNames": {
+              "value": [
+                "READ_TOKEN",
+                "WRITE_TOKEN"
+              ],
+              "status": "DECLARED",
+              "source": "mcpServers.repository.env keys",
+              "explanation": "Declared in static input"
+            },
+            "scopes": {
+              "value": [],
+              "status": "UNKNOWN",
+              "source": "mcpServers.repository.tools.create_issue",
+              "explanation": "No supported static evidence"
+            },
+            "approval": {
+              "value": "NOT_REQUIRED",
+              "status": "DECLARED",
+              "source": "mcpServers.repository.tools.create_issue.requiresApproval",
+              "explanation": "Coldgate overlay declaration, not MCP enforcement"
+            },
+            "delegation": {
+              "value": "unknown",
+              "status": "UNKNOWN",
+              "source": "mcpServers.repository.tools.create_issue",
+              "explanation": "No supported static evidence"
+            },
+            "persistence": {
+              "value": "unknown",
+              "status": "UNKNOWN",
+              "source": "mcpServers.repository.tools.create_issue",
+              "explanation": "No supported static evidence"
+            },
+            "annotations": {
+              "readOnlyHint": false,
+              "destructiveHint": true
+            }
+          },
+          "inventory": {
+            "value": "snapshot",
+            "status": "DECLARED",
+            "source": "mcpServers.repository.tools.create_issue",
+            "explanation": "Static snapshot may differ from live server"
+          }
+        },
+        {
+          "id": "repository.send_email",
+          "principal": {
+            "kind": "mcp_server",
+            "name": "repository",
+            "claim": {
+              "value": "repository",
+              "status": "DECLARED",
+              "source": "mcpServers.repository",
+              "explanation": "Declared in static input"
+            }
+          },
+          "capability": {
+            "provider": "repository",
+            "operation": "send_email",
+            "effects": {
+              "value": [
+                "OPEN_WORLD",
+                "WRITE",
+                "EXTERNAL_COMMUNICATION"
+              ],
+              "status": "INFERRED",
+              "source": "mcpServers.repository.tools.send_email.annotations + mcpServers.repository.tools.send_email.name",
+              "explanation": "Aggregate status is no stronger than its weakest member; see effectEvidence"
+            },
+            "effectEvidence": [
+              {
+                "value": "OPEN_WORLD",
+                "status": "DECLARED",
+                "source": "mcpServers.repository.tools.send_email.annotations",
+                "explanation": "Untrusted MCP descriptive hint"
+              },
+              {
+                "value": "WRITE",
+                "status": "INFERRED",
+                "source": "mcpServers.repository.tools.send_email.name",
+                "explanation": "Hypothesis from operation name"
+              },
+              {
+                "value": "EXTERNAL_COMMUNICATION",
+                "status": "INFERRED",
+                "source": "mcpServers.repository.tools.send_email.name",
+                "explanation": "Hypothesis from operation name"
+              }
+            ],
+            "boundaries": [
+              {
+                "kind": "unknown",
+                "value": "unknown",
+                "claim": {
+                  "value": "unknown",
+                  "status": "UNKNOWN",
+                  "source": "mcpServers.repository.tools.send_email",
+                  "explanation": "No supported static evidence"
+                }
+              }
+            ],
+            "destination": {
+              "value": "unknown",
+              "status": "UNKNOWN",
+              "source": "mcpServers.repository.tools.send_email",
+              "explanation": "No supported static evidence"
+            },
+            "credentialNames": {
+              "value": [
+                "READ_TOKEN",
+                "WRITE_TOKEN"
+              ],
+              "status": "DECLARED",
+              "source": "mcpServers.repository.env keys",
+              "explanation": "Declared in static input"
+            },
+            "scopes": {
+              "value": [],
+              "status": "UNKNOWN",
+              "source": "mcpServers.repository.tools.send_email",
+              "explanation": "No supported static evidence"
+            },
+            "approval": {
+              "value": "NOT_REQUIRED",
+              "status": "DECLARED",
+              "source": "mcpServers.repository.tools.send_email.requiresApproval",
+              "explanation": "Coldgate overlay declaration, not MCP enforcement"
+            },
+            "delegation": {
+              "value": "unknown",
+              "status": "UNKNOWN",
+              "source": "mcpServers.repository.tools.send_email",
+              "explanation": "No supported static evidence"
+            },
+            "persistence": {
+              "value": "unknown",
+              "status": "UNKNOWN",
+              "source": "mcpServers.repository.tools.send_email",
+              "explanation": "No supported static evidence"
+            },
+            "annotations": {
+              "openWorldHint": true
+            }
+          },
+          "inventory": {
+            "value": "snapshot",
+            "status": "DECLARED",
+            "source": "mcpServers.repository.tools.send_email",
+            "explanation": "Static snapshot may differ from live server"
+          }
+        }
+      ],
+      "findings": [
+        {
+          "rule": "CG003",
+          "level": "WARN",
+          "recordId": "repository.create_issue",
+          "observed": "Approval is NOT_REQUIRED (DECLARED).",
+          "inferred": "Potential WRITE, DESTRUCTIVE from inferred evidence.",
+          "reason": "A consequential operation may run without a confirmed approval boundary.",
+          "missing": "Effective approval behavior and an explicit policy for this operation.",
+          "evidence": [
+            "mcpServers.repository.tools.create_issue.annotations + mcpServers.repository.tools.create_issue.name",
+            "mcpServers.repository.tools.create_issue.requiresApproval"
+          ]
+        },
+        {
+          "rule": "CG009",
+          "level": "REVIEW",
+          "recordId": "repository.create_issue",
+          "observed": "A declared resource boundary contains *.",
+          "inferred": "Scope could include arbitrary resources.",
+          "reason": "Wildcard scope is wider than a named resource.",
+          "missing": "Effective scope and enforcement behavior.",
+          "evidence": [
+            "mcpServers.repository.tools.create_issue.repositories"
+          ]
+        },
+        {
+          "rule": "CG003",
+          "level": "WARN",
+          "recordId": "repository.send_email",
+          "observed": "Approval is NOT_REQUIRED (DECLARED).",
+          "inferred": "Potential OPEN_WORLD, WRITE, EXTERNAL_COMMUNICATION from inferred evidence.",
+          "reason": "A consequential operation may run without a confirmed approval boundary.",
+          "missing": "Effective approval behavior and an explicit policy for this operation.",
+          "evidence": [
+            "mcpServers.repository.tools.send_email.annotations + mcpServers.repository.tools.send_email.name",
+            "mcpServers.repository.tools.send_email.requiresApproval"
+          ]
+        },
+        {
+          "rule": "CG008",
+          "level": "REVIEW",
+          "recordId": "repository.send_email",
+          "observed": "No supported resource boundary was found.",
+          "inferred": "Scope may be broad.",
+          "reason": "Tool reach cannot be determined from this static input.",
+          "missing": "Explicit allowed resources or independent enforcement evidence.",
+          "evidence": [
+            "mcpServers.repository.tools.send_email"
+          ]
+        }
+      ],
+      "errors": [],
+      "coverage": {
+        "records": 2,
+        "effect": {
+          "declaredOnly": 0,
+          "inferredOnly": 0,
+          "mixed": 2,
+          "observedClaim": 0,
+          "enforcedClaim": 0,
+          "unknown": 0
+        },
+        "approval": {
+          "explicit": 2,
+          "conditionalInherited": 0,
+          "observedClaim": 0,
+          "unknown": 0
+        },
+        "inventory": {
+          "snapshot": 2,
+          "observedClaim": 0,
+          "unknown": 0
+        },
+        "boundary": {
+          "explicit": 1,
+          "inferred": 0,
+          "observedClaim": 0,
+          "unknown": 1
+        }
+      }
+    }
+  ],
+  "result": {
+    "schemaVersion": "0.1",
+    "changes": [
+      {
+        "kind": "EFFECTS_CHANGED",
+        "category": "effects:expansion",
+        "tool": "repository.create_issue",
+        "before": "[\"WRITE\"]",
+        "after": "[\"DESTRUCTIVE\",\"WRITE\"]",
+        "explanation": "Declared or inferred effect classes changed. Actual implementation behavior is unverified."
+      },
+      {
+        "kind": "APPROVAL_CHANGED",
+        "category": "approval:weakening",
+        "tool": "repository.create_issue",
+        "before": "REQUIRED [DECLARED]",
+        "after": "NOT_REQUIRED [DECLARED]",
+        "explanation": "The explicit requirement changed; review whether consequential calls still need approval."
+      },
+      {
+        "kind": "BOUNDARIES_CHANGED",
+        "category": "boundaries:widening",
+        "tool": "repository.create_issue",
+        "before": "[\"repository_pattern:canadianbaconking-collab/coldgate\"]",
+        "after": "[\"repository_pattern:*\"]",
+        "explanation": "A new wildcard boundary is declared; potential scope expansion needs review."
+      },
+      {
+        "kind": "CREDENTIALS_CHANGED",
+        "category": "credentials:expansion",
+        "tool": "repository.create_issue",
+        "before": "[\"READ_TOKEN\"]",
+        "after": "[\"READ_TOKEN\",\"WRITE_TOKEN\"]",
+        "explanation": "Credential identifiers changed; values and effective privileges are not compared."
+      },
+      {
+        "kind": "PARAMETERS_CHANGED",
+        "category": "parameters:widening",
+        "tool": "repository.create_issue",
+        "before": "4f4fc68b8c9b1cbf366722566b64e672ad84793f499ab5c16fd333592ba9ea80",
+        "after": "e0746f19d152448f58cb39f252f8edf26ca0aa3a60da752774a4ebd58f8d6a8b",
+        "explanation": "A top-level enum/const restriction is no longer represented. Review possible parameter widening; other constraints may still apply."
+      },
+      {
+        "kind": "ANNOTATIONS_CHANGED",
+        "category": "other:changed",
+        "tool": "repository.create_issue",
+        "before": "[[\"destructiveHint\",false],[\"readOnlyHint\",false]]",
+        "after": "[[\"destructiveHint\",true],[\"readOnlyHint\",false]]",
+        "explanation": "MCP descriptive hints changed; these are not enforcement guarantees."
+      },
+      {
+        "kind": "EFFECT_EVIDENCE_CHANGED",
+        "category": "evidence:changed",
+        "tool": "repository.create_issue",
+        "before": "[\"WRITE:DECLARED:mcpServers.repository.tools.create_issue.annotations\",\"WRITE:INFERRED:mcpServers.repository.tools.create_issue.name\"]",
+        "after": "[\"DESTRUCTIVE:DECLARED:mcpServers.repository.tools.create_issue.annotations\",\"WRITE:DECLARED:mcpServers.repository.tools.create_issue.annotations\",\"WRITE:INFERRED:mcpServers.repository.tools.create_issue.name\"]",
+        "explanation": "Per-effect evidence changed; the aggregate effect set alone may hide this difference."
+      },
+      {
+        "kind": "BOUNDARY_EVIDENCE_CHANGED",
+        "category": "evidence:changed",
+        "tool": "repository.create_issue",
+        "before": "[\"repository_pattern:canadianbaconking-collab/coldgate:DECLARED:mcpServers.repository.tools.create_issue.repositories\"]",
+        "after": "[\"repository_pattern:*:DECLARED:mcpServers.repository.tools.create_issue.repositories\"]",
+        "explanation": "Boundary evidence changed independently of whether the boundary is enforced."
+      },
+      {
+        "kind": "TOOL_ADDED",
+        "category": "inventory:exposure",
+        "tool": "repository.send_email",
+        "before": "absent",
+        "after": "snapshot [DECLARED]",
+        "explanation": "New snapshot entry; this does not establish when runtime authority was acquired."
+      }
+    ],
+    "warnings": [],
+    "errors": []
+  }
+}
